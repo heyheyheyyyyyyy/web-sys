@@ -15,6 +15,9 @@
           <li class="nav-item">
               <a class="nav-link" href="index.php#cats">Cats</a>
           </li>
+          <li class="nav-item">
+              <a class="nav-link" href="AboutUs.php">About Us</a>
+          </li>
       </ul>
     </div>
   <div>
