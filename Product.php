@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-<?php
-
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
-
-=======
 <html>
     <head>
         <?php
@@ -43,7 +34,7 @@
                         <div class="container">
                             <h2>$30.00</h2>
                             <p class="title">ECO Bottles</p>
-                            <p>Package items four bottle for #30.00.</p>
+                            <p>Package items four bottle for $30.00.</p>
 
                             <p><button class="button"><a href="ContactUs.php">Add to cart</a></button></p>
                         </div>
@@ -103,4 +94,3 @@
                     ?>
                     </body>
                     </html>
->>>>>>> e1033c48f367e1ad691a449a74f2cffe583f0b10
