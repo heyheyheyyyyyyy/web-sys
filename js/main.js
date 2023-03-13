@@ -1,39 +1,67 @@
-$(document).ready(click());
+const wrapper = document.querySelector(".sliderWrapper");
+const menuItems = document.querySelectorAll(".menuItem");
 
-function click() {
-        $(".img-thumbnail").hover(imagepopup);
-}
+const products = [
+  {
+    id: 1,
+    title: "Quench",
+    price: 119,
+    colors: [
+      {
+        code: "Grey",
+        img: "images/c1.jpg"
+      },
+      {
+        code: "Orange",
+        img: "images/c2.jpg"
+      },
+    ],
+  },
+  
+];
 
-function imagepopup() {
-    var srcname = $(this).attr("src");
-    var otherimage = srcname.replace("small", "large");
-    var imagepopup = document.getElementsByClassName("imagepopup");
+let choosenProduct = products[0];
 
-    if (imagepopup.length === 0) {
-        $(this).after("<img class=\"imagepopup\" src=\"" + otherimage + "\"/>");
-    } else {
-        if (imagepopup.length > 0) {
-            imagepopup[0].parentNode.removeChild(imagepopup[0]);
-        }
-    }   
-}
+const currentProductImg = document.querySelector(".productImg");
+const currentProductTitle = document.querySelector(".productTitle");
+const currentProductPrice = document.querySelector(".productPrice");
+const currentProductColors = document.querySelectorAll(".color");
+const currentProductSizes = document.querySelectorAll(".size");
 
-/*
-* This function toggles the nav menu active/inactive status as
-* different pages are selected. It should be called from $(document).ready()
-* or whenever the page loads.
-*/
-$(document).ready(function activateMenu()
-{
-    var current_page_URL = location.href;
-    $(".navbar-nav a").each(function()
-    {
-        var target_URL = $(this).prop("href");
-        if (target_URL === current_page_URL)
-            {
-            $('nav a').parents('li, ul').removeClass('active');
-            $(this).parent('li').addClass('active');
-            return false;
-            }
+menuItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    //change the current slide
+    wrapper.style.transform = `translateX(${-100 * index}vw)`;
+
+    //change the choosen product
+    choosenProduct = products[index];
+
+    //change texts of currentProduct
+    currentProductTitle.textContent = choosenProduct.title;
+    currentProductPrice.textContent = "$" + choosenProduct.price;
+    currentProductImg.src = choosenProduct.colors[0].img;
+
+    //assing new colors
+    currentProductColors.forEach((color, index) => {
+      color.style.backgroundColor = choosenProduct.colors[index].code;
+    });
+  });
 });
+
+currentProductColors.forEach((color, index) => {
+  color.addEventListener("click", () => {
+    currentProductImg.src = choosenProduct.colors[index].img;
+  });
+});
+
+const productButton = document.querySelector(".productButton");
+const payment = document.querySelector(".payment");
+const close = document.querySelector(".close");
+
+productButton.addEventListener("click", () => {
+  payment.style.display = "flex";
+});
+
+close.addEventListener("click", () => {
+  payment.style.display = "none";
 });
