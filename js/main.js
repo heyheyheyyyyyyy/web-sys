@@ -4,22 +4,20 @@ const menuItems = document.querySelectorAll(".menuItem");
 const products = [
   {
     id: 1,
-    title: "Quench",
+    title: "Air Force",
     price: 119,
     colors: [
       {
-        code: "Grey",
-        img: "images/c1.jpg"
+        code: "grey",
+        img: "images/c1.jpg",
       },
       {
-        code: "Orange",
-        img: "images/c2.jpg"
+        code: "orange",
+        img: "images/c2.jpg",
       },
     ],
   },
   
-];
-
 let choosenProduct = products[0];
 
 const currentProductImg = document.querySelector(".productImg");
@@ -51,6 +49,17 @@ menuItems.forEach((item, index) => {
 currentProductColors.forEach((color, index) => {
   color.addEventListener("click", () => {
     currentProductImg.src = choosenProduct.colors[index].img;
+  });
+});
+
+currentProductSizes.forEach((size, index) => {
+  size.addEventListener("click", () => {
+    currentProductSizes.forEach((size) => {
+      size.style.backgroundColor = "white";
+      size.style.color = "black";
+    });
+    size.style.backgroundColor = "black";
+    size.style.color = "white";
   });
 });
 
