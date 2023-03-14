@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-<?php
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
 <html>
     <head>
         <?php
@@ -101,4 +95,4 @@
                     ?>
                     </body>
                     </html>
->>>>>>> e1033c48f367e1ad691a449a74f2cffe583f0b10
+
