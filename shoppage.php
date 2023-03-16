@@ -9,8 +9,8 @@
         include "nav.inc.php";
         ?>
         <main class="container" >
-            <h1 style="text-align:center">Product</h1>
-            <div class="Product">
+            <h1 style="text-align:center">Products</h1>
+            <div class="shoppage">
                 <p  style="text-align:center">Eco Bottles.</p>
                 <p  style="text-align:center">Resize the browser window to see that this page is responsive by the way.</p>
 
@@ -24,8 +24,9 @@
                                  height="250">
                             <div class="container">
                                 <h2>$10.00</h2>
-                                <p class="title">ECO Bottle</p>
-                                <p>Insulated Eco water bottle 1000ML vacuum flask insulated stainless steel water bottles.</p>
+                                <p class="title">ECO Bottle    <b>NEW!</b></p>
+
+                                <p> Insulated Eco water bottle 1000ML vacuum flask insulated stainless steel water bottles.</p>
 
                                 <p><button class="button"><a href="productpage.php">Add to cart</a></button></p>
                             </div>
@@ -38,7 +39,7 @@
 
                             <div class="container">
                                 <h2>$30.00</h2>
-                                <p class="title">ECO Bottle 2</p>
+                                <p class="title">ECO Bottle 2   <b>NEW!</b></p>
                                 <p>Package items for four eco water bottle full insulated for $30.00 while stocks last.</p>
 
                                 <p><button class="button"><a href="productpage.php">Add to cart</a></button></p>
@@ -51,7 +52,7 @@
                                  height="250">
                             <div class="container">
                                 <h2>$9.00</h2>
-                                <p class="title">ECO Bottle 3</p>
+                                <p class="title">ECO Bottle 3   <b>HOT!</b></p>
                                 <p>Stainless Steel Water Bottle Insulated Cycling Gym Eco Friendly Wide Mouth.</p>
 
                                 <p><button class="button"><a href="productpage.php">Add to cart</a></button></p>
@@ -64,7 +65,7 @@
                                  height="250">
                             <div class="container">
                                 <h2>$7.00</h2>
-                                <p class="title">ECO Bottle 4</p>
+                                <p class="title">ECO Bottle 4    <b>HOT!</b></p>
                                 <p>Manufacturer Cheaper Hiking Outdoor Sport Hot and Cold Water Children School Cute Gift Glass Eco Water Bottle.</p>
 
                                 <p><button class="button"><a href="productpage.php">Add to cart</a></button></p>
