@@ -9,7 +9,7 @@
         include "nav.inc.php";
         ?>
         <main class="container" >
-            <h1 style="text-align:center">Products</h1>
+            <h1 style="text-align:center;background-color: #f2f2f2;">Products</h1>
             <div class="shoppage">
                 <p  style="text-align:center">Eco Bottles.</p>
                 <p  style="text-align:center">Resize the browser window to see that this page is responsive by the way.</p>
@@ -143,7 +143,7 @@
         <hr id="about">
         <!-- About Section -->
         <div class="w3-container w3-padding-32 w3-center">  
-            <h3 style="text-align:center"> About Us, The Eco Bottle </h3><br>
+            <h3 style="text-align:center;background-color: #f2f2f2;"> About Us, The Eco Bottle </h3><br>
 
             <img src="images/Mission.jpg" alt="Me" style="display:block;margin:auto" width="800" height="533">
             <div class="w3-padding-32">
