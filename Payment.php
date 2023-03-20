@@ -4,7 +4,6 @@
    <?php 
     include "head.inc.php";
     ?>
-    <link rel="stylesheet" href="css/Payment.css">
   </head>
   <body>
    <?php 
@@ -146,8 +145,8 @@
         <div class="billing">
           <!-- billing address code start here -->
 
-          <p class="forallheading">BILLING ADDRESS</p>
-          <hr />
+          <p class="forall#payment_heading ing">BILLING ADDRESS</p>
+          <hr />    
           <input id="shippingbox" type="checkbox" />
           <label class="shipping_address" for="billing"
             >Same as shipping address</label
