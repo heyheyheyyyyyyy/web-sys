@@ -4,7 +4,7 @@ if (isset($_POST['addCart'])) {
     $product_id = $_POST['product_id'];
     $user_id = 2;
     $cart_qty = 1;
-    $qty = 0;
+    global $qty,$cart_id;
 
     echo "<script>console.log('{$product_id}');</script>";
     // Create database connection.
@@ -20,30 +20,38 @@ if (isset($_POST['addCart'])) {
         $stmt = $conn->prepare("SELECT * FROM Group2.Cart where Group2.Cart.User_id = ? and Group2.Cart.Product_id = ?");
         $stmt->bind_param("ii", $user_id, $product_id);
         $stmt->execute();
+
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $qty = $row["Cart_qty"];
             $cart_id = $row["Cart_id"];
+            $qty = $row["Cart_Qty"];
+            echo "<script>console.log('before qty : {$qty}');</script>";
+            echo "<script>console.log('before cart: {$cart_id}');</script>";
         }
-        if ($qty != 0) {
+        if (isset($qty)) {
             $stmt->close();
             $qty = $qty + $cart_qty;
             echo "<script>console.log('qty : {$qty}');</script>";
-            echo "<script>console.log('qty : {$cart_qty}');</script>";
             echo "<script>console.log('cart: {$cart_id}');</script>";
             $stmt1 = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Cart_id = ?");
-            $stmt1->bind_param("ii", $qty+$cart_qty, $cart_id);
-            $stmt1->execute();
+            $stmt1->bind_param("ii", $qty, $cart_id);
+            if (!$stmt1->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt1->errno . ") " . $stmt1->error;
+                $success = false;
+            }
+            echo "<script>console.log('Updated database');</script>";
             $stmt1->close();
         } else {
             $stmt->close();
             $stmt1 = $conn->prepare("INSERT INTO Group2.Cart(Product_id,User_id, Cart_Qty) VALUES (?,?,?)");
             $stmt1->bind_param("iii", $product_id, $user_id, $cart_qty);
             if (!$stmt1->execute()) {
-                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                $errorMsg = "Execute failed: (" . $stmt1->errno . ") " . $stmt1->error;
                 $success = false;
             }
+
+            echo "<script>console.log('Added to database');</script>";
             $stmt1->close();
         }
     }
