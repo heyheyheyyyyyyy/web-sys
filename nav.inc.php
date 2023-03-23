@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="your-logo.png" alt="Your Logo">
+      <img src="logog.png" alt="Your Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,19 +11,16 @@
       <!-- Center Links -->
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Product</a>
+          <a class="nav-link" href="shoppage.php">Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Shop</a>
+          <a class="nav-link" href="ContactUs.php">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
+          <a class="nav-link" href="AboutUs.php">About Us</a>
         </li>
       </ul>
       <!-- Right Links -->
@@ -35,13 +32,13 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login/Register</a>
+          <a class="nav-link" href="login.php">Login/Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cart</a>
+          <a class="nav-link" href="shoppingcart.php">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Basket</a>
+          <a class="nav-link" href="#">Wishlist</a>
         </li>
       </ul>
     </div>

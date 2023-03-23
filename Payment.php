@@ -17,7 +17,6 @@
         <p>SHIPPING ADDRESS</p>
         <hr />
 
-
         <form class="shipping_details">
           <div id="left_part">
             <label>Full Name</label><br />
