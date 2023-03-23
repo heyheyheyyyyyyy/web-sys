@@ -1,0 +1,41 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 23 Mar 2023, 11:05:48 am
+    Author     : linus
+*/
+
+/*Shoppage Page*/
+.shoppage {
+    text-align: center;
+}
+
+.column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-direction: row; /* add this line */
+}
+
+.card {
+    width: 300px;
+    margin: 10px;
+}
+
+.column td {
+    padding: 15px;
+    
+}
+
+.AddtocartButton {
+    position: relative;
+    float: next;
+    padding: 10px 20px;
+    background-color: lightblue;
+    color: white;
+    font-weight: 100;
+    cursor: pointer;
+}
