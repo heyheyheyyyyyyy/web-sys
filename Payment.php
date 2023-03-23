@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include 'session.php';?>
 <html lang="en">
   <head>
    <?php 
@@ -213,3 +214,11 @@
   </body>
   <script src="js/Payment.js"></script>
 </html>
+
+//<?php
+//session_id($_GET['session_id']);
+
+//
+//// Get cart information
+//$cart = $_SESSION['cart'];
+//?>

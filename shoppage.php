@@ -1,3 +1,4 @@
+<?php include 'session.php';?>
 <html>
     <head>
         <?php
@@ -24,7 +25,8 @@
                     foreach ($result as $products) :
                         ?>
                         <tr>
-                            <td><a href="#">
+                            <td>
+                                <a href="productpage.php?id=<?= $products['Product_id'] ?>">
                                     <img width='250px' height='250px' src="<?= $products['Product_image'] ?>">
                                 </a>
                             </td>
