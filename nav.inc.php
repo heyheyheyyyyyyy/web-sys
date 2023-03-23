@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="logog.png" alt="Your Logo">
+      <img src="/logog.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@
           <a class="nav-link" href="login.php">Login/Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="shoppingcart.php">Cart</a>
+          <a class="nav-link" href="cart.php">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Wishlist</a>
