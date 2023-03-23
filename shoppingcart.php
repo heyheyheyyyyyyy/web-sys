@@ -55,7 +55,7 @@ include 'session.php';
         <?php } ?>
         
         <a href="shoppage.php"><button>Continue Shopping</button></a>
-        <a href="checkout.php"><button>Checkout</button></a>
+        <a href="payment.php"><button>Checkout</button></a>
 
         <?php
         include "footer.inc.php";
