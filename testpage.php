@@ -4,6 +4,7 @@ if (isset($_POST['addCart'])) {
     $product_id = $_POST['product_id'];
     $user_id = 2;
     $cart_qty = 1;
+    $qty = 0;
 
     echo "<script>console.log('{$product_id}');</script>";
     // Create database connection.
@@ -21,23 +22,20 @@ if (isset($_POST['addCart'])) {
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            echo "<script>console.log('{$result}');</script>";
+            $row = $result->fetch_assoc();
+            $qty = $row["Cart_qty"];
+            $cart_id = $row["Cart_id"];
+        }
+        if ($qty != 0) {
             $stmt->close();
-
-            $stmt1 = $conn->prepare("SELECT Cart_Qty from Group2.Cart where User_id = ? and Product_id = ?");
-            $stmt1->bind_param("ii", $user_id, $product_id);
+            $qty = $qty + $cart_qty;
+            echo "<script>console.log('qty : {$qty}');</script>";
+            echo "<script>console.log('qty : {$cart_qty}');</script>";
+            echo "<script>console.log('cart: {$cart_id}');</script>";
+            $stmt1 = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Cart_id = ?");
+            $stmt1->bind_param("ii", $qty+$cart_qty, $cart_id);
             $stmt1->execute();
-            $result1 = $stmt1->get_result();
-            if ($result1->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $qty = $row["Cart_Qty"];
-            }
-            $qty = $qty + 1;
             $stmt1->close();
-            $stmt2 = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Product_id = ? and Cart_id = ? and User_id = ?;");
-            $stmt2->bind_param("iii", $qty, $product_id, $user_id);
-            $stmt2->execute();
-            $stmt2->close();
         } else {
             $stmt->close();
             $stmt1 = $conn->prepare("INSERT INTO Group2.Cart(Product_id,User_id, Cart_Qty) VALUES (?,?,?)");
