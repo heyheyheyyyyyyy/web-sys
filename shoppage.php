@@ -3,7 +3,7 @@ include 'session.php';
 if (isset($_POST['addCart'])) {
     if (!isset($_SESSION['User_id'])) {
         echo '<script> alert("Please log in before you can add items to cart")</script>';
-    } 
+    }
 
     $product_id = $_POST['product_id'];
     $user_id = $_SESSION['User_id'];
@@ -29,14 +29,10 @@ if (isset($_POST['addCart'])) {
             $row = $result->fetch_assoc();
             $cart_id = $row["Cart_id"];
             $qty = $row["Cart_Qty"];
-            echo "<script>console.log('before qty : {$qty}');</script>";
-            echo "<script>console.log('before cart: {$cart_id}');</script>";
         }
         if (isset($qty)) {
             $stmt->close();
             $qty = $qty + $cart_qty;
-            echo "<script>console.log('qty : {$qty}');</script>";
-            echo "<script>console.log('cart: {$cart_id}');</script>";
             $stmt1 = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Cart_id = ?");
             $stmt1->bind_param("ii", $qty, $cart_id);
             if (!$stmt1->execute()) {
@@ -78,7 +74,11 @@ if (isset($_POST['addCart'])) {
             <div class="card border" style="text-align: center;">
                 <div class="card-body" style="text-align: center;">
                     <?php
-                    show();
+                    if (isset($_GET['search'])) {
+                        search();
+                    } else {
+                        show();
+                    }
                     if ($result->num_rows > 0) :
                         foreach ($result as $products) :
                             ?>
@@ -150,6 +150,28 @@ function show() {
     } else {
 // Prepare the statement:
         $stmt = $conn->prepare("SELECT * FROM Group2.Product;");
+// Execute the query statement:
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+    }
+    $conn->close();
+}
+
+function search() {
+// Create database connection.
+    global $errorMsg, $success, $result;
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
+// Check connection
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+// Prepare the statement:
+        $stmt = $conn->prepare("SELECT * FROM Group2.Product where Product_name LIKE CONCAT('%',?,'%')");
+        $stmt->bind_param('s', $_GET['search']);
 // Execute the query statement:
         $stmt->execute();
         $result = $stmt->get_result();

@@ -1,7 +1,7 @@
 <?php include 'session.php'; ?>
 <?php
 if (isset($_POST['edit'])) {
-    $user_id = 2;
+    $user_id = $_SESSION['User_id'];
     $product_id = $_POST['product_id'];
     $cart_id = $_POST['cart_id'];
     $cart_qty = $_POST['cart_qty'];
@@ -27,7 +27,7 @@ if (isset($_POST['edit'])) {
     $conn->close();
 }
 if (isset($_POST['delete'])) {
-    $user_id = 2;
+    $user_id = $_SESSION['User_id'];
     $product_id = $_POST['product_id'];
     $cart_id = $_POST['cart_id'];
 
@@ -63,10 +63,11 @@ if (isset($_POST['delete'])) {
         include "nav.inc.php";
         ?>
         <main class="container">
-            <?php echo "<p>" . $errorMsg . "</p>"; ?>
+            <br><!-- comment -->
+            <br><!-- comment -->
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">
-                    <strong><i class="fa fa-database"></i> Products</strong>
+                    <strong><i class="fa fa-database"></i> Cart</strong>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">
@@ -137,7 +138,7 @@ if (isset($_POST['delete'])) {
 
 function show() {
     global $errorMsg, $success, $result;
-    $user_id = 2;
+    $user_id = $_SESSION['User_id'];
 // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
