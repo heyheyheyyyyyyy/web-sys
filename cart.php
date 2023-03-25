@@ -1,4 +1,4 @@
-+<?php include 'session.php'; ?>
+<?php include 'session.php'; ?>
 <?php
 if (isset($_POST['edit'])) {
     $user_id = 2;

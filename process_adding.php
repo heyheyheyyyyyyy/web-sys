@@ -1,3 +1,4 @@
+<?php include 'session.php';?>
 <?php
 
     // If the request method is post, process the search query
