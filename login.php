@@ -4,7 +4,6 @@
         include "head.inc.php";
         ?>
             <link rel="stylesheet" href="css/Signup.css">
-
     </head>
     <body>
         <?php
