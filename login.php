@@ -11,10 +11,10 @@
         include "nav.inc.php";
         ?>
 <main class="container">
-            <h1>Member Registration</h1>
+            <h1>Member Log In</h1>
             <p>
                 Existing members log in here. For new members, please go to the
-                <a href="#">Sign Up page</a>.
+                <a href="register">Sign Up page</a>.
             </p>
             <form action="process_login.php" method="post">
                 <div class="form-group">
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="pwd">Password:</label>
                     <input class="form-control" type="password" id="User_password"
-                           required minlength="12" name="User_password" 
+                           required name="User_password" 
                            placeholder="Enter password">
                 </div>
                 <div class="form-group">
