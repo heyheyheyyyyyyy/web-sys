@@ -17,10 +17,10 @@
           <a class="nav-link" href="shoppage.php">Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contactus.php">Contact</a>
+          <a class="nav-link" href="contactus.php">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="aboutsus.php">About Us</a>
+          <a class="nav-link" href="aboutus.php">About Us</a>
         </li>
       </ul>
       <!-- Right Links -->
