@@ -59,7 +59,6 @@ if (isset($_POST['addCart'])) {
 }
 ?>
 <html>
-    <link rel="stylesheet" href="css/Shoppage.css">
     <head>
         <?php
         include "head.inc.php";
@@ -73,38 +72,38 @@ if (isset($_POST['addCart'])) {
 
         <main class="container" >
             <h2 class="centered-text" style="text-align: center;">Our Products!</h2>
-            <div class="column">
-                <div class="card">
+            <div class="card border" style="text-align: center;">
+                <div class="card-body" style="text-align: center;">
                     <?php
                     show();
                     if ($result->num_rows > 0) :
                         foreach ($result as $products) :
                             ?>
-                            <a href="productpage.php?id=<?= $products['Product_id'] ?>">
-                                <img width='300px' height='300px' class="products-image" src="<?= $products['Product_image'] ?>">
-                            </a>
-                            </td>      
-
-                            <td class="Productname"><?= $products['Product_name'] ?></td> 
-                            <br>
-
-                            <td class="Productdesc"><?= $products['Product_desc'] ?></td>
-                            <br>
-                            <tr>
-                            <br>
-                            <td class="Productprice">$<?= $products['Product_price'] ?></td> <!-- Add class to the price td -->
-                            <td> per bottle
+                            <div class="card border">
                                 <br>
-                                <form action="" method="POST">
-                                    <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>"> 
-                                    <button class="btn btn-primary" type="submit" name="addCart">Add to Cart</button>
-                                </form>
+                                <p>
+                                    <a href="productpage.php?id=<?= $products['Product_id'] ?>">
+                                        <img width='300px' height='300px' class="products-image" src="<?= $products['Product_image'] ?>">
+                                    </a>
+                                </p>      
+                                <p class="Productname"><?= $products['Product_name'] ?></p> 
+                                <p class="Productdesc"><?= $products['Product_desc'] ?></p>
+                                <p class="Productprice">$<?= $products['Product_price'] ?> <br> per bottle</p>
+                                <div class='d-flex justify-content-center'>
+                                    <form action="productpage.php?id=<?= $products['Product_id'] ?>" method="POST">
+                                        <button class="btn btn-secondary" type="submit">View Product</button>
+                                    </form>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>"> 
+                                        <button class="btn btn-info" type="submit" name="addCart">Add to Cart</button>
+                                    </form>
+                                </div>
                                 <br>
-                                <br>
-                                <?php
-                            endforeach;
-                        endif;
-                        ?>
+                            </div>
+                            <?php
+                        endforeach;
+                    endif;
+                    ?>
                 </div>
             </div>
         </div>
