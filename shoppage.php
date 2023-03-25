@@ -10,7 +10,6 @@ if (isset($_POST['addCart'])) {
     $cart_qty = 1;
     global $qty, $cart_id;
 
-    echo "<script>console.log('{$product_id}');</script>";
 // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],

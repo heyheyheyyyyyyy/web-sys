@@ -103,7 +103,7 @@ if (!isset($_SESSION['User_id'])) {
  */
 
 function authenticateUser() {
-    global $id, $fname, $lname, $email, $pwd_hashed, $address, $postcode, $phoneno, $errorMsg, $success;
+    global $id, $fname, $lname, $email, $pwd_hashed, $address, $postcode, $phoneno, $role, $errorMsg, $success;
 // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],

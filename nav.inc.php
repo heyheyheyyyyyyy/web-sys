@@ -19,9 +19,9 @@
                 <?php
                 if ($_SESSION['User_role'] == 2) {
                     echo
-                    "<li class='nav-item'><a class='nav-link' href='#'>Admin Product Page</a></li>";
+                    "<li class='nav-item'><a class='nav-link' href='admin_page.php'>Admin Product</a></li>";
                     echo
-                    "<li class='nav-item'><a class='nav-link' href='#'>Admin Profiles Page</a></li>";
+                    "<li class='nav-item'><a class='nav-link' href='staffviewprofiles.php'>Admin Profiles</a></li>";
                 } else {
                     echo
                     "<li class='nav-item'><a class='nav-link' href='contactus.php'>Contact</a></li>";

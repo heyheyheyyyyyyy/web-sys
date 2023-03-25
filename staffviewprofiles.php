@@ -1,4 +1,7 @@
-<?php include 'session.php';?>
+<?php
+include 'session.php';
+header("location: index.php");
+?>
 <html>
     <head>
         <?php
