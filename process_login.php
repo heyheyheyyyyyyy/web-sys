@@ -1,6 +1,11 @@
 <?php
 // Start the session
 include "session.php";
+
+//So that if no user login. user will redirect to home page
+if (!isset($_SESSION['User_id'])) {
+    header("location: index.php");
+}
 ?>
 
 <html>
@@ -31,44 +36,51 @@ include "session.php";
         authenticateUser();
 
         echo "<main class='container'><div class='formsclass'>";
-        if ($success){ 
-            
-                authenticateUser();
-                $_SESSION['User_id'] = $id;
-                
-                echo "<h3> View Profile </h3>";
-                echo "<div class='form-group'>";
-                echo " <label for='fname'>First Name:</label>";
-               echo "<input class='form-control' type='text' id='fname'
-                          value=$fname readonly>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='lname'>Last Name:</label>";
-                echo "<input class='form-control' type='text' id='lname'
-                          value=$lname readonly>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='email'>Email:</label>";
-                echo "<input class='form-control' type='email' id='email'
-                           value=$email readonly>";
-                echo "</div>";
-                 echo "<div class='form-group'>";
-                echo "<label for='address'>Address:</label>";
-                echo "<input class='form-control' type='text' id='address' value='$address' readonly>";
-                echo "</div>";
-                 echo "<div class='form-group'>";
-                echo "<label for='postcode'>Postal Code:</label>";
-                echo "<input class='form-control' type='text' id='postcode'
-                           value=$postcode readonly>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='phoneno'>Phone Number:</label>";
-                echo "<input class='form-control' type='text' id='phoneno'
-                           value=$phoneno readonly>";
-                echo "</div>";
-                echo "<a href='edit_profile.php'>Edit Profile</a>";
-                echo "<a href='logout.php'>Logout</a>";
-            }else {
+        if ($success) {
+            $_SESSION['User_id'] = $id;
+            $_SESSION['User_role'] = $role;
+
+            echo "<h3> View Profile </h3>";
+            echo "<div class='form-group'>";
+            echo " <label for='fname'>First Name:</label>";
+            echo "<input class='form-control' type='text' id='fname'
+                          value='$fname' readonly>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='lname'>Last Name:</label>";
+            echo "<input class='form-control' type='text' id='lname'
+                          value='$lname' readonly>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='email'>Email:</label>";
+            echo "<input class='form-control' type='email' id='email'
+                           value='$email' readonly>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='address'>Address:</label>";
+            echo "<input class='form-control' type='text' id='address' value='$address' readonly>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='postcode'>Postal Code:</label>";
+            echo "<input class='form-control' type='text' id='postcode'
+                           value='$postcode' readonly>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='phoneno'>Phone Number:</label>";
+            echo "<input class='form-control' type='text' id='phoneno'
+                           value='$phoneno' readonly>";
+            echo "</div>";
+            echo "<form action='edit_profile.php'>
+                <div class='form-group'>
+                    <button class='btn btn-primary' type='submit'>Edit Profile</button>
+                </div>
+            </form>";
+            echo "<form action='logout.php'>
+                <div class='form-group'>
+                    <button class='btn btn-danger' type='submit'>Logout</button>
+                </div>
+            </form>";
+        } else {
             echo "<h1>Oops!</h1>";
             echo "<h2>The following input errors were detected:</h2>";
             echo "<p>" . $errorMsg . "</p>";
@@ -118,7 +130,8 @@ function authenticateUser() {
             $address = $row["User_address"];
             $postcode = $row["User_postcode"];
             $phoneno = $row["User_phone"];
-            
+            $role = $row["Role_id"];
+
 // Check if the password matches:
             if (!password_verify($_POST["User_password"], $pwd_hashed)) {
 // Don't be too specific with the error message - hackers don't
@@ -131,7 +144,6 @@ function authenticateUser() {
             $success = false;
         }
         $stmt->close();
-       
     }
     $conn->close();
 }
