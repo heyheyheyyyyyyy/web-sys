@@ -1,22 +1,26 @@
 <?php
 include 'session.php';
 if (isset($_POST['addCart'])) {
+    if (!isset($_SESSION['User_id'])) {
+        echo '<script> alert("Please log in before you can add items to cart")</script>';
+    } 
+
     $product_id = $_POST['product_id'];
     $user_id = $_SESSION['User_id'];
     $cart_qty = 1;
     global $qty, $cart_id;
 
     echo "<script>console.log('{$product_id}');</script>";
-    // Create database connection.
+// Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
             $config['password'], $config['dbname']);
-    // Check connection
+// Check connection
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
         $success = false;
     } else {
-        // Prepare the statement:
+// Prepare the statement:
         $stmt = $conn->prepare("SELECT * FROM Group2.Cart where Group2.Cart.User_id = ? and Group2.Cart.Product_id = ?");
         $stmt->bind_param("ii", $user_id, $product_id);
         $stmt->execute();
