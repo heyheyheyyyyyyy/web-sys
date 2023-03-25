@@ -42,18 +42,13 @@ include "session.php";
                 </div>
                 <div class="form-group">
                     <label for="User_postcode">Postcode:</label>
-                    <input class="form-control" type="text" id="User_postcode"
+                    <input class="form-control" type="tel" pattern="[0-9]{6}"  id="User_postcode"
                            required name="User_postcode" placeholder="Enter Postal code">
                 </div>
                 <div class="form-group">
                     <label for="User_phone">Phone:</label>
-                    <input class="form-control" type="text" id="User_phone"
+                    <input class="form-control" type="tel" pattern="[0-9]{8}" id="User_phone"
                            required name="User_phone" placeholder="Enter Phone number">
-                </div>
-                <div class="form-group">
-                    <label for="User_phone">Role:</label>
-                    <input class="form-control" type="text" id="Role_id"
-                           required name="Role_id" placeholder="Enter role id">
                 </div>
                 <div class="form-group">
                     <label for="User_password">Password:</label>
