@@ -1,3 +1,8 @@
+<?php
+// Start the session
+include "session.php";
+?>
+
 <html>
     <head>
         <?php
@@ -10,32 +15,60 @@
         $email = $pwd_hashed = $errorMsg = "";
         $success = true;
 
-        if (empty($_POST["email"])) { //checking if email is empty
+        if (empty($_POST["User_email"])) { //checking if email is empty
             $errorMsg .= "Email is required.<br>";
             $success = false;
         } else {
-            $email = $_POST["email"];
+            $email = $_POST["User_email"];
         }
 
-        if (empty($_POST["pwd"])) { //checks if pwd is empty
+        if (empty($_POST["User_password"])) { //checks if pwd is empty
             $errorMsg .= "Password is required.<br>";
             $success = false;
         } else {
-            $pwd_hashed = $_POST["pwd"];
+            $pwd_hashed = $_POST["User_password"];
         }
         authenticateUser();
 
         echo "<main class='container'><div class='formsclass'>";
-        if ($success) {
-            echo "<h2>Login successful!</h2>";
-            echo "<h4>Welcome back, " . $fname . " " . $lname . ".</h4>";
-            echo
-            "<form action='index.php'>
-                <button class='btn btn-success' type='submit'>Return to Home</button>
-            </form>";
+        if ($success){ 
             
-            $_SESSION['email'] = $email;
-        } else {
+                authenticateUser();
+                $_SESSION['User_id'] = $id;
+                
+                echo "<h3> View Profile </h3>";
+                echo "<div class='form-group'>";
+                echo " <label for='fname'>First Name:</label>";
+               echo "<input class='form-control' type='text' id='fname'
+                          value=$fname readonly>";
+                echo "</div>";
+                echo "<div class='form-group'>";
+                echo "<label for='lname'>Last Name:</label>";
+                echo "<input class='form-control' type='text' id='lname'
+                          value=$lname readonly>";
+                echo "</div>";
+                echo "<div class='form-group'>";
+                echo "<label for='email'>Email:</label>";
+                echo "<input class='form-control' type='email' id='email'
+                           value=$email readonly>";
+                echo "</div>";
+                 echo "<div class='form-group'>";
+                echo "<label for='address'>Address:</label>";
+                echo "<input class='form-control' type='text' id='address' value='$address' readonly>";
+                echo "</div>";
+                 echo "<div class='form-group'>";
+                echo "<label for='postcode'>Postal Code:</label>";
+                echo "<input class='form-control' type='text' id='postcode'
+                           value=$postcode readonly>";
+                echo "</div>";
+                echo "<div class='form-group'>";
+                echo "<label for='phoneno'>Phone Number:</label>";
+                echo "<input class='form-control' type='text' id='phoneno'
+                           value=$phoneno readonly>";
+                echo "</div>";
+                echo "<a href='edit_profile.php'>Edit Profile</a>";
+                echo "<a href='logout.php'>Logout</a>";
+            }else {
             echo "<h1>Oops!</h1>";
             echo "<h2>The following input errors were detected:</h2>";
             echo "<p>" . $errorMsg . "</p>";
@@ -58,7 +91,7 @@
  */
 
 function authenticateUser() {
-    global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
+    global $id, $fname, $lname, $email, $pwd_hashed, $address, $postcode, $phoneno, $errorMsg, $success;
 // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
@@ -69,8 +102,7 @@ function authenticateUser() {
         $success = false;
     } else {
 // Prepare the statement:
-        $stmt = $conn->prepare("SELECT * FROM world_of_pets_members WHERE
-email=?");
+        $stmt = $conn->prepare("SELECT * FROM Group2.Users WHERE User_email=?");
 // Bind & execute the query statement:
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -79,11 +111,16 @@ email=?");
 // Note that email field is unique, so should only have
 // one row in the result set.
             $row = $result->fetch_assoc();
-            $fname = $row["fname"];
-            $lname = $row["lname"];
-            $pwd_hashed = $row["password"];
+            $id = $row['User_id'];
+            $fname = $row["User_fname"];
+            $lname = $row["User_lname"];
+            $pwd_hashed = $row["User_password"];
+            $address = $row["User_address"];
+            $postcode = $row["User_postcode"];
+            $phoneno = $row["User_phone"];
+            
 // Check if the password matches:
-            if (!password_verify($_POST["pwd"], $pwd_hashed)) {
+            if (!password_verify($_POST["User_password"], $pwd_hashed)) {
 // Don't be too specific with the error message - hackers don't
 // need to know which one they got right or wrong. :)
                 $errorMsg = "Email not found or password doesn't match...";
@@ -94,6 +131,7 @@ email=?");
             $success = false;
         }
         $stmt->close();
+       
     }
     $conn->close();
 }
