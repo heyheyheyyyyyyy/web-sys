@@ -31,9 +31,10 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </li>
-        <li class="nav-item">
+      <li class="nav-item">
           <a class="nav-link" href="login.php">Login/Register</a>
-        </li>
+      </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="cart.php">Cart</a>
         </li>

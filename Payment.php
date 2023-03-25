@@ -67,14 +67,6 @@
           </div>
         </form>
 
-
-        <div id="shipping_methods">
-          <p class="forallheading">SHIPPING METHODS</p>
-          <hr />
-          <input type="radio" />
-          <label for="delivery"> 1-3 days | Express</label>
-        </div>
-
         <div class="payment_methods">
           <p class="forallheading">PAYMENT METHOD</p>
           <hr />
@@ -167,6 +159,23 @@
         <hr />
         <div id="cart_product">
           <!-- append cart here -->
+       <?php
+                            show();
+                            if ($result->num_rows > 0) :
+                                foreach ($result as $cart) :
+                                    ?>
+                                    <tr>
+                                        <td><?= $cart['Product_name'] ?></td>
+                                        <td>><?= $cart['Cart_Qty']?></td>>
+                                        <td>$ <?= $cart['Product_price'] * $cart['Cart_Qty'] ?></td>
+                                    </tr>
+                                    
+                                <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
+                            <?php endforeach; ?>
+                                 <?php
+                        endif;
+                        ?>
+                
           
         </div>
         <div>
@@ -174,18 +183,16 @@
           <hr />
           <div id="subtotal">
             <div>
-              <p class="customization_for_right">Subtotal</p>
               <p class="customization_for_right">Shipping total</p>
             </div>
             <div>
-              <p id="subtotal1" class="customization_for_right">0</p>
               <p id="shipping_total" class="customization_for_right">$0</p>
             </div>
           </div>
           <hr />
           <div id="total">
-            <p  class="customization_for_right">Order total (USD)</p>
-            <p  id="total_order" class="customization_for_right">$0</p>
+            <p  class="customization_for_right">Order total (SGD)</p>
+            <p  id="total_order" class="customization_for_right"><?= $total?></p>
           </div>
           <div id="notice">
             <p class="customization_for_right">Important Notice</p>
@@ -214,10 +221,28 @@
   <script src="js/Payment.js"></script>
 </html>
 
-//<?php
-//session_id($_GET['session_id']);
+<?php
 
-//
-//// Get cart information
-//$cart = $_SESSION['cart'];
-//?>
+function show() {
+    global $errorMsg, $success, $result;
+    $user_id = 2;
+// Create database connection.
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
+// Check connection
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+// Prepare the statement:
+        $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
+                . "inner join Group2.Product as B where A.Product_id = B.Product_id AND A.User_id = ?");
+        $stmt->bind_param("i", $user_id);
+// Execute the query statement:
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+    }
+    $conn->close();
+}
