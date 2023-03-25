@@ -2,79 +2,81 @@
     <head>
         <?php
         include "head.inc.php";
-        ?>
-        <link rel="stylesheet" type="text/css" href="css/contactus.css">
-    </head>
-    <body>
-        <?php
         include "nav.inc.php";
         ?>
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+            .team-member {
+                display: inline-block;
+                text-align: center;
+                margin: 20px;
+            }
+
+            .team-member img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .team-member h3 {
+                margin-top: 10px;
+                font-size: 20px;
+            }
+
+            .team-member p {
+                margin-top: 5px;
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
         <main class="container">
             <div class="about-section">
-                <h1>About Us Page</h1>
-                <p>Some text about who we are and what we do.</p>
-                <p>Resize the browser window to see that this page is responsive by the way.</p>
+                <br>
+                <h1>About Us</h1>
+                <br>
+                <section>
+                    <h2>Our Mission</h2>
+                    <p>At AquaBottle, we believe in promoting a healthy and sustainable lifestyle. 
+                        Our mission is to provide high-quality and eco-friendly water bottles that 
+                        encourage people to stay hydrated and reduce their carbon footprint.</p>
+                </section>
             </div>
-
-            <h2>Our Team</h2>
-            <div class="row">
-                <div class="column">
-                    <div class="card">
-                        <img src="images/smiley-face.png" alt="Jane" style="width:100%">
-                        <div class="container">
-                            <h2>Jane Doe</h2>
-                            <p class="title">CEO & Founder</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>jane@example.com</p>
-                            <p><button class="button"><a href="contactus.php">Contact</a></button></p>
-                        </div>
-                    </div>
+            <br>
+            <section>
+                <h2>Our Products</h2>
+                <p>We offer a wide range of water bottles in different sizes, colors, and materials 
+                    to suit everyone's needs. Our bottles are made of BPA-free and food-grade stainless 
+                    steel, glass, and silicone, ensuring that your water stays fresh and clean without 
+                    any harmful chemicals. Our bottles are also leak-proof and durable, making them perfect for 
+                    outdoor activities, sports, and travel.</p>
+            </section>
+            <br>
+            <section>
+                <h2>Our Team</h2>
+                <div class="team-member">
+                    <img src="images/glass1.jpg" alt="John Doe">
+                    <h3>John Doe</h3>
+                    <p>CEO</p>
                 </div>
-
-                <div class="column">
-                    <div class="card">
-                        <img src="images/depress.png" alt="John" style="width:100%">
-                        <div class="container">
-                            <h2>Mike Ross</h2>
-                            <p class="title">Art Director</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>mike@example.com</p>
-                            <p><button class="button"><a href="contactus.php">Contact</a></button></p>
-                        </div>
-                    </div>
+                <div class="team-member">
+                    <img src="images/glass1.jpg" alt="Jane Smith">
+                    <h3>Jane Smith</h3>
+                    <p>COO</p>
                 </div>
-
-                <div class="column">
-                    <div class="card">
-                        <img src="images/depress.png" alt="John" style="width:100%">
-                        <div class="container">
-                            <h2>John Doe</h2>
-                            <p class="title">Designer</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>john@example.com</p>
-                            <p><button class="button"><a href="contactus.php">Contact</a></button></p>
-                        </div>
-                    </div>
+                <div class="team-member">
+                    <img src="images/glass1.jpg" alt="Bob Johnson">
+                    <h3>Bob Johnson</h3>
+                    <p>CTO</p>
                 </div>
-                <div class="column">
-                    <div class="card">
-                        <img src="images/crying.png" alt="Bob" style="width:100%">
-                        <div class="container">
-                            <h2>Bob Smith</h2>
-                            <p class="title">Sale Manager</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>Bob@example.com</p>
-                            <p><button class="button"><a href="contactus.php">Contact</a></button></p>
-                        </div>
-                    </div>
-                </div>
+            </section>
+            <br>
+            <h2>Office Location</h2>
+            <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034.5205451688286!2d-73.98568158458197!3d40.74844007932989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2595a5b7d5f5b%3A0x5b5c5d748a9f5d2c!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1622539867158!5m2!1sen!2sus" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div class="spacer"></div>
-            <h2>Our Location</h2>
-
-            <div class="map-container">
-                                <iframe title="Location" class="responsive-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.665252371279!2d103.84664861589684!3d1.377523398995323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16e96db0a1ab%3A0x3d0be54fbbd6e1cd!2sSingapore%20Institute%20of%20Technology%20(SIT%40NYP)!5e0!3m2!1sen!2ssg!4v1606633072921!5m2!1sen!2ssg"></iframe>
-                                </div>
         </main>
         <?php
         include "footer.inc.php";
