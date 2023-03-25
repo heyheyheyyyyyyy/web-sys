@@ -150,7 +150,7 @@ function show() {
     } else {
 // Prepare the statement:
         $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
-                . "inner join Group2.Product as B where A.Product_id = B.Product_id AND A.User_id = ?");
+                . "inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
         $stmt->bind_param("i", $user_id);
 // Execute the query statement:
         $stmt->execute();
