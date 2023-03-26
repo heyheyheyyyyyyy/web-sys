@@ -1,6 +1,6 @@
 <?php
 include 'session.php';
-if ($_SESSION['User_id'] != 2) {
+if (isset($_SESSION['User_id'])) {
     header("location: index.php");
 }
 ?>
