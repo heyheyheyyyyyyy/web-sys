@@ -91,34 +91,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <html>
     <head> 
-<?php
-include "head.inc.php";
-?>
+        <?php
+        include "head.inc.php";
+        ?>
     </head> 
     <body> 
-<?php
-include "nav.inc.php";
-?> 
+        <?php
+        include "nav.inc.php";
+        ?> 
         <main class ="container">
             <hr> 
-<?php
-if ($success) {
-    saveMemberToDB();
-    echo" <h2> You registration is successful!</h2>";
-    echo "<h4> Thank you for signing up, " . $fname . " " . $lname . ".</h4>";
-    echo "<a href = 'login.php' class = 'btn btn-success'>Log-in</a>";
-} else {
-    echo "<h2>Oops!</h2>";
-    echo "<h4> The following errors were detected: </h4>";
-    echo "<p>" . $errorMsg . "</p>";
-    echo "<a href='register.php' class='btn btn-danger'> Return to Sign Up</a>";
-}
-?>
+            <?php
+            if ($success) {
+                saveMemberToDB();
+            }
+            if ($success) {
+                echo" <h2> You registration is successful!</h2>";
+                echo "<h4> Thank you for signing up, " . $fname . " " . $lname . ".</h4>";
+                echo "<a href = 'login.php' class = 'btn btn-success'>Log-in</a>";
+            } else {
+                echo "<h2>Oops!</h2>";
+                echo "<h4> The following errors were detected: </h4>";
+                echo "<p>" . $errorMsg . "</p>";
+                echo "<a href='register.php' class='btn btn-danger'> Return to Sign Up</a>";
+            }
+            ?>
         </main>
         <br>   
-<?php
-include "footer.inc.php";
-?>
+        <?php
+        include "footer.inc.php";
+        ?>
     </body>
 </html>
 
