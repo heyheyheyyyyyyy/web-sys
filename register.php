@@ -62,7 +62,7 @@ include "session.php";
                 </div>
                 <div class="form-check">
                     <label>
-                        <input type="checkbox" name="agree">
+                        <input type="checkbox" name="agree" required>
                         Agree to terms and conditions.
                     </label>
                 </div>
