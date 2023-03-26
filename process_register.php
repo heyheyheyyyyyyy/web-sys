@@ -1,42 +1,7 @@
 <?php
 // Start the session
 include "session.php";
-?>
 
-<html>
-    <head> 
-        <?php
-        include "head.inc.php";
-        ?>
-    </head> 
-    <body> 
-         <?php
-        include "nav.inc.php";
-        ?> 
-        <main class ="container">
-            <hr> 
-            <?php
-            if ($success) {
-                saveMemberToDB();
-                echo" <h2> You registration is successful!</h2>";
-                echo "<h4> Thank you for signing up," . $fname . " " . $lname . ".</h4>";
-                echo "<a href = 'login.php' class = 'btn btn-success'>Log-in</a>";
-            } else {
-                echo "<h2>Oops!</h2>";
-                echo "<h4> The following errors were detected: </h4>";
-                echo "<p>" . $errorMsg . "</p>";
-                echo "<a href='register.php' class='btn btn-danger'> Return to Sign Up</a>";
-            }
-            ?>
-        </main>
-        <br>   
-        <?php
-        include "footer.inc.php";
-        ?>
-    </body>
-</html>
-
-<?php
 $fname = $lname = $email = $pwd_hashed = $address = $errorMsg = "";
 $postcode = $phoneno = 0;
 $success = true;
@@ -122,6 +87,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<a href = 'register.php'> Go to Sign Up page...</a>";
     exit();
 }
+?>
+
+<html>
+    <head> 
+<?php
+include "head.inc.php";
+?>
+    </head> 
+    <body> 
+<?php
+include "nav.inc.php";
+?> 
+        <main class ="container">
+            <hr> 
+<?php
+if ($success) {
+    saveMemberToDB();
+    echo" <h2> You registration is successful!</h2>";
+    echo "<h4> Thank you for signing up," . $fname . " " . $lname . ".</h4>";
+    echo "<a href = 'login.php' class = 'btn btn-success'>Log-in</a>";
+} else {
+    echo "<h2>Oops!</h2>";
+    echo "<h4> The following errors were detected: </h4>";
+    echo "<p>" . $errorMsg . "</p>";
+    echo "<a href='register.php' class='btn btn-danger'> Return to Sign Up</a>";
+}
+?>
+        </main>
+        <br>   
+<?php
+include "footer.inc.php";
+?>
+    </body>
+</html>
+
+<?php
 
 //Helper function that checks input for malicious or unwanted content.
 function sanitize_input($data) {
@@ -136,6 +137,8 @@ function sanitize_input($data) {
  */
 
 function saveMemberToDB() {
+
+    echo "<script>console.log('Enter Database');</script>";
     global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $address, $postcode, $phoneno;
     // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');

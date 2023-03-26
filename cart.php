@@ -125,7 +125,7 @@ if (isset($_POST['delete'])) {
                                     <td></td>
                                     <td>$ <?= $total ?></td>
                                     <td>
-                                        <form action ='checkout.php' method='POST'>
+                                        <form action ='payment.php' method='POST'>
                                             <button class="btn btn-success" type="submit" name="checkout">Checkout</button>
                                         </form>
                                     </td>

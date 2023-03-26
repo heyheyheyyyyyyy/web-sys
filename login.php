@@ -1,16 +1,16 @@
-<?php include 'session.php';?>
+<?php include 'session.php'; ?>
 <html>
     <head>
         <?php
         include "head.inc.php";
         ?>
-            <link rel="stylesheet" href="css/Signup.css">
+        <link rel="stylesheet" href="css/Signup.css">
     </head>
     <body>
         <?php
         include "nav.inc.php";
         ?>
-<main class="container">
+        <main class="container">
             <h1>Member Log In</h1>
             <p>
                 Existing members log in here. For new members, please go to the
@@ -33,7 +33,7 @@
                 </div>
             </form>
         </main>
-<?php
-include "footer.inc.php";
-?>
-</body>
+        <?php
+        include "footer.inc.php";
+        ?>
+    </body>

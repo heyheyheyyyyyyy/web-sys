@@ -1,6 +1,9 @@
 <?php
 include 'session.php';
-if (isset($_SESSION['User_id'])) {
+if (!isset($_SESSION['User_id'])) {
+    header("location: index.php");
+}
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("location: index.php");
 }
 ?>
