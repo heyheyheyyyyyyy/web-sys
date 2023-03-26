@@ -61,79 +61,131 @@ if (isset($_POST['addCart'])) {
     <head>
         <?php
         include "head.inc.php";
-        ?>
-    </head>
-
-    <body>
-        <?php
         include "nav.inc.php";
         ?>
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+            .product-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center; /* Add this rule */
+                max-width: 1200px;
+                margin: 0 auto; /* Add this rule */
+            }
 
-        <main class="container" >
-            <h2 class="centered-text" style="text-align: center;">Our Products!</h2>
-            <div class="card border" style="text-align: center;">
-                <div class="card-body" style="text-align: center;">
-                    <?php
-                    if (isset($_GET['search'])) {
-                        search();
-                    } else {
-                        show();
+            .product-card {
+                width: calc((100% - 30px) / 3);
+                height:  600px;
+                margin: 10px 5px;
+                background-color: white;
+                border-radius: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+            .product-card-image img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                object-position: center;
+            }
+            .product-card-details {
+                padding: 20px;
+            }
+            .product-name {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .product-description {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            .product-price {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .product-card-buttons {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 5px; /* Add this rule */
+            }
+            .btn-secondary {
+                background-color: #eee;
+                color: black;
+                border: none;
+            }
+            .btn-info {
+                background-color: #007bff;
+                color: white;
+                border: none;
+            }
+            .btn-info:hover {
+                background-color: #0069d9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Our Products!</h2>
+            <br>
+            <div class="product-grid"> 
+                <?php
+                $config = parse_ini_file('../../private/db-config.ini');
+                $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+                $sql = "SELECT * FROM Group2.Product";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $product_name = $row["Product_name"];
+                        $product_image = $row["Product_image"];
+                        $product_price = $row["Product_price"];
+                        $product_desc = $row["Product_desc"];
+                        $product_id = $row["Product_id"];
+
+                        echo'
+                    <div class = "product-card">
+                    <div class = "product-card-image">
+                    <a href = "productpage.php?id=' . $product_id . '">
+                    <img class = "product-image" src = "' . $product_image . '" alt = "' . $product_name . '">
+                    </a>
+                    </div>
+                    <div class = "product-card-details">
+                    <p class = "product-name">' . $product_name . '</p>
+                    <p class = "product-description">' . $product_desc . '</p>
+                    <p class = "product-price"> SGD ' . $product_price . '</p>
+                    <div class = "product-card-buttons">
+                    <form action = "productpage.php?id=' . $product_id . '" method = "POST">
+                    <button class = "btn btn-secondary" type = "submit">View Product</button>
+                    </form>
+                    <form action = "" method = "POST">
+                    <input type = "hidden" value = "' . $product_id . '">
+                    <button class = "btn btn-info" type = "submit" name = "addCart">Add to Cart</button>
+                    </form>
+                    </div>
+                    </div>
+                    </div>';
                     }
-                    if ($result->num_rows > 0) :
-                        foreach ($result as $products) :
-                            ?>
-                            <div class="card border">
-                                <br>
-                                <p>
-                                    <a href="productpage.php?id=<?= $products['Product_id'] ?>">
-                                        <img width='300px' height='300px' class="products-image" src="<?= $products['Product_image'] ?>">
-                                    </a>
-                                </p>      
-                                <p class="Productname"><?= $products['Product_name'] ?></p> 
-                                <p class="Productdesc"><?= $products['Product_desc'] ?></p>
-                                <p class="Productprice">$<?= $products['Product_price'] ?> <br> per bottle</p>
-                                <div class='d-flex justify-content-center'>
-                                    <form action="productpage.php?id=<?= $products['Product_id'] ?>" method="POST">
-                                        <button class="btn btn-secondary" type="submit">View Product</button>
-                                    </form>
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>"> 
-                                        <button class="btn btn-info" type="submit" name="addCart">Add to Cart</button>
-                                    </form>
-                                </div>
-                                <br>
-                            </div>
-                            <?php
-                        endforeach;
-                    endif;
-                    ?>
-                </div>
+                } else {
+                    echo "No products found.";
+                }
+                ?>
             </div>
         </div>
-    </main>
-    <hr id="about">
-    <!--About Section-->
-    <div class="w3-container w3-padding-32 w3-center">
-        <h3 class="centered-background"> About Us, The Eco Bottle </h3><br>
-
-        <img src="images/Mission.jpg" alt="Me" style="display:block;margin:auto" width="800" height="533">
-        <div class="w3-padding-32">
-            <h4 class="centered-text"><b>Sustainability Is Our Dream!</b></h4>
-            <h6 class="centered-text"><i>With Passion, Going Green</i></h6>
-            <p>Welcome to our eco water bottle website!We are committed to sustainability and providing eco-friendly solutions to help reduce single-use plastic waste. Our water bottles are made from high-quality materials that are durable, reusable, and recyclable.
-
-                We believe in taking a holistic approach to sustainability, and we strive to minimize our environmental impact at every stage of our product's lifecycle. From sourcing our materials to manufacturing
-                and distribution, we prioritize eco-friendly practices and aim to reduce waste and carbon emissions.
-
-                Our mission is to inspire and empower individuals to make sustainable choices and create a positive impact on our planet. Join us in our journey towards a more sustainable future!</p>
-        </div>
-    </div>
-    <hr>
-
-    <?php
-    include "footer.inc.php";
-    ?>
-</body>
+    </body> 
 </html>
 <?php
 
