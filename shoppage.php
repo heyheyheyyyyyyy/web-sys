@@ -39,7 +39,7 @@ if (isset($_POST['addCart'])) {
                 $errorMsg = "Execute failed: (" . $stmt1->errno . ") " . $stmt1->error;
                 $success = false;
             }
-            echo "<script>console.log('Updated database');</script>";
+            //echo "<script>console.log('Updated database');</script>";
             $stmt1->close();
         } else {
             $stmt->close();
@@ -50,7 +50,7 @@ if (isset($_POST['addCart'])) {
                 $success = false;
             }
 
-            echo "<script>console.log('Added to database');</script>";
+            //echo "<script>console.log('Added to database');</script>";
             $stmt1->close();
         }
     }
