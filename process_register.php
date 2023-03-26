@@ -105,7 +105,7 @@ include "nav.inc.php";
 if ($success) {
     saveMemberToDB();
     echo" <h2> You registration is successful!</h2>";
-    echo "<h4> Thank you for signing up," . $fname . " " . $lname . ".</h4>";
+    echo "<h4> Thank you for signing up, " . $fname . " " . $lname . ".</h4>";
     echo "<a href = 'login.php' class = 'btn btn-success'>Log-in</a>";
 } else {
     echo "<h2>Oops!</h2>";
