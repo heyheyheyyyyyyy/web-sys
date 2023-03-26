@@ -49,6 +49,11 @@
                     <a class='nav-link' href='cart.php'>Cart</a>
                 </li>";
                     echo
+                    "
+                <li class='nav-item'>
+                    <a class='nav-link' href='purchasehistory.php'>Purchase History</a>
+                </li>";
+                    echo
                     "<li class='nav-item'>
                     <a class='nav-link' href='edit_profile.php'>Edit Profile</a>
                 </li>";
