@@ -22,13 +22,12 @@
                     "<li class='nav-item'><a class='nav-link' href='admin_page.php'>Admin Product</a></li>";
                     echo
                     "<li class='nav-item'><a class='nav-link' href='staffviewprofiles.php'>Admin Profiles</a></li>";
-                } else {
-                    echo
-                    "<li class='nav-item'><a class='nav-link' href='contactus.php'>Contact</a></li>";
-                    echo
-                    "<li class='nav-item'><a class='nav-link' href='aboutus.php'>About Us</a></li>";
                 }
                 ?>
+
+                <li class='nav-item'><a class='nav-link' href='contactus.php'>Contact</a></li>
+                <li class='nav-item'><a class='nav-link' href='aboutus.php'>About Us</a></li>
+
             </ul>
             <!-- Right Links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -38,15 +37,15 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </li>
+
+                <li class='nav-item'>
+                    <a class='nav-link' href='cart.php'>Cart</a>
+                </li>
                 <?php
                 if (isset($_SESSION['User_id'])) {
                     echo
                     "<li class='nav-item'>
                     <a class='nav-link' href='#'>Wishlist</a>
-                </li>";
-                    echo
-                    "<li class='nav-item'>
-                    <a class='nav-link' href='cart.php'>Cart</a>
                 </li>";
                     echo
                     "

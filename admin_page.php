@@ -5,6 +5,32 @@ if ($_SESSION['User_role'] != 2) {
 }
 ?>
 <?php
+if (isset($_POST['delete'])) {
+
+    global $errorMsg, $success;
+
+    $product_id = $_POST['productid'];
+
+    // Create database connection.
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
+    // Check connection
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+        // Prepare the statement:
+        $stmt = $conn->prepare("DELETE from Group2.Product where Product_id = ?");
+        $stmt->bind_param("i", $product_id);
+        if (!$stmt->execute()) {
+            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            $success = false;
+        }
+        $stmt->close();
+    }
+    $conn->close();
+}
 // Connect to DB
 $config = parse_ini_file('../../private/db-config.ini');
 $conn = new mysqli($config['servername'], $config['username'],
@@ -27,13 +53,13 @@ if ($conn->connect_error) {
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
-include "head.inc.php";
-?>
-    <body>
     <?php
-    include "nav.inc.php";
+    include "head.inc.php";
     ?>
+    <body>
+        <?php
+        include "nav.inc.php";
+        ?>
     <body>
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -61,7 +87,7 @@ include "head.inc.php";
                             </tr>
                         </thead>
                         <tbody>
-<?php foreach ($rows as $row) { ?>
+                            <?php foreach ($rows as $row) { ?>
                                 <tr>
                                     <th scope="row"><?php echo $row["Product_id"] ?></th>
 
@@ -74,12 +100,12 @@ include "head.inc.php";
                                     <td>
                                         <!-- <a href="update.php?id=<?php echo $row["Product_id"] ?>" class="btn btn-sm btn-outline-primary mb-2">Update</a> -->
                                         <form method="post" action="" style= "display: inline-block">
-                                            <input  type="hidden" name="delete_inventory_id" value="<?php echo $row["Product_id"] ?>"/>
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                            <input  type="hidden" name="productid" value="<?php echo $row["Product_id"] ?>"/>
+                                            <button type="submit" name='delete' class="btn btn-sm btn-outline-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
-<?php } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
