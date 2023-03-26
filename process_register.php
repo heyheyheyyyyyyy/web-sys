@@ -138,7 +138,7 @@ function sanitize_input($data) {
 
 function saveMemberToDB() {
 
-    echo "<script>console.log('Enter Database');</script>";
+    //echo "<script>console.log('Enter Database');</script>";
     global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $address, $postcode, $phoneno;
     // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');

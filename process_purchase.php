@@ -14,8 +14,8 @@
 
         getItemsFromCart();
 
-        $json_data = json_encode($total_product);
-        echo "<script>console.log('{$json_data}');</script>";
+        //$json_data = json_encode($total_product);
+        //echo "<script>console.log('{$json_data}');</script>";
 
         // Create database connection.
         $config = parse_ini_file('../../private/db-config.ini');
@@ -44,9 +44,9 @@
                     updateCart();
                 }
 
-                echo "<script>console.log('name: {$name}');</script>";
-                echo "<script>console.log('qty: {$qty}');</script>";
-                echo "<script>console.log('price: {$price}');</script>";
+//                echo "<script>console.log('name: {$name}');</script>";
+//                echo "<script>console.log('qty: {$qty}');</script>";
+//                echo "<script>console.log('price: {$price}');</script>";
                 $stmt->close();
             }
         }
