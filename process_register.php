@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //Address
-    $address_pattern = '/^[a-zA-Z0-9\s,.\'-]+$/';
+    $address_pattern = '/^[a-zA-Z0-9\s,.#\'-]+$/';
     if (empty($_POST["User_address"])) {
         $errorMsg = "Address is required.<br>";
         $success = false;
