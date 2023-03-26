@@ -6,8 +6,11 @@ if ($_SESSION['User_role'] != 2) {
 
 if (isset($_POST['edit'])) {
 
-    $user_id = $_POST['id'];
+    global $errorMsg, $success;
 
+    $user_id = $_POST['id'];
+    $role_id = 2;
+    echo "<script>console.log('$user_id');</script>";
     // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
@@ -18,17 +21,22 @@ if (isset($_POST['edit'])) {
         $success = false;
     } else {
         // Prepare the statement:
-        $stmt = $conn->prepare("UPDATE Group2.User SET Role_id = 2 where User_id = ? ");
-        $stmt->bind_param("i", $user_id);
+        $stmt = $conn->prepare("UPDATE Group2.Users SET Role_id = ? WHERE User_id = ?");
+        $stmt->bind_param("ii", $role_id, $user_id);
         if (!$stmt->execute()) {
             $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             $success = false;
         }
+
+        echo "<script>console.log('$user_id');</script>";
         $stmt->close();
     }
     $conn->close();
 }
+
 if (isset($_POST['delete'])) {
+
+    global $errorMsg, $success;
 
     $user_id = $_POST['id'];
 
@@ -42,7 +50,7 @@ if (isset($_POST['delete'])) {
         $success = false;
     } else {
         // Prepare the statement:
-        $stmt = $conn->prepare("DELETE from Group2.User where User_id = ?");
+        $stmt = $conn->prepare("DELETE from Group2.Users where User_id = ?");
         $stmt->bind_param("i", $user_id);
         if (!$stmt->execute()) {
             $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -100,10 +108,11 @@ if (isset($_POST['delete'])) {
                                             </form>
                                         </td>
                                     </tr>
-                                    <?php
-                                endforeach;
-                            endif;
-                            ?>
+                                <td><?php $error_msg ?></td>
+                                <?php
+                            endforeach;
+                        endif;
+                        ?>
                         </tbody>
                     </table>
                 </div>
