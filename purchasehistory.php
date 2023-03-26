@@ -10,6 +10,8 @@
         include "nav.inc.php";
         ?>
         <main class="container">
+            <br><!-- comment -->
+            <br><!-- comment -->
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">
                     <strong><i class="fa fa-database"></i>Purchase History</strong>
