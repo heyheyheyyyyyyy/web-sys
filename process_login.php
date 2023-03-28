@@ -1,15 +1,21 @@
 <?php
 // Start the session
 include "session.php";
+if (!isset($_SESSION['User_id'])) {
+    header("location: index.php");
+}
 ?>
 
 <html>
-    <?php
-    include "head.inc.php";
-    ?>
+    <head>
+        <?php
+        include "head.inc.php";
+        ?>
+    </head>
     <body>
         <?php
         include "nav.inc.php";
+
         $email = $pwd_hashed = $errorMsg = "";
         $success = true;
 
@@ -28,13 +34,12 @@ include "session.php";
         }
         authenticateUser();
 
-        echo "<main class='container'><div class='formsclass'>";
         if ($success) {
             $_SESSION['User_id'] = $id;
             $_SESSION['User_role'] = $role;
-
             header("location: index.php");
         } else {
+            echo "<main class='container'><div class='formsclass'>";
             echo "<h1>Oops!</h1>";
             echo "<h2>The following input errors were detected:</h2>";
             echo "<p>" . $errorMsg . "</p>";

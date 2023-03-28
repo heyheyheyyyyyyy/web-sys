@@ -1,6 +1,9 @@
 <?php
 // Start the session
 include "session.php";
+if (!isset($_SESSION['User_id'])) {
+    header("location: index.php");
+}
 
 $fname = $lname = $email = $pwd_hashed = $address = $errorMsg = "";
 $postcode = $phoneno = 0;
