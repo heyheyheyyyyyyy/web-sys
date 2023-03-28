@@ -151,16 +151,15 @@ if (isset($_POST['addCart'])) {
 
                 if ($_GET['search'] != null) {
                     $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_name LIKE CONCAT('%',?,'%')");
-                    $sql->bind_param('s', $_GET['search']);
+                    $sql->bind_param('s', sanitize_input($_GET['search']));
                     $sql->execute();
                     $result = $sql->get_result();
-                } else if ($_GET['category'] != null){
+                } else if ($_GET['category'] != null) {
                     $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_category = ?");
-                    $sql->bind_param('s', $_GET['category']);
+                    $sql->bind_param('s', sanitize_input($_GET['category']));
                     $sql->execute();
                     $result = $sql->get_result();
-                }
-                else {
+                } else {
                     $sql = "SELECT * FROM Group2.Product";
                     $result = $conn->query($sql);
                 }
@@ -208,3 +207,12 @@ if (isset($_POST['addCart'])) {
         ?>
     </body> 
 </html>
+<?php
+
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>

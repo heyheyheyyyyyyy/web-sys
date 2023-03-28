@@ -8,11 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 }
 ?>
 <html lang="en">
-    <head>
-        <?php
-        include "head.inc.php";
-        ?>
-    </head>
+    <?php
+    include "head.inc.php";
+    ?>
     <body>
         <?php
         include "nav.inc.php";

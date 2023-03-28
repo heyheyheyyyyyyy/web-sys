@@ -1,11 +1,8 @@
 <?php include 'session.php'; ?>
 <html>
-    <head>
-        <?php
-        include "head.inc.php";
-        ?>
-        <link rel="stylesheet" href="css/Signup.css">
-    </head>
+    <?php
+    include "head.inc.php";
+    ?>
     <body>
         <?php
         include "nav.inc.php";

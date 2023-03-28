@@ -1,10 +1,8 @@
 <?php include 'session.php'; ?>
 <html>
-    <head>
-        <?php
-        include "head.inc.php";
-        ?>
-    </head>
+    <?php
+    include "head.inc.php";
+    ?>
     <body>
         <?php
         include "nav.inc.php";
@@ -16,7 +14,6 @@
 
         //$json_data = json_encode($total_product);
         //echo "<script>console.log('{$json_data}');</script>";
-
         // Create database connection.
         $config = parse_ini_file('../../private/db-config.ini');
         $conn = new mysqli($config['servername'], $config['username'],

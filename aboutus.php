@@ -1,9 +1,8 @@
-<?php include 'session.php';?>
+<?php include 'session.php'; ?>
 <html>
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
         <link rel="stylesheet" href="css/main.css">
         <style>
@@ -33,6 +32,9 @@
         </style>
     </head>
     <body>
+        <?php
+        include "nav.inc.php";
+        ?>
         <main class="container">
             <div class="about-section">
                 <br>
@@ -76,7 +78,10 @@
             <br>
             <h2>Office Location</h2>
             <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034.5205451688286!2d-73.98568158458197!3d40.74844007932989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2595a5b7d5f5b%3A0x5b5c5d748a9f5d2c!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1622539867158!5m2!1sen!2sus" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6653940525916!2d103.84659831523616!3d1.3774387618686943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16e96db0a1ab%3A0x3d0be54fbbd6e1cd!2sSingapore%20Institute%20of%20Technology%20(SIT%40NYP)!5e0!3m2!1sen!2ssg!4v1679979375992!5m2!1sen!2ssg" 
+                        width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+
+                </iframe>
             </div>
         </main>
         <?php

@@ -3,7 +3,6 @@
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
         <link rel="stylesheet" href="css/main.css">
         <style>
@@ -13,6 +12,9 @@
         </style>
     </head>
     <body>
+        <?php
+        include "nav.inc.php";
+        ?>
         <main>
         <div class="container">
             <h1>Contact Us</h1>

@@ -1,10 +1,8 @@
 <?php include 'session.php'; ?>
 <html>
-    <head>
-        <?php
-        include "head.inc.php";
-        ?>
-    </head>
+    <?php
+    include "head.inc.php";
+    ?>
     <body>
         <?php
         include "nav.inc.php";
