@@ -16,6 +16,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="shoppage.php">Shop</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Product Category</a>
+                    <ul class="dropdown-menu dropdown-menu">
+                        <li><a class="dropdown-item" href="shoppage.php?category=EcoBottle">Eco Bottle</a></li>
+                        <li><a class="dropdown-item" href="shoppage.php?category=Glass">Glass</a></li>
+                        <li><a class="dropdown-item" href="shoppage.php?category=Insulated">Insulated</a></li>
+                        <li><a class="dropdown-item" href="shoppage.php?category=BPA-free">BPA-free</a></li>
+                        <li><a class="dropdown-item" href="shoppage.php?category=Stainless_Steel">Stainless_Steel</a></li>
+                        <li><a class="dropdown-item" href="shoppage.php?category=Others">Others</a></li>
+                    </ul>
+                </li>
                 <?php
                 if ($_SESSION['User_role'] == 2) {
                     echo

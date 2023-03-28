@@ -146,7 +146,8 @@ if ($conn->connect_error) {
                                         <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
                                         <option class="dropdown-item whiteText" value="Glass">Glass</option>
                                         <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
-                                        <option class="dropdown-item whiteText" value="BPA-free ">BPA-free</option>
+                                        <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
+                                        <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
                                         <option class="dropdown-item whiteText" value="Others">Others</option>
                                     </select>
                                 </div>
@@ -176,6 +177,8 @@ if ($conn->connect_error) {
 
             </form>
         </div>
-
+        <?php
+        include "footer.inc.php";
+        ?>
     </body>
 </html>

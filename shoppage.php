@@ -154,7 +154,13 @@ if (isset($_POST['addCart'])) {
                     $sql->bind_param('s', $_GET['search']);
                     $sql->execute();
                     $result = $sql->get_result();
-                } else {
+                } else if ($_GET['category'] != null){
+                    $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_category = ?");
+                    $sql->bind_param('s', $_GET['category']);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                }
+                else {
                     $sql = "SELECT * FROM Group2.Product";
                     $result = $conn->query($sql);
                 }
@@ -192,7 +198,7 @@ if (isset($_POST['addCart'])) {
                     </div>';
                     }
                 } else {
-                    echo "No products found.";
+                    echo "<p>No products found</p>";
                 }
                 ?>
             </div>
