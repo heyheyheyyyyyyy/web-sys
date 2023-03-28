@@ -61,7 +61,6 @@ if (isset($_POST['addCart'])) {
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
         <link rel="stylesheet" href="css/main.css">
         <style>
@@ -139,6 +138,9 @@ if (isset($_POST['addCart'])) {
         </style>
     </head>
     <body>
+        <?php
+        include "nav.inc.php";
+        ?>
         <div class="container">
             <h2>Our Products!</h2>
             <br>
@@ -146,8 +148,18 @@ if (isset($_POST['addCart'])) {
                 <?php
                 $config = parse_ini_file('../../private/db-config.ini');
                 $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
-                $sql = "SELECT * FROM Group2.Product";
-                $result = $conn->query($sql);
+
+                if ($_GET['search'] != null) {
+                    $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_name LIKE CONCAT('%',?,'%')");
+                    $sql->bind_param('s', $_GET['search']);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                } else {
+                    $sql = "SELECT * FROM Group2.Product";
+                    $result = $conn->query($sql);
+                }
+
+
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $product_name = $row["Product_name"];
@@ -185,50 +197,8 @@ if (isset($_POST['addCart'])) {
                 ?>
             </div>
         </div>
+        <?php
+        include "footer.inc.php";
+        ?>
     </body> 
 </html>
-<?php
-
-function show() {
-    global $errorMsg, $success, $result;
-// Create database connection.
-    $config = parse_ini_file('../../private/db-config.ini');
-    $conn = new mysqli($config['servername'], $config['username'],
-            $config['password'], $config['dbname']);
-// Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-    } else {
-// Prepare the statement:
-        $stmt = $conn->prepare("SELECT * FROM Group2.Product;");
-// Execute the query statement:
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-    }
-    $conn->close();
-}
-
-function search() {
-// Create database connection.
-    global $errorMsg, $success, $result;
-    $config = parse_ini_file('../../private/db-config.ini');
-    $conn = new mysqli($config['servername'], $config['username'],
-            $config['password'], $config['dbname']);
-// Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-    } else {
-// Prepare the statement:
-        $stmt = $conn->prepare("SELECT * FROM Group2.Product where Product_name LIKE CONCAT('%',?,'%')");
-        $stmt->bind_param('s', $_GET['search']);
-// Execute the query statement:
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-    }
-    $conn->close();
-}
-?>
