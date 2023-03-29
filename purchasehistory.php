@@ -1,4 +1,9 @@
-<?php include 'session.php'; ?>
+<?php
+include 'session.php';
+if (!isset($_SESSION['User_id'])) {
+    header("location: index.php");
+}
+?>
 <html>
     <?php
     include "head.inc.php";
@@ -8,7 +13,6 @@
         include "nav.inc.php";
         ?>
         <main class="container">
-            <br><!-- comment -->
             <br><!-- comment -->
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">
@@ -37,7 +41,7 @@
                                         <td><?= date($purchase['Purchase_date']) ?></td>
                                         </form>
                                     </tr>
-                                <?php endforeach; ?>
+    <?php endforeach; ?>
                                 <tr>
                                     <td></td>
                                     <td></td>

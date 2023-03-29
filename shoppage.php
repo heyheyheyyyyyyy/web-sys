@@ -79,7 +79,7 @@ if (isset($_POST['addCart'])) {
 
             .product-card {
                 width: calc((100% - 30px) / 3);
-                height:  600px;
+                height:  650px;
                 margin: 10px 5px;
                 background-color: white;
                 border-radius: 20px;

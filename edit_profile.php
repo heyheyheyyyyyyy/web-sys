@@ -62,7 +62,7 @@ if ($conn->connect_error) {
 
                 <div class='form-group'>
                     <label for='lname'>Last Name:</label>
-                    <input class='form-control' type='text' id='update_lname' name='update_lname' value='<?php echo $lname; ?>' required>
+                    <input class='form-control' type='text' id='update_lname' name='update_lname' maxlength="45" value='<?php echo $lname; ?>' required>
                 </div>
 
                 <div class='form-group'>
@@ -87,12 +87,12 @@ if ($conn->connect_error) {
 
                 <div class='form-group'>
                     <label for='password'> New Password:</label>
-                    <input class='form-control' type='password' id='update_password' name='new_password' >
+                    <input class='form-control' type='password' id='update_password' minlength='8' name='new_password' >
                 </div>
 
                 <div class='form-group'>
                     <label for='password'> Confirm new Password:</label>
-                    <input class='form-control' type='password' id='cfm_password' name='cfm_password' >
+                    <input class='form-control' type='password' id='cfm_password' minlength='8' name='cfm_password' >
                 </div>
                 <button type='submit' class='btn btn-primary'>Save Changes</button>
             </form>

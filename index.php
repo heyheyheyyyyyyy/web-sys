@@ -5,47 +5,47 @@
     include "nav.inc.php";
     ?>
     <style>
-.slider-container {
-  width: 100%;
-  height: 500px; /* set the height to match the height of the images */
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
+        .slider-container {
+            width: 100%;
+            height: 500px; /* set the height to match the height of the images */
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
 
-.slider-frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
+        .slider-frame {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
 
-.slide-images {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%; /* set the width to be wider than the widest image */
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  left: 100%;
+        .slide-images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%; /* set the width to be wider than the widest image */
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 100%;
 
-  transform: translateX(-50%);
-}
+            transform: translateX(-50%);
+        }
 
-.slide-images img {
-  max-width: 100%;
-  height: 100%;
-  object-fit: contain;
-  margin: 0;
-  padding: 0;
-}
+        .slide-images img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            margin: 0;
+            padding: 0;
+        }
 
     </style>
     <link rel="stylesheet" href="css/main.css">
@@ -78,15 +78,16 @@
                 <span class="featureDesc">Our bottle is designed to fit comfortably in your hand, with a sleek and ergonomic shape that feels great to hold.</span>
             </div>
             <div class="feature">
-                <img class="featureIcon" src="images/bpa.png" alt="">
-                <span class="featureTitle">QuenchGuard</span>
-                <span class="featureDesc">Bpa and toxin free</span>
-            </div>
-            <div class="feature">
                 <img class="featureIcon" src="images/money.png" alt="">
                 <span class="featureTitle">QuenchSaver</span>
                 <span class="featureDesc">Our eco-friendly bottle design helps you save money and reduce waste by avoiding single-use plastic bottles.</span>
             </div>
+            <div class="feature">
+                <img class="featureIcon" src="images/bpa.png" alt="">
+                <span class="featureTitle">QuenchGuard</span>
+                <span class="featureDesc">Bpa and toxin free</span>
+            </div>
+
         </div>
 
         <div class="product" id="product">

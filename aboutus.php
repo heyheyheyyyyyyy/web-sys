@@ -26,6 +26,19 @@
                 margin-top: 5px;
                 font-style: italic;
             }
+            .location {
+                display: inline-block;
+                width: 30%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            .location img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center;
+            }
         </style>
     </head>
     <body>
@@ -57,30 +70,72 @@
                 <h2>Our Team</h2>
                 <div>
                     <div class="team-member">
-                        <img src="images/profile.jpg" alt="Chung Shing">
-                        <h3>Chung Shing</h3>
+                        <a href="mailto:ChungShing@gmail.com">
+                            <p>
+                                <img src="images/profile.jpg" alt="Chung Shing"> 
+
+                            <h3>Chung Shing</h3>
+                           
+                            </p>
+                        </a>
+                        <h4>Sales Executive</h4>
                     </div>
                     <div class="team-member">
-                        <img src="images/profile.jpg" alt="Xin Er">
-                        <h3>Xin Er</h3>
+                        <a href="mailto:XinEr@gmail.com">
+                            <p>
+                                <img src="images/profile.jpg" alt="Xin Er">
+                            <h3>Xin Er</h3>
+                            
+                            </p>
+                        </a>
+                        <h4>Operations Manager</h4>
                     </div>
                     <div class="team-member">
-                        <img src="images/profile.jpg" alt="Julene">
-                        <h3>Julene</h3>
+                        <a href="mailto:Julene@gmail.com">
+                            <p>
+                                <img src="images/profile.jpg" alt="Julene">
+                            <h3>Julene</h3>
+                            </p>  
+                        </a>
+                        <h4>Marketing Coordinator</h4>
                     </div>
                     <div class="team-member">
-                        <img src="images/profile.jpg" alt="Linus">
-                        <h3>Linus</h3>
+                        <a href="mailto:Linus@gmail.com">
+                            <p>
+                                <img src="images/profile.jpg" alt="Linus">
+                            <h3>Linus</h3>
+                            </p>
+                        </a>
+                        <h4>Customer Service</h4>
                     </div>
                     <div class="team-member">
-                        <img src="images/profile.jpg" alt="Pei Sheng">
-                        <h3>Pei Sheng</h3>
+                        <a href="mailto:Pei Sheng@gmail.com">
+                            <p>
+                                <img src="images/profile.jpg" alt="Pei Sheng">
+                            <h3>Pei Sheng</h3>
+                            </p>
+                        </a>
+                        <h4>Product Designer</h4>
                     </div>
                 </div>
 
             </section>
             <br>
-            <h2>Office Location</h2>
+            <div>
+            <div class="location">
+                <img src="images/location.png" alt="Office Location">
+                <h3>Office Location</h3>
+                <p> 5th Floor East Tower Singapore Institute of Technology (SIT@NYP)
+                    172 Ang Mo Kio Ave 8, Singapore 567739
+                </p>
+            </div>
+             <div class="location">
+                <img src="images/location.png" alt="Factory Location">
+                <h3>Factory Location</h3>
+                <p> 50 Kallang Pudding Rd, #03-03 Golden Wheel Industrial Building, Singapore 349326
+                </p>
+            </div>
+            </div>
             <div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6653940525916!2d103.84659831523616!3d1.3774387618686943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16e96db0a1ab%3A0x3d0be54fbbd6e1cd!2sSingapore%20Institute%20of%20Technology%20(SIT%40NYP)!5e0!3m2!1sen!2ssg!4v1679979375992!5m2!1sen!2ssg" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps of Singapore Institute of Technology (SIT@NYP)"></iframe>
             </div>

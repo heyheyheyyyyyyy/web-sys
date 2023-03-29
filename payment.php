@@ -15,10 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         <?php
         include "nav.inc.php";
         ?>
-        <div id="main_container" >
+        <form action ='process_purchase.php' method='POST' id="main_container">
             <div id="left_page">
-                <p>CHECKOUT</p>
-
                 <div class="payment_methods">
                     <p class="forallheading">PAYMENT METHOD</p>
                     <hr />
@@ -140,13 +138,13 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             potential additional charges.</p>
                         <br>
 
-                        <form action ='process_purchase.php' method='POST'>
+                        
                             <button class="btn btn-success" type="submit" name="purchase">Purchase</button>
-                        </form>
+                        
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <?php
         include "footer.inc.php";
         ?>

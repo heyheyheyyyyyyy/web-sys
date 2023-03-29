@@ -2,8 +2,8 @@
     <div class="footerLeft">
         <div class="footerMenu">
             <ul class="fList">
-                <li class="fListItem"><a class='nav-link' href='contactus.php'>Contact</a></li>
-                <li class="fListItem"><a class='nav-link' href='aboutus.php'>About Us</a></li>
+                <li class="fListItem"><a class='nav-link' style="color: black;" href='contactus.php'>Contact</a></li>
+                <li class="fListItem"><a class='nav-link' style="color: black;" href='aboutus.php'>About Us</a></li>
             </ul>
         </div>
     </div>
