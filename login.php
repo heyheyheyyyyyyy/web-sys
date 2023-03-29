@@ -8,6 +8,18 @@ if (isset($_SESSION['User_id'])) {
     <?php
     include "head.inc.php";
     ?>
+    <style>
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+
+    </style>
     <body>
         <?php
         include "nav.inc.php";
@@ -20,15 +32,15 @@ if (isset($_SESSION['User_id'])) {
             </p>
             <form action="process_login.php" method="post">
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="email">Email:</label><br>
                     <input class="form-control" type="email" id="User_email"
-                           required name="User_email" placeholder="Enter email">
+                           required name="User_email" placeholder="Enter email"><br>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password:</label>
+                    <label for="pwd">Password:</label><br>
                     <input class="form-control" type="password" id="User_password"
                            required name="User_password" 
-                           placeholder="Enter password">
+                           placeholder="Enter password"><br>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit">Submit</button>

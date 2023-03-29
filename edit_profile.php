@@ -44,6 +44,18 @@ if ($conn->connect_error) {
         include "head.inc.php";
         ?>
         <link rel="stylesheet" href="css/Signup.css">
+        <style>
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+
+    </style>
     </head>
     <body>
         <?php
@@ -56,43 +68,43 @@ if ($conn->connect_error) {
 
             <form action="process_update_profile.php" method="post">
                 <div class='form-group'>
-                    <label for='fname'>First Name:</label>
-                    <input class='form-control' type='text' id='update_fname' name='update_fname' value='<?php echo $fname; ?>'>
+                    <label for='fname'>First Name:</label><br>
+                    <input class='form-control' type='text' id='update_fname' name='update_fname' value='<?php echo $fname; ?>'><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='lname'>Last Name:</label>
-                    <input class='form-control' type='text' id='update_lname' name='update_lname' maxlength="45" value='<?php echo $lname; ?>' required>
+                    <label for='lname'>Last Name:</label><br>
+                    <input class='form-control' type='text' id='update_lname' name='update_lname' maxlength="45" value='<?php echo $lname; ?>' required><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='email'>Email:</label>
-                    <input class='form-control' type='email' id='update_email' name='update_email' value='<?php echo $email; ?>' required>
+                    <label for='email'>Email:</label><br>
+                    <input class='form-control' type='email' id='update_email' name='update_email' value='<?php echo $email; ?>' required><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='address'>Address:</label>
-                    <input class='form-control' type='text' id='update_address' name='update_address' value='<?php echo $address; ?>' required>
+                    <label for='address'>Address:</label><br>
+                    <input class='form-control' type='text' id='update_address' name='update_address' value='<?php echo $address; ?>' required><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='postcode'>Postal Code:</label>
-                    <input class='form-control' type='text' id='update_postcode' name='update_postcode' value='<?php echo $postcode; ?>' required>
+                    <label for='postcode'>Postal Code:</label><br>
+                    <input class='form-control' type='text' id='update_postcode' name='update_postcode' value='<?php echo $postcode; ?>' required><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='phoneno'>Phone Number:</label>
-                    <input class='form-control' type='text' id='update_phoneno' name='update_phoneno' value='<?php echo $phoneno; ?>' required>
+                    <label for='phoneno'>Phone Number:</label><br>
+                    <input class='form-control' type='text' id='update_phoneno' name='update_phoneno' value='<?php echo $phoneno; ?>' required><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='password'> New Password:</label>
-                    <input class='form-control' type='password' id='update_password' minlength='8' name='new_password' >
+                    <label for='password'> New Password:</label><br>
+                    <input class='form-control' type='password' id='update_password' minlength='8' name='new_password' ><br>
                 </div>
 
                 <div class='form-group'>
-                    <label for='password'> Confirm new Password:</label>
-                    <input class='form-control' type='password' id='cfm_password' minlength='8' name='cfm_password' >
+                    <label for='password'> Confirm new Password:</label><br>
+                    <input class='form-control' type='password' id='cfm_password' minlength='8' name='cfm_password' ><br>
                 </div>
                 <button type='submit' class='btn btn-primary'>Save Changes</button>
             </form>
