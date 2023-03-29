@@ -1,3 +1,4 @@
+<button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
 <footer>
     <div class="footerLeft">
         <div class="footerMenu">
