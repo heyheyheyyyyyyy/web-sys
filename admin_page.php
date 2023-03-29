@@ -56,11 +56,25 @@ if ($conn->connect_error) {
     <?php
     include "head.inc.php";
     ?>
+    <head>
+        <style>
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+
+    </style>
+    </head>
     <body>
         <?php
         include "nav.inc.php";
         ?>
-    <body>
+         <main class="container">
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
             <!-- Sidebar -->
@@ -110,7 +124,7 @@ if ($conn->connect_error) {
                     </table>
                 </div>
         </div>
-
+        
         <!--new product form for admins-->
         <div class="tab-pane fade show active" id="pills-new" role="tabpanel" aria-labelledby="pills-new-tab">
             <h1>Add New Products</h1>
@@ -139,7 +153,7 @@ if ($conn->connect_error) {
                         <!-- CATEGORY DROPDOWN -->
                         <div class="form-group">
                             <div class="dropdown show">
-                                <label for="create_brand">Select Category</label>
+                                <label for="create_brand">Select Category</label><br>
                                 <div href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <select id="Product_category" name="Product_category" class="btn btn-light dropdown-toggle" required>
                                         <option selected disabled>Select a category</option>
@@ -158,16 +172,16 @@ if ($conn->connect_error) {
 
                         <!-- QUANTITY -->
                         <div class="form-group">
-                            <label for="create_quantity">Quantity</label>
+                            <label for="create_quantity">Quantity</label><br>
                             <input type="number" class="form-control" id="Product_qty"
-                                   name="Product_qty" placeholder="Enter Quantity" min="0" step="1" required>
+                                   name="Product_qty" placeholder="Enter Quantity" min="0" step="1" required><br>
                         </div>
 
                         <!-- PRICE -->
                         <div class="form-group">
-                            <label for="create_price">Price</label>
+                            <label for="create_price">Price</label><br>
                             <input type="number" min="1" step="0.01" class="form-control" id="Product_price"
-                                   name="Product_price" placeholder="Price" required>
+                                   name="Product_price" placeholder="Price" required><br>
                         </div>
                     </div>
                 </div>
@@ -177,6 +191,7 @@ if ($conn->connect_error) {
 
             </form>
         </div>
+        </main> 
         <?php
         include "footer.inc.php";
         ?>
