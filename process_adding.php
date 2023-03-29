@@ -118,7 +118,7 @@ function process_create($conn, $product_name, $product_desc, $product_category, 
     $result = $stmt->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-    $image_path = "images/product_imgs/{$rows[0]["AUTO_INCREMENT"]}.jpg";
+    $image_path = "images/{$rows[0]["AUTO_INCREMENT"]}.jpg";
 
     $stmt->close();
 
