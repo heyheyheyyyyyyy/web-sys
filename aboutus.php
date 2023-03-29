@@ -111,7 +111,7 @@
                     <div class="team-member">
                         <a href="mailto:Pei Sheng@gmail.com">
                             <p>
-                                <img src="images/pic5.jpg" alt="Pei Sheng">
+                                <img src="images/pic5.jpg" alt="Pei Sheng" width="225" height="225">
                             <h3>Pei Sheng</h3>
                             </p>
                         </a>
