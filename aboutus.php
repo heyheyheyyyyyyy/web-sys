@@ -83,7 +83,7 @@
                     <div class="team-member">
                         <a href="mailto:XinEr@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Xin Er">
+                                <img src="images/staffxiner.jpg" alt="Xin Er" width="225" height="225">
                             <h3>Xin Er</h3>
                             
                             </p>
