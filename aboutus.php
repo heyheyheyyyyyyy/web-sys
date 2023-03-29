@@ -1,5 +1,5 @@
 <?php include 'session.php'; ?>
-<html>
+<html lang="en">
     <head>
         <?php
         include "head.inc.php";
@@ -82,9 +82,7 @@
             <br>
             <h2>Office Location</h2>
             <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6653940525916!2d103.84659831523616!3d1.3774387618686943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16e96db0a1ab%3A0x3d0be54fbbd6e1cd!2sSingapore%20Institute%20of%20Technology%20(SIT%40NYP)!5e0!3m2!1sen!2ssg!4v1679979375992!5m2!1sen!2ssg" 
-                        width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6653940525916!2d103.84659831523616!3d1.3774387618686943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16e96db0a1ab%3A0x3d0be54fbbd6e1cd!2sSingapore%20Institute%20of%20Technology%20(SIT%40NYP)!5e0!3m2!1sen!2ssg!4v1679979375992!5m2!1sen!2ssg" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps of Singapore Institute of Technology (SIT@NYP)"></iframe>
             </div>
         </main>
         <?php

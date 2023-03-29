@@ -4,7 +4,7 @@ if (isset($_SESSION['User_id'])) {
     header("location: index.php");
 }
 ?>
-<html>
+<html lang="en">
     <?php
     include "head.inc.php";
     ?>

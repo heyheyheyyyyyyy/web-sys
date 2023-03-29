@@ -1,5 +1,5 @@
 <?php include 'session.php'; ?>
-<html>
+<html lang="en">
     <head>
         <?php
         include "head.inc.php";

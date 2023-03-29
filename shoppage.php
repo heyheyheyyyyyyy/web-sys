@@ -61,7 +61,7 @@ if (isset($_POST['addCart'])) {
     $conn->close();
 }
 ?>
-<html>
+<html lang="en">
     <head>
         <?php
         include "head.inc.php";
@@ -145,6 +145,7 @@ if (isset($_POST['addCart'])) {
         <?php
         include "nav.inc.php";
         ?>
+        <<main>
         <div class="container">
             <h2>Our Products!</h2>
             <br>
@@ -206,6 +207,7 @@ if (isset($_POST['addCart'])) {
                 ?>
             </div>
         </div>
+        </main>
         <?php
         include "footer.inc.php";
         ?>
