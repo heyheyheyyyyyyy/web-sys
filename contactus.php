@@ -18,7 +18,26 @@
         <main>
             <div class="container">
                 <h1>Contact Us</h1>
-                <p>Fill in the form below to contact us.</p>
+                <img src="images/customer-service.jpg">
+                <p>CUSTOMIZED SERVICES
+                <div>
+At Quench, we take pride in offering an extensive variety of water bottles at competitive prices, without compromising on quality. 
+                </div>
+                <div>
+Our team is dedicated to providing specialized and superior service, with quick response times and fast delivery.
+                </div>
+                <div>
+If you are interested in any of our products or would like to discuss a custom order, please feel free to contact us.
+                </div>
+                <div>
+​​​​​​​●  We provide all kinds of bottles: Eco-friendly, Glass, Thermal, Steel and more.
+                </div>
+                <div>
+​​​​​​​●  Price: Good price,quick delivery time, goods quality ,good service are always our goal.
+</div>
+                <div>
+●  Application: All products are used in shops, restaurant,  school, GYM and shopping mall, etc.
+                </div>
                 <form action="contact.php" method="post">
                     <div class="elem-group">
                         <label for="name">Name:</label>
