@@ -4,7 +4,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 
-<html>
+<html lang="en">
     <?php
     include "head.inc.php";
     ?>
@@ -12,19 +12,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <?php
         include "nav.inc.php";
         ?>
+        <main>
         <link rel="stylesheet" href="css/main.css">
 
 
         <div class= "slider-frame " >
             <div class="slide-images ">
                 <div class= "img-container">>
-                    <img src="images/pic1.jpg">
+                    <img src="images/pic1.jpg" alt="">
                 </div>
                 <div class="img-container">
-                    <img src="images/pic2.jpg">
+                    <img src="images/pic2.jpg" alt="">
                 </div>
                 <div class="img- container">
-                    <img src= "images/p3.jpg">
+                    <img src= "images/p3.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -57,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="productDetails">
                 <h1 class="productTitle">HydrO2</h1>
                 <h1 class="productTitleSmall">new arrivals</h1>
-                <h2 class="productPrice">$49.90</h2>
+                <h1 class="productPrice">$49.90</h1>
                 <p class="productDesc">With inspiration drawn from the natural lotus effect, we utilize advanced technology to convert silicon dioxide, one of the earth's most fundamental elements, into a remarkably pristine glass-like interior finish, ensuring the purity of your drinks. Designed in California and produced in Singapore.
 
                 </p>
@@ -116,7 +117,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                      alt="" class="nsImg">
             </div>
             <div class="nsItem">
-                <h3 class="nsTitleSm">MARCH NEW ARRIVALS</h3>
+                <h1 class="nsTitleSm">MARCH NEW ARRIVALS</h1>
                 <h1 class="nsTitle">MORE SLEEK</h1>
                 <h1 class="nsTitle">MORE COLLECTIONS</h1>
                 <a href="#nav">
@@ -128,6 +129,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                      alt="" class="nsImg">
             </div>
         </div>
+        </main>
         <?php
         include "footer.inc.php";
         ?>
