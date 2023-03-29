@@ -74,7 +74,7 @@ if (isset($_POST['delete'])) {
             <br><!-- comment -->
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">
-                    <strong><i class="fa fa-database"></i> Products</strong>
+                    <strong><i class="fa fa-database"></i> All User Profiles</strong>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">

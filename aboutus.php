@@ -72,7 +72,7 @@
                     <div class="team-member">
                         <a href="mailto:ChungShing@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Chung Shing"> 
+                                <img src="images/Cs.jpeg" alt="Chung Shing"> 
 
                             <h3>Chung Shing</h3>
                            
@@ -83,7 +83,7 @@
                     <div class="team-member">
                         <a href="mailto:XinEr@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Xin Er">
+                                <img src="images/staffxiner.jpg" alt="Xin Er" width="225" height="225">
                             <h3>Xin Er</h3>
                             
                             </p>
@@ -93,7 +93,7 @@
                     <div class="team-member">
                         <a href="mailto:Julene@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Julene">
+                                <img src="images/ju.jpg" alt="Julene">
                             <h3>Julene</h3>
                             </p>  
                         </a>
@@ -102,7 +102,7 @@
                     <div class="team-member">
                         <a href="mailto:Linus@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Linus">
+                                <img src="images/LinusPhoto.jpg" alt="Linus" width="225" height="225">
                             <h3>Linus</h3>
                             </p>
                         </a>
