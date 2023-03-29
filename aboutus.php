@@ -34,7 +34,6 @@
         ?>
         <main class="container">
             <div class="about-section">
-                <br>
                 <h1>About Us</h1>
                 <br>
                 <section>

@@ -1,32 +1,3 @@
-<style>
-    .element {
-  width: 100%; /* or a smaller value, depending on your needs */
-  height: auto; /* or a smaller value, depending on your needs */
-}
-.navbar {
-  position: fixed; /* or absolute or relative, depending on your needs */
-  top: 0;
-  left: 0;
-  right: 0;
-  opacity: 1;
-}
-.navbar {
-  z-index: 1000; /* adjust as needed */
-}
-@media (max-width: 768px) {
-    .navbar-collapse {
-    background-color: #fff; /* set a non-transparent white background color */
-  }
-  .navbar-collapse .dropdown-menu {
-    background-color: #fff; /* set a non-transparent white background color for the dropdown menu */
-  }
-  .navbar-collapse .dropdown-menu a {
-    color: #333; /* set a contrasting color for the dropdown menu links */
-  }
-    opacity: 1;
-  }
-}
-</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <!-- Logo -->
@@ -115,3 +86,4 @@
         </div>
     </div>
 </nav>
+<br>
