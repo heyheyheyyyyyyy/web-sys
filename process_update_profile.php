@@ -119,7 +119,7 @@ if ($success) {
     echo "<body>";
     include "nav.inc.php";
     echo "<br><h2> You have changed your profile!</h2>";
-    echo "<a href='edit_profile.php' class='btn btn-danger'> Return to edit profile page</a>";
+    echo "<a href='edit_profile.php' class='btn btn-success'> Return to edit profile page</a>";
     include 'footer.inc.php';
     echo "</body>";
     echo "</html>";

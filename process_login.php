@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             echo
             "<form action='index.php'>
                 <div class='form-group'>
-                    <button class='btn btn-danger' type='submit'>Home</button>
+                    <button class='btn btn-success' type='submit'>Home</button>
                 </div>
             </form>";
         } else {
