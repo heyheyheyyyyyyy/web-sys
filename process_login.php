@@ -1,17 +1,22 @@
 <?php
 // Start the session
 include "session.php";
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    echo "<h2> This page is not meant to be run directly.</h2>";
+    echo "<p> You can register at the link below: </p>";
+    echo "<a href = 'register.php'> Go to Sign Up page...</a>";
+    exit();
+}
 ?>
 
 <html>
-    <head>
-        <?php
-        include "head.inc.php";
-        ?>
-    </head>
+    <?php
+    include "head.inc.php";
+    ?>
     <body>
         <?php
         include "nav.inc.php";
+
         $email = $pwd_hashed = $errorMsg = "";
         $success = true;
 
@@ -30,45 +35,23 @@ include "session.php";
         }
         authenticateUser();
 
-        echo "<main class='container'><div class='formsclass'>";
-        if ($success){ 
+        if ($success) {
+            $_SESSION['User_id'] = $id;
+            $_SESSION['User_role'] = $role;
+            $_SESSION['lname'] = $lname;
             
-                authenticateUser();
-                $_SESSION['User_id'] = $id;
-                
-                echo "<h3> View Profile </h3>";
-                echo "<div class='form-group'>";
-                echo " <label for='fname'>First Name:</label>";
-               echo "<input class='form-control' type='text' id='fname'
-                          value=$fname readonly>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='lname'>Last Name:</label>";
-                echo "<input class='form-control' type='text' id='lname'
-                          value=$lname readonly>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='email'>Email:</label>";
-                echo "<input class='form-control' type='email' id='email'
-                           value=$email readonly>";
-                echo "</div>";
-                 echo "<div class='form-group'>";
-                echo "<label for='address'>Address:</label>";
-                echo "<input class='form-control' type='text' id='address' value='$address' readonly>";
-                echo "</div>";
-                 echo "<div class='form-group'>";
-                echo "<label for='postcode'>Postal Code:</label>";
-                echo "<input class='form-control' type='text' id='postcode'
-                           value=$postcode readonly>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='phoneno'>Phone Number:</label>";
-                echo "<input class='form-control' type='text' id='phoneno'
-                           value=$phoneno readonly>";
-                echo "</div>";
-                echo "<a href='edit_profile.php'>Edit Profile</a>";
-                echo "<a href='logout.php'>Logout</a>";
-            }else {
+            echo "<script>console.log('$lname')</script>";
+            
+            echo "<main class='container'><div class='formsclass'>";
+            echo "<h1>Login Successful!!</h1>";
+            echo
+            "<form action='index.php'>
+                <div class='form-group'>
+                    <button class='btn btn-success' type='submit'>Home</button>
+                </div>
+            </form>";
+        } else {
+            echo "<main class='container'><div class='formsclass'>";
             echo "<h1>Oops!</h1>";
             echo "<h2>The following input errors were detected:</h2>";
             echo "<p>" . $errorMsg . "</p>";
@@ -91,7 +74,7 @@ include "session.php";
  */
 
 function authenticateUser() {
-    global $id, $fname, $lname, $email, $pwd_hashed, $address, $postcode, $phoneno, $errorMsg, $success;
+    global $id, $fname, $lname, $email, $pwd_hashed, $address, $postcode, $phoneno, $role, $errorMsg, $success;
 // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
@@ -118,7 +101,8 @@ function authenticateUser() {
             $address = $row["User_address"];
             $postcode = $row["User_postcode"];
             $phoneno = $row["User_phone"];
-            
+            $role = $row["Role_id"];
+
 // Check if the password matches:
             if (!password_verify($_POST["User_password"], $pwd_hashed)) {
 // Don't be too specific with the error message - hackers don't
@@ -131,7 +115,6 @@ function authenticateUser() {
             $success = false;
         }
         $stmt->close();
-       
     }
     $conn->close();
 }
