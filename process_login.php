@@ -1,17 +1,18 @@
 <?php
 // Start the session
 include "session.php";
-if (!isset($_SESSION['User_id'])) {
-    header("location: index.php");
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    echo "<h2> This page is not meant to be run directly.</h2>";
+    echo "<p> You can register at the link below: </p>";
+    echo "<a href = 'register.php'> Go to Sign Up page...</a>";
+    exit();
 }
 ?>
 
 <html>
-    <head>
-        <?php
-        include "head.inc.php";
-        ?>
-    </head>
+    <?php
+    include "head.inc.php";
+    ?>
     <body>
         <?php
         include "nav.inc.php";
@@ -37,7 +38,14 @@ if (!isset($_SESSION['User_id'])) {
         if ($success) {
             $_SESSION['User_id'] = $id;
             $_SESSION['User_role'] = $role;
-            header("location: index.php");
+            echo "<main class='container'><div class='formsclass'>";
+            echo "<h1>Login Successful!!</h1>";
+            echo
+            "<form action='index.php'>
+                <div class='form-group'>
+                    <button class='btn btn-danger' type='submit'>Home</button>
+                </div>
+            </form>";
         } else {
             echo "<main class='container'><div class='formsclass'>";
             echo "<h1>Oops!</h1>";
