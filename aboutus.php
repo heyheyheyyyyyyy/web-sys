@@ -93,7 +93,7 @@
                     <div class="team-member">
                         <a href="mailto:Julene@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Julene">
+                                <img src="images/ju.jpg" alt="Julene">
                             <h3>Julene</h3>
                             </p>  
                         </a>
