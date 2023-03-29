@@ -16,10 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         include "nav.inc.php";
         ?>
         <form action ='process_purchase.php' method='POST' id="main_container">
-        
             <div id="left_page">
-                <p>CHECKOUT</p>
-
                 <div class="payment_methods">
                     <p class="forallheading">PAYMENT METHOD</p>
                     <hr />
