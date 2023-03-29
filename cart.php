@@ -4,19 +4,53 @@ if (isset($_POST['edit'])) {
     $user_id = $_SESSION['User_id'];
     $product_id = $_POST['product_id'];
     $cart_id = $_POST['cart_id'];
-    $cart_qty = $_POST['cart_qty'];
+    if ($_POST['cart_qty'] != null) {
+        $cart_qty = $_POST['cart_qty'];
+        // Create database connection.
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'],
+                $config['password'], $config['dbname']);
+        // Check connection
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        } else {
+            // Prepare the statement:
+            if ($cart_qty == 0) {
+                $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
+                $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
+                if (!$stmt->execute()) {
+                    $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                    $success = false;
+                }
+                $stmt->close();
+            } else {
+                $stmt = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Product_id = ? and Cart_id = ? and User_id = ?");
+                $stmt->bind_param("iiii", $cart_qty, $product_id, $cart_id, $user_id);
+                if (!$stmt->execute()) {
+                    $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                    $success = false;
+                }
+                $stmt->close();
+            }
+        }
+        $conn->close();
+    }
+    if (isset($_POST['delete'])) {
+        $user_id = $_SESSION['User_id'];
+        $product_id = $_POST['product_id'];
+        $cart_id = $_POST['cart_id'];
 
-    // Create database connection.
-    $config = parse_ini_file('../../private/db-config.ini');
-    $conn = new mysqli($config['servername'], $config['username'],
-            $config['password'], $config['dbname']);
-    // Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-    } else {
-        // Prepare the statement:
-        if ($cart_qty == 0) {
+        // Create database connection.
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'],
+                $config['password'], $config['dbname']);
+        // Check connection
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        } else {
+            // Prepare the statement:
             $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
             $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
             if (!$stmt->execute()) {
@@ -24,52 +58,19 @@ if (isset($_POST['edit'])) {
                 $success = false;
             }
             $stmt->close();
-        } else {
-            $stmt = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Product_id = ? and Cart_id = ? and User_id = ?");
-            $stmt->bind_param("iiii", $cart_qty, $product_id, $cart_id, $user_id);
-            if (!$stmt->execute()) {
-                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-                $success = false;
-            }
-            $stmt->close();
         }
+        $conn->close();
     }
-    $conn->close();
-}
-if (isset($_POST['delete'])) {
-    $user_id = $_SESSION['User_id'];
-    $product_id = $_POST['product_id'];
-    $cart_id = $_POST['cart_id'];
-
-    // Create database connection.
-    $config = parse_ini_file('../../private/db-config.ini');
-    $conn = new mysqli($config['servername'], $config['username'],
-            $config['password'], $config['dbname']);
-    // Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-    } else {
-        // Prepare the statement:
-        $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
-        $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
-        if (!$stmt->execute()) {
-            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            $success = false;
-        }
-        $stmt->close();
-    }
-    $conn->close();
 }
 ?>
 <html lang="en">
-    <?php
-    include "head.inc.php";
-    ?>
+<?php
+include "head.inc.php";
+?>
     <body>
-        <?php
-        include "nav.inc.php";
-        ?>
+    <?php
+    include "nav.inc.php";
+    ?>
         <main class="container">
             <br><!-- comment -->
             <div class="card border-danger">
@@ -87,11 +88,11 @@ if (isset($_POST['delete'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            show();
-                            if ($result->num_rows > 0) :
-                                foreach ($result as $cart) :
-                                    ?>
+<?php
+show();
+if ($result->num_rows > 0) :
+    foreach ($result as $cart) :
+        ?>
                                     <tr>
                                         <td><?= $cart['Product_name'] ?></td>
                                         <td>$ <?= $cart['Product_price'] ?></td>
@@ -107,8 +108,8 @@ if (isset($_POST['delete'])) {
                                             </form>
                                         </td>
                                     </tr>
-                                    <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
-                                <?php endforeach; ?>
+        <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
+    <?php endforeach; ?>
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -127,43 +128,44 @@ if (isset($_POST['delete'])) {
                                         </form>
                                     </td>
                                 </tr>
-                                <?php
-                            endif;
-                            ?>
+    <?php
+endif;
+?>
 
                         </tbody>
                     </table>
                 </div>
             </div>
         </main>
-        <?php
-        include "footer.inc.php";
-        ?>
+<?php
+include "footer.inc.php";
+?>
     </body>
 </html>
 
-<?php
+        <?php
 
-function show() {
-    global $errorMsg, $success, $result;
-    $user_id = $_SESSION['User_id'];
+        function show() {
+            global $errorMsg, $success, $result;
+            $user_id = $_SESSION['User_id'];
 // Create database connection.
-    $config = parse_ini_file('../../private/db-config.ini');
-    $conn = new mysqli($config['servername'], $config['username'],
-            $config['password'], $config['dbname']);
+            $config = parse_ini_file('../../private/db-config.ini');
+            $conn = new mysqli($config['servername'], $config['username'],
+                    $config['password'], $config['dbname']);
 // Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-    } else {
+            if ($conn->connect_error) {
+                $errorMsg = "Connection failed: " . $conn->connect_error;
+                $success = false;
+            } else {
 // Prepare the statement:
-        $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
-                . "inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
-        $stmt->bind_param("i", $user_id);
+                $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
+                        . "inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
+                $stmt->bind_param("i", $user_id);
 // Execute the query statement:
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-    }
-    $conn->close();
-}
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $stmt->close();
+            }
+            $conn->close();
+        }
+        
