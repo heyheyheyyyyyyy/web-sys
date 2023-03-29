@@ -145,7 +145,7 @@ if (isset($_POST['addCart'])) {
         <?php
         include "nav.inc.php";
         ?>
-        <<main>
+        <main>
         <div class="container">
             <h2>Our Products!</h2>
             <br>
