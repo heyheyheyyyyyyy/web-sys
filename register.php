@@ -54,12 +54,12 @@ if (isset($_SESSION['User_id'])) {
                 <div class="form-group">
                     <label for="User_password">Password:</label>
                     <input class="form-control" type="password" id="User_password"
-                           required name="User_password" placeholder="Enter password">
+                           required name="User_password" minlength='8' placeholder="Enter password">
                 </div>
                 <div class="form-group">
                     <label for="User_password_cfm">Confirm Password:</label>
                     <input class="form-control" type="password" id="User_password_cfm"
-                           required name="User_password_cfm" placeholder="Confirm password">
+                           required name="User_password_cfm" minlength='8' placeholder="Confirm password">
                 </div>
                 <div class="form-check">
                     <label>
