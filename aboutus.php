@@ -102,7 +102,7 @@
                     <div class="team-member">
                         <a href="mailto:Linus@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Linus">
+                                <img src="images/LinusPhoto.jpg" alt="Linus" width="225" height="225">
                             <h3>Linus</h3>
                             </p>
                         </a>

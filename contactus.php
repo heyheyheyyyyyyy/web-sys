@@ -51,8 +51,8 @@ If you are interested in any of our products or would like to discuss a custom o
                         <label for="department">Department:</label>
                         <select id="department" name="concerned_department" required>
                             <option value="">Select a Department</option>
+                            <option value="product issue">Product Issue</option>
                             <option value="billing">Billing</option>
-                            <option value="marketing">Marketing</option>
                             <option value="technical-support">Technical Support</option>
                         </select>
                     </div>
