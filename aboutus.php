@@ -72,7 +72,7 @@
                     <div class="team-member">
                         <a href="mailto:ChungShing@gmail.com">
                             <p>
-                                <img src="images/profile.jpg" alt="Chung Shing"> 
+                                <img src="images/Cs.jpeg" alt="Chung Shing"> 
 
                             <h3>Chung Shing</h3>
                            
