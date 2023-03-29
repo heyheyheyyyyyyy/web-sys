@@ -7,8 +7,19 @@
         <link rel="stylesheet" href="css/main.css">
         <style>
             .elem-group {
-                margin-bottom: 20px;
+                margin-bottom: 1rem;
             }
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+          }
+          .container img { 
+            display: block; 
+            margin: auto; 
+            max-width: 100%; 
+            height: auto; 
+          }
+
         </style>
     </head>
     <body>
@@ -40,15 +51,15 @@ If you are interested in any of our products or would like to discuss a custom o
                 </div>
                 <form action="contact.php" method="post">
                     <div class="elem-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="visitor_name" placeholder="John Doe" pattern="[A-Za-z\s]{3,20}" required>
+                        <label for="name">Name:</label> <br>
+                        <input type="text" id="name" name="visitor_name" placeholder="John Doe" pattern="[A-Za-z\s]{3,20}" required><br>
                     </div>
                     <div class="elem-group">
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required>
+                        <label for="email">E-mail:</label><br>
+                        <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required><br>
                     </div>
                     <div class="elem-group">
-                        <label for="department">Department:</label>
+                        <label for="department">Department:</label><br>
                         <select id="department" name="concerned_department" required>
                             <option value="">Select a Department</option>
                             <option value="product issue">Product Issue</option>
@@ -59,12 +70,12 @@ If you are interested in any of our products or would like to discuss a custom o
                     <div class="elem-group">
                         <label for="short-problem">Short description on problem:</label>
                         <br>
-                        <input type="text" id="short-problem" name="email_title" required placeholder="Unable to Reset my Password" pattern="[A-Za-z0-9\s]{8,60}">
+                        <input type="text" id="short-problem" name="email_title" required placeholder="Unable to Reset my Password" pattern="[A-Za-z0-9\s]{8,60}"><br>
                     </div>
                     <div class="elem-group">
-                        <label for="long_problem">Describe the problem in detail:</label>
+                        <label for="long_problem">Describe the problem in detail:</label><br>
                         <br>
-                        <textarea id="long_problem" name="visitor_message" required></textarea>
+                        <textarea id="long_problem" name="visitor_message" required></textarea><br>
                     </div>
                     <button class='btn btn-primary' type="submit">Submit Form</button>
                 </form>
