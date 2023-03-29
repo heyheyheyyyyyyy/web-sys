@@ -2,24 +2,66 @@
 <html>
     <?php
     include "head.inc.php";
+    include "nav.inc.php";
     ?>
+    <style>
+.slider-container {
+  width: 100%;
+  height: 500px; /* set the height to match the height of the images */
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slider-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.slide-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; /* set the width to be wider than the widest image */
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 100%;
+
+  transform: translateX(-50%);
+}
+
+.slide-images img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+}
+
+    </style>
+    <link rel="stylesheet" href="css/main.css">
     <body>
-        <?php
-        include "nav.inc.php";
-        ?>
-        <link rel="stylesheet" href="css/main.css">
-
-
-        <div class= "slider-frame " >
-            <div class="slide-images ">
-                <div class= "img-container">>
-                    <img src="images/pic1.jpg">
-                </div>
-                <div class="img-container">
-                    <img src="images/pic2.jpg">
-                </div>
-                <div class="img- container">
-                    <img src= "images/p3.jpg">
+        <div class="slider-container">
+            <div class ="slider-frame">
+                <div class="slide-images">
+                    <img src="images/glass2.jpg" alt="Image 2">
+                    <img src="images/glass1.jpg" alt="Image 1">
+                    <img src="images/glass2.jpg" alt="Image 2">
+                    <img src="images/glass1.jpg" alt="Image 3">
+                    <img src="images/glass2.jpg" alt="Image 3">
+                    <img src="images/glass1.jpg" alt="Image 3">
+                    <img src="images/glass2.jpg" alt="Image 3">
+                    <img src="images/glass1.jpg" alt="Image 3">
+                    <img src="images/glass2.jpg" alt="Image 3">
                 </div>
             </div>
         </div>
@@ -64,28 +106,6 @@
                 </div>
 
                 <button class="productButton">BUY NOW!</button>
-            </div>
-            <div class="payment">
-                <h1 class="payTitle">Personal Information</h1>
-                <label>Name and Surname</label>
-                <input type="text" placeholder="Name" class="payInput">
-                <label>Phone Number</label>
-                <input type="text" placeholder="+6500000000" class="payInput">
-                <label>Address</label>
-                <input type="text" placeholder="Singapore" class="payInput">
-                <h1 class="payTitle">Card Information</h1>
-                <div class="cardIcons">
-                    <img src="./img/visa.png" width="40" alt="" class="cardIcon">
-                    <img src="./img/master.png" alt="" width="40" class="cardIcon">
-                </div>
-                <input type="password" class="payInput" placeholder="Card Number">
-                <div class="cardInfo">
-                    <input type="text" placeholder="mm" class="payInput sm">
-                    <input type="text" placeholder="yyyy" class="payInput sm">
-                    <input type="text" placeholder="cvv" class="payInput sm">
-                </div>
-                <button class="payButton">Checkout!</button>
-                <span class="close">X</span>
             </div>
         </div>
         <div class="gallery">
