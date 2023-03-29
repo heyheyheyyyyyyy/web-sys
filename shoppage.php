@@ -6,9 +6,9 @@ if (isset($_POST['addCart'])) {
     }
 
     $product_id = $_POST['product_id'];
+    //echo "<script>console.log($product_id)</script>";
     $user_id = $_SESSION['User_id'];
     $cart_qty = 1;
-    global $qty, $cart_id;
 
 // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
@@ -24,6 +24,8 @@ if (isset($_POST['addCart'])) {
         $stmt->bind_param("ii", $user_id, $product_id);
         $stmt->execute();
 
+        //echo "<script>console.log('here')</script>";
+
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -31,6 +33,7 @@ if (isset($_POST['addCart'])) {
             $qty = $row["Cart_Qty"];
         }
         if (isset($qty)) {
+            //echo "<script>console.log('here1')</script>";
             $stmt->close();
             $qty = $qty + $cart_qty;
             $stmt1 = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Cart_id = ?");
@@ -42,6 +45,7 @@ if (isset($_POST['addCart'])) {
             //echo "<script>console.log('Updated database');</script>";
             $stmt1->close();
         } else {
+            // echo "<script>console.log('here2')</script>";
             $stmt->close();
             $stmt1 = $conn->prepare("INSERT INTO Group2.Cart(Product_id,User_id, Cart_Qty) VALUES (?,?,?)");
             $stmt1->bind_param("iii", $product_id, $user_id, $cart_qty);
@@ -50,7 +54,7 @@ if (isset($_POST['addCart'])) {
                 $success = false;
             }
 
-            //echo "<script>console.log('Added to database');</script>";
+            // echo "<script>console.log('Added to database');</script>";
             $stmt1->close();
         }
     }
@@ -189,7 +193,7 @@ if (isset($_POST['addCart'])) {
                     <button class = "btn btn-secondary" type = "submit">View Product</button>
                     </form>
                     <form action = "" method = "POST">
-                    <input type = "hidden" value = "' . $product_id . '">
+                    <input type = "hidden" name = "product_id" value = "' . $product_id . '">
                     <button class = "btn btn-info" type = "submit" name = "addCart">Add to Cart</button>
                     </form>
                     </div>

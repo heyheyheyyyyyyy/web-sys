@@ -15,31 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         <?php
         include "nav.inc.php";
         ?>
-        <div id="main_container">
+        <div id="main_container" >
             <div id="left_page">
                 <p>CHECKOUT</p>
-                <p>SHIPPING ADDRESS</p>
-                <hr />
-                <form class="shipping_details">
-                    <div id="left_part">
-                        <label>First Name</label><br />
-                        <input id=fname" type="text" /><br />
-                        <label>Address</label><br />
-                        <input type="text" /><br />
-                        <label>Country/Region</label><br />
-                        <select name="select" id="select">
-                            <option value="Singapore">Singapore</option>
-                        </select>
-                    </div>
-                    <div id="right_part">
-                        <label>Last Name</label><br />
-                        <input id=lname" type="text" /><br />
-                        <label>Postal Code</label><br />
-                        <input id="zip" type="number" maxlength="6" /><br />
-                    </div>
-                </form>
-                <br><br>
-                <br>
+
                 <div class="payment_methods">
                     <p class="forallheading">PAYMENT METHOD</p>
                     <hr />
@@ -55,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
                 <div id="card_details" class="forallheading">CARD DETAILS</div>
                 <hr />
-                <form id="card_data">
+                <div id="card_data">
                     <div class="card_left">
                         <label class="special" class="card_all_label" for="card_no">
                             Card number
@@ -69,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             placeholder="1234 1234 1234 1234"
                             inputmode="numeric"
                             id="cardnumber"
+                            required
                             /><br />
                         <label class="special" class="card_all_label" for="name"
                                >Cardholder's name</label
@@ -84,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             maxlength="4"
                             placeholder="MM / YY"
                             inputmode="numeric"
-
+                            required
                             id="cardnumber"
                             /><br />
                         <label class="card_all_label" for="Security code"
@@ -96,9 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             type="password"
                             placeholder="CVC"
                             maxlength="3"
-                            id="cardnumber"</>
+                            id="cardnumber"
+                            required/>
                     </div>
-                </form>
+                </div>
             </div>
 
 
@@ -158,6 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         <p class="customization_for_right"> country/region's customs legislation for more information about
                             potential additional charges.</p>
                         <br>
+
                         <form action ='process_purchase.php' method='POST'>
                             <button class="btn btn-success" type="submit" name="purchase">Purchase</button>
                         </form>
