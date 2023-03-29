@@ -64,13 +64,13 @@ if (isset($_POST['edit'])) {
 }
 ?>
 <html lang="en">
-<?php
-include "head.inc.php";
-?>
-    <body>
     <?php
-    include "nav.inc.php";
+    include "head.inc.php";
     ?>
+    <body>
+        <?php
+        include "nav.inc.php";
+        ?>
         <main class="container">
             <br><!-- comment -->
             <div class="card border-danger">
@@ -88,11 +88,11 @@ include "head.inc.php";
                             </tr>
                         </thead>
                         <tbody>
-<?php
-show();
-if ($result->num_rows > 0) :
-    foreach ($result as $cart) :
-        ?>
+                            <?php
+                            show();
+                            if ($result->num_rows > 0) :
+                                foreach ($result as $cart) :
+                                    ?>
                                     <tr>
                                         <td><?= $cart['Product_name'] ?></td>
                                         <td>$ <?= $cart['Product_price'] ?></td>
@@ -108,8 +108,8 @@ if ($result->num_rows > 0) :
                                             </form>
                                         </td>
                                     </tr>
-        <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
-    <?php endforeach; ?>
+                                    <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
+                                <?php endforeach; ?>
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -128,44 +128,43 @@ if ($result->num_rows > 0) :
                                         </form>
                                     </td>
                                 </tr>
-    <?php
-endif;
-?>
+                                <?php
+                            endif;
+                            ?>
 
                         </tbody>
                     </table>
                 </div>
             </div>
         </main>
-<?php
-include "footer.inc.php";
-?>
+        <?php
+        include "footer.inc.php";
+        ?>
     </body>
 </html>
 
-        <?php
+<?php
 
-        function show() {
-            global $errorMsg, $success, $result;
-            $user_id = $_SESSION['User_id'];
+function show() {
+    global $errorMsg, $success, $result;
+    $user_id = $_SESSION['User_id'];
 // Create database connection.
-            $config = parse_ini_file('../../private/db-config.ini');
-            $conn = new mysqli($config['servername'], $config['username'],
-                    $config['password'], $config['dbname']);
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
 // Check connection
-            if ($conn->connect_error) {
-                $errorMsg = "Connection failed: " . $conn->connect_error;
-                $success = false;
-            } else {
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
 // Prepare the statement:
-                $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
-                        . "inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
-                $stmt->bind_param("i", $user_id);
+        $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
+                . "inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
+        $stmt->bind_param("i", $user_id);
 // Execute the query statement:
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $stmt->close();
-            }
-            $conn->close();
-        }
-        
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+    }
+    $conn->close();
+}
