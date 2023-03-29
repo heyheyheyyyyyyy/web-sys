@@ -133,7 +133,7 @@ if ($success) {
     echo "<h4> The following errors were detected: </h4>";
     echo "<p>" . $errorMsg . "</p>";
     echo "<p>" . $error_msg . "</p>";
-    echo "<a href='edit_profile.php' class='btn btn-danger'> Return to edit profile page</a>";
+    echo "<a href='edit_profile.php' class='btn btn-primary'> Return to edit profile page</a>";
     include 'footer.inc.php';
     echo "</body>";
     echo "</html>";

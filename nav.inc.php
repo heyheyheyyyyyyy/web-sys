@@ -30,10 +30,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <!-- Logo -->
-        <a class="navbar-brand" href="index.php">
-            <img src="images/logog.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.php">
+                <img src="images/logog.png" alt="logo">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarTogglerDemo02" 
+                aria-controls="navbarTogglerDemo02" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -77,40 +83,34 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </li>
-
-                <li class='nav-item'>
-                    <a class='nav-link' href='cart.php'>Cart</a>
-                </li>
                 <?php
                 if (isset($_SESSION['User_id'])) {
+                    $lname = $_SESSION['lname'];
                     echo
-                    "<li class='nav-item'>
-                    <a class='nav-link' href='#'>Wishlist</a>
-                </li>";
-                    echo
-                    "
-                <li class='nav-item'>
-                    <a class='nav-link' href='purchasehistory.php'>Purchase History</a>
-                </li>";
-                    echo
-                    "<li class='nav-item'>
-                    <a class='nav-link' href='edit_profile.php'>Edit Profile</a>
-                </li>";
-                    echo
-                    "<li class='nav-item'>
-                    <a class='nav-link' href='logout.php'>Logout</a>
+                    "<li class='nav-item dropdown'> 
+                    <a class='nav-link dropdown-toggle' href='' role='button' data-bs-toggle='dropdown' aria-expanded='false'>$lname</a>
+                    <ul class='dropdown-menu dropdown-menu'>
+                        <li><a class='dropdown-item' href='edit_profile.php'>Edit Profile</a></li>
+                        <li><a class='dropdown-item' href = 'purchasehistory.php'>Purchase History</a></li>
+                        <li><a class='dropdown-item' href = '#'>Wishlist</a></li>
+                        <li><a class='dropdown-item' href = 'logout.php'>Logout</a></li>
+                    </ul>
                 </li>";
                 } else {
                     echo
                     "<li class = 'nav-item'>
-                    <a class = 'nav-link' href = 'login.php'>Login</a>
+                <a class = 'nav-link' href = 'login.php'>Login</a>
                 </li>";
                     echo
                     "<li class = 'nav-item'>
-                    <a class = 'nav-link' href = 'register.php'>Register</a>
+                <a class = 'nav-link' href = 'register.php'>Register</a>
                 </li>";
                 }
                 ?>
+
+                <li class='nav-item'>
+                    <a class='nav-link' href='cart.php'>Cart</a>
+                </li>
             </ul>
         </div>
     </div>

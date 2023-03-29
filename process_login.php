@@ -38,6 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         if ($success) {
             $_SESSION['User_id'] = $id;
             $_SESSION['User_role'] = $role;
+            $_SESSION['lname'] = $lname;
+            
+            echo "<script>console.log('$lname')</script>";
+            
             echo "<main class='container'><div class='formsclass'>";
             echo "<h1>Login Successful!!</h1>";
             echo
