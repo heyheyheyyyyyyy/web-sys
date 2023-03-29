@@ -39,7 +39,7 @@
                 <br>
                 <section>
                     <h2>Our Mission</h2>
-                    <p>At AquaBottle, we believe in promoting a healthy and sustainable lifestyle. 
+                    <p>At Quench, we believe in promoting a healthy and sustainable lifestyle. 
                         Our mission is to provide high-quality and eco-friendly water bottles that 
                         encourage people to stay hydrated and reduce their carbon footprint.</p>
                 </section>
@@ -56,21 +56,29 @@
             <br>
             <section>
                 <h2>Our Team</h2>
-                <div class="team-member">
-                    <img src="images/glass1.jpg" alt="John Doe">
-                    <h3>John Doe</h3>
-                    <p>CEO</p>
+                <div>
+                    <div class="team-member">
+                        <img src="images/profile.jpg" alt="Chung Shing">
+                        <h3>Chung Shing</h3>
+                    </div>
+                    <div class="team-member">
+                        <img src="images/profile.jpg" alt="Xin Er">
+                        <h3>Xin Er</h3>
+                    </div>
+                    <div class="team-member">
+                        <img src="images/profile.jpg" alt="Julene">
+                        <h3>Julene</h3>
+                    </div>
+                    <div class="team-member">
+                        <img src="images/profile.jpg" alt="Linus">
+                        <h3>Linus</h3>
+                    </div>
+                    <div class="team-member">
+                        <img src="images/profile.jpg" alt="Pei Sheng">
+                        <h3>Pei Sheng</h3>
+                    </div>
                 </div>
-                <div class="team-member">
-                    <img src="images/glass1.jpg" alt="Jane Smith">
-                    <h3>Jane Smith</h3>
-                    <p>COO</p>
-                </div>
-                <div class="team-member">
-                    <img src="images/glass1.jpg" alt="Bob Johnson">
-                    <h3>Bob Johnson</h3>
-                    <p>CTO</p>
-                </div>
+
             </section>
             <br>
             <h2>Office Location</h2>
