@@ -29,7 +29,7 @@
         <main>
             <div class="container">
                 <h1>Contact Us</h1>
-                <img src="images/customer-service.jpg">
+                <img src="images/customer-service.jpg" alt="" role="presentation">
                 <p>CUSTOMIZED SERVICES
                 <div>
 At Quench, we take pride in offering an extensive variety of water bottles at competitive prices, without compromising on quality. 
