@@ -16,14 +16,8 @@ if (isset($_POST['edit'])) {
             $success = false;
         } else {
             // Prepare the statement:
-            if ($cart_qty == 0) {
-                $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
-                $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
-                if (!$stmt->execute()) {
-                    $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-                    $success = false;
-                }
-                $stmt->close();
+            if ($cart_qty <= 0) {
+                echo "<script>alert('Please enter a valid number!');</script>";
             } else {
                 $stmt = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Product_id = ? and Cart_id = ? and User_id = ?");
                 $stmt->bind_param("iiii", $cart_qty, $product_id, $cart_id, $user_id);
