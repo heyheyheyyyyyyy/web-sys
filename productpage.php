@@ -70,39 +70,74 @@ if (isset($_POST['Wishlist'])) {
     $product_id = $_POST['product_id'];
     $user_id = $_SESSION['User_id'];
 
-// Create database connection.
+    // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
             $config['password'], $config['dbname']);
-// Check connection
+    // Check connection
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
         $success = false;
     } else {
-// Prepare the statement:
-        $stmt = $conn->prepare("SELECT * FROM Group2.Wishlist where Group2.Wishlist.User_id = ? and Group2.Wishlist.Product_id = ?");
-        $stmt->bind_param("ii", $user_id, $product_id);
+        // Get the Cart_id of the current user:
+        $stmt = $conn->prepare("SELECT Cart_id FROM Group2.Cart WHERE User_id = ?");
+        $stmt->bind_param("i", $user_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            echo '<script> alert("This item is already in your wishlist")</script>';
+            $cart_row = $result->fetch_assoc();
+            $cart_id = $cart_row['Cart_id'];
+
+            // Check if the product is already in the user's wishlist:
+            $stmt2 = $conn->prepare("SELECT * FROM Group2.Wishlist WHERE User_id = ? AND Product_id = ?");
+            $stmt2->bind_param("ii", $user_id, $product_id);
+            $stmt2->execute();
+
+            $result2 = $stmt2->get_result();
+            if ($result2->num_rows > 0) {
+                echo '<script> alert("This item is already in your wishlist")</script>';
+            } else {
+                $stmt2->close();
+                // Add the product to the user's wishlist:
+                $stmt3 = $conn->prepare("INSERT INTO Group2.Wishlist(Product_id, User_id, Cart_id) VALUES (?, ?, ?)");
+                $stmt3->bind_param("iii", $product_id, $user_id, $cart_id);
+                if (!$stmt3->execute()) {
+                    $errorMsg = "Execute failed: (" . $stmt3->errno . ") " . $stmt3->error;
+                    $success = false;
+                } else {
+                    // Successfully added to wishlist
+                }
+                $stmt3->close();
+            }
         } else {
-            $stmt->close();
-            $stmt1 = $conn->prepare("INSERT INTO Group2.Wishlist(Product_id,User_id) VALUES (?,?)");
-            $stmt1->bind_param("ii", $product_id, $user_id);
-            if (!$stmt1->execute()) {
-                $errorMsg = "Execute failed: (" . $stmt1->errno . ") " . $stmt1->error;
+            // No cart found for user, create a new cart:
+            $stmt4 = $conn->prepare("INSERT INTO Group2.Cart(User_id, Cart_qty, Product_id) VALUES (?, ?, ?)");
+            $stmt4->bind_param("iis", $user_id, $qty, $prod_id);
+            $qty = null;
+            $prod_id = null;
+            $stmt4->execute();
+
+            $cart_id = $stmt4->insert_id;
+
+            $stmt4->close();
+
+            // Add the product to the user's wishlist:
+            $stmt5 = $conn->prepare("INSERT INTO Group2.Wishlist(Product_id, User_id, Cart_id) VALUES (?, ?, ?)");
+            $stmt5->bind_param("iii", $product_id, $user_id, $cart_id);
+            if (!$stmt5->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt5->errno . ") " . $stmt5->error;
                 $success = false;
             } else {
-                
+                // Successfully added to wishlist
             }
-            $stmt1->close();
+            $stmt5->close();
         }
     }
     $conn->close();
 }
 ?>
+
 
 
 
@@ -170,18 +205,18 @@ if (isset($_POST['Wishlist'])) {
         .cart-button {
             background-color: #28a745;
             color: #fff;
-            
+
             border-radius: 5px;
             font-size: 1.2rem;
         }
         .cartbutton1 {
 
-  background-color: green;
-  color: #fff;
-  
-  border-radius: 5px;
-  font-size: 1.2rem;
-}
+            background-color: green;
+            color: #fff;
+
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
