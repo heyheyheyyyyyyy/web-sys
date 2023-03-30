@@ -36,31 +36,31 @@ if (isset($_POST['edit'])) {
         }
         $conn->close();
     }
-    if (isset($_POST['delete'])) {
-        $user_id = $_SESSION['User_id'];
-        $product_id = $_POST['product_id'];
-        $cart_id = $_POST['cart_id'];
+}
+if (isset($_POST['delete'])) {
+    $user_id = $_SESSION['User_id'];
+    $product_id = $_POST['product_id'];
+    $cart_id = $_POST['cart_id'];
 
-        // Create database connection.
-        $config = parse_ini_file('../../private/db-config.ini');
-        $conn = new mysqli($config['servername'], $config['username'],
-                $config['password'], $config['dbname']);
-        // Check connection
-        if ($conn->connect_error) {
-            $errorMsg = "Connection failed: " . $conn->connect_error;
+    // Create database connection.
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
+    // Check connection
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+        // Prepare the statement:
+        $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
+        $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
+        if (!$stmt->execute()) {
+            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             $success = false;
-        } else {
-            // Prepare the statement:
-            $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
-            $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
-            if (!$stmt->execute()) {
-                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-                $success = false;
-            }
-            $stmt->close();
         }
-        $conn->close();
+        $stmt->close();
     }
+    $conn->close();
 }
 ?>
 <html lang="en">
