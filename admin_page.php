@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 // ensure non admin user do not have access
@@ -6,6 +7,7 @@ if ($_SESSION['User_role'] != 2) {
 }
 ?>
 <?php
+
 if (isset($_POST['delete'])) {
 
     global $errorMsg, $success;

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 if (!isset($_SESSION['User_id'])) {
