@@ -10,7 +10,7 @@ if (isset($_POST['edit'])) {
 
     $user_id = $_POST['id'];
     $role_id = 2;
-    echo "<script>console.log('$user_id');</script>";
+    //echo "<script>console.log('$user_id');</script>";
     // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
@@ -28,7 +28,7 @@ if (isset($_POST['edit'])) {
             $success = false;
         }
 
-        echo "<script>console.log('$user_id');</script>";
+        //echo "<script>console.log('$user_id');</script>";
         $stmt->close();
     }
     $conn->close();
