@@ -104,7 +104,7 @@ if (isset($_POST['delete'])) {
                                                 <input type="hidden" name="cart_id" value="<?= $cart['Cart_id'] ?>"> 
                                                 <input type="hidden" name="product_id" value="<?= $cart['Product_id'] ?>"> 
                                                 <button class="btn btn-primary" type="submit" name="edit">Edit</button>
-                                                <button class="btn btn-danger" type="submit" name="delete">Remove</button>
+                                                <button class="btn btn-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
                                             </form>
                                         </td>
                                     </tr>
