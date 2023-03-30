@@ -14,3 +14,7 @@ function topFunction() {
   document.body.scrollTop = 0; 
   document.documentElement.scrollTop = 0; 
 }
+
+function checkdelete() {
+    return confirm('Are you sure you want to delete this?');
+}

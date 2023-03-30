@@ -3,50 +3,13 @@
     <head>
         <?php
         include "head.inc.php";
-        ?>
-        <link rel="stylesheet" href="css/main.css">
-        <style>
-            .team-member {
-                display: inline-block;
-                text-align: center;
-                margin: 20px;
-            }
-            .team-member img {
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-                object-fit: cover;
-                object-position: center;
-            }
-            .team-member h3 {
-                margin-top: 10px;
-                font-size: 20px;
-            }
-            .team-member p {
-                margin-top: 5px;
-                font-style: italic;
-            }
-            .location {
-                display: inline-block;
-                width: 30%;
-                padding: 10px;
-                box-sizing: border-box;
-            }
-            .location img {
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                object-fit: cover;
-                object-position: center;
-            }
-        </style>
-    </head>
-    <body>
-        <?php
         include "nav.inc.php";
         ?>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
         <main class="container">
-            <div class="about-section">
+            <div class="section">
                 <h1>About Us</h1>
                 <br>
                 <section>
@@ -66,7 +29,7 @@
                     outdoor activities, sports, and travel.</p>
             </section>
             <br>
-            <section>
+            <section class="team-member-section">
                 <h2>Our Team</h2>
                 <div>
                     <div class="team-member">
