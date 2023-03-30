@@ -143,7 +143,7 @@ function process_create($conn, $product_name, $product_desc, $product_category, 
     // If there is an image uploaded
     if ($image && $image["tmp_name"]) {
 
-        // upload a new image in images/products/inventory_id.jpg as well
+        // upload a new image in images directory
         move_uploaded_file($image["tmp_name"], $image_path);
         echo "File successfully uploaded";
     }

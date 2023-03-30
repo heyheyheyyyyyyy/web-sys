@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION['lname'] = $lname;
             
             echo "<script>console.log('$lname')</script>";
-            
+            // success page
             echo "<main class='container'><div class='formsclass'>";
             echo "<h1>Login Successful!!</h1>";
             echo
