@@ -168,7 +168,7 @@ if ($conn->connect_error) {
         echo "<div class='wishlist-item-price'>$" . $row['Product_price'] . "</div>";
         echo "<form method='post' action=''>";
         echo "<input type='hidden' name='product_id' value='" . $row['Product_id'] . "'>";
-        echo "<button type='submit' name='deletewishlist'>Remove</button>";
+        echo "<button type='submit' onclick='return checkdelete()' name='deletewishlist'>Remove</button>";
         echo "</form>";
         echo "<form method='post' action=''>";
         echo "<input type='hidden' name='product_id' value='" . $row['Product_id'] . "'>";

@@ -16,14 +16,8 @@ if (isset($_POST['edit'])) {
             $success = false;
         } else {
             // Prepare the statement:
-            if ($cart_qty == 0) {
-                $stmt = $conn->prepare("DELETE from Group2.Cart where Product_id = ? and Cart_id = ? and User_id = ?");
-                $stmt->bind_param("iii", $product_id, $cart_id, $user_id);
-                if (!$stmt->execute()) {
-                    $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-                    $success = false;
-                }
-                $stmt->close();
+            if ($cart_qty <= 0) {
+                echo "<script>alert('Please enter a valid number!');</script>";
             } else {
                 $stmt = $conn->prepare("UPDATE Group2.Cart SET Cart_qty = ? where Product_id = ? and Cart_id = ? and User_id = ?");
                 $stmt->bind_param("iiii", $cart_qty, $product_id, $cart_id, $user_id);
@@ -104,7 +98,7 @@ if (isset($_POST['delete'])) {
                                                 <input type="hidden" name="cart_id" value="<?= $cart['Cart_id'] ?>"> 
                                                 <input type="hidden" name="product_id" value="<?= $cart['Product_id'] ?>"> 
                                                 <button class="btn btn-primary" type="submit" name="edit">Edit</button>
-                                                <button class="btn btn-danger" type="submit" name="delete">Remove</button>
+                                                <button class="btn btn-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
                                             </form>
                                         </td>
                                     </tr>
