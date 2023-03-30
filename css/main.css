@@ -52,7 +52,7 @@ body {
 .btn-outline-success {
     border-radius: 0;
     border-color: #28a745;
-    color: #28a745;
+    color: black;
 }
 
 .btn-outline-success:hover {
@@ -327,7 +327,7 @@ label {
 
 .productDesc {
     font-style: 24px;
-    color: gray;
+    color: black;
 }
 
 
@@ -1525,7 +1525,7 @@ hr {
     z-index: 99;
     border: none;
     outline: none;
-    background-color: grey;
+    background-color: black;
     color: white;
     cursor: pointer;
     padding: 15px;

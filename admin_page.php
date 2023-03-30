@@ -61,11 +61,12 @@ if ($conn->connect_error) {
     </head>
     <body id="admin-page">
         <main class="container">
+                            <class="col p-4 d-block" style="overflow: auto;">
+
             <!-- Bootstrap row -->
             <div class="row" id="body-row">
                 <!-- Sidebar -->
                 <!-- Main -->
-                <main class="col p-4 d-block" style="overflow: auto;">
                     <!-- Admin -->
                     <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
                         <h3>Product Overview</h3>
@@ -124,26 +125,27 @@ if ($conn->connect_error) {
                             </div>
                             <!-- UPLOAD IMAGE -->
                             <div class="custom-file pb-3">
-                                <input type="file" class="custom-file-input" id="Product_image" name="Product_image" required>
-                                <label class="custom-file-label" for="picture"><i class="fas fa-image fa-fw"></i></label>
-                            </div>
+    <label class="custom-file-label" for="Product_image">Choose an image for your product:</label>
+<input type="file" class="custom-file-input" id="Product_image" name="Product_image" required>
+</div>
                         </div>
                         <div class="col-sm-5">
                             <!-- CATEGORY DROPDOWN -->
                             <div class="form-group">
                                 <div class="dropdown show">
                                     <label for="create_brand">Select Category</label><br>
-                                    <div href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <select id="Product_category" name="Product_category" class="btn btn-light dropdown-toggle" required>
-                                            <option selected disabled>Select a category</option>
-                                            <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
-                                            <option class="dropdown-item whiteText" value="Glass">Glass</option>
-                                            <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
-                                            <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
-                                            <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
-                                            <option class="dropdown-item whiteText" value="Others">Others</option>
+                                    <select id="Product_category" name="Product_category" class="btn btn-light dropdown-toggle" required aria-label="Product category">
+                                    <div role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Select a category">
+    
+        <option selected disabled>Select a category</option>
+        <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
+        <option class="dropdown-item whiteText" value="Glass">Glass</option>
+        <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
+        <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
+        <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
+        <option class="dropdown-item whiteText" value="Others">Others</option>
+</div>
                                         </select>
-                                    </div>
                                 </div>
                             </div>
                             <!-- QUANTITY -->
