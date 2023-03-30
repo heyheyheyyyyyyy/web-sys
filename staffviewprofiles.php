@@ -61,7 +61,7 @@ if (isset($_POST['delete'])) {
     $conn->close();
 }
 ?>
-<html>
+<html lang="en">
     <?php
     include "head.inc.php";
     ?>

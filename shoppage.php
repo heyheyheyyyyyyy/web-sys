@@ -133,7 +133,7 @@ if (isset($_POST['addCart'])) {
             }
             .btn-info {
                 background-color: #007bff;
-                color: white;
+                color: black;
                 border: none;
             }
             .btn-info:hover {

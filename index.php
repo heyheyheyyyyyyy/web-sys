@@ -1,5 +1,5 @@
 <?php include 'session.php'; ?>
-<html>
+<html lang="en">
     <?php
     include "head.inc.php";
     include "nav.inc.php";
@@ -50,6 +50,7 @@
     </style>
     <link rel="stylesheet" href="css/main.css">
     <body>
+        <main>
         <div class="slider-container">
             <div class ="slider-frame">
                 <div class="slide-images">
@@ -138,6 +139,7 @@
                      alt="" class="nsImg">
             </div>
         </div>
+        </main>
         <?php
         include "footer.inc.php";
         ?>

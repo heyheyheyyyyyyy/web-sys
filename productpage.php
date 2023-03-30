@@ -263,8 +263,7 @@ if (isset($_POST['Wishlist'])) {
                 <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
             </div>
             <br> <!-- add a line break to separate the form elements -->
-            <button class="btn btn-info" type="submit" name="addCart" style="display: inline-block; margin-left: 10px;">Add to Cart</button>
-        </form>
+<button class="btn btn-info" type="submit" name="addCart" style="display: inline-block; margin-left: 10px; background-color: black; color: white;">Add to Cart</button>        </form>
 
 
 
