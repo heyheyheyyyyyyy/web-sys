@@ -64,58 +64,56 @@ if (isset($_POST['delete'])) {
 <html lang="en">
     <?php
     include "head.inc.php";
+    include "nav.inc.php";
     ?>
-    <body>
-        <?php
-        include "nav.inc.php";
-        ?>
+    <body id="admin-page">
         <main class="container">
-            <br><!-- comment -->
-            <br><!-- comment -->
-            <div class="card border-danger">
-                <div class="card-header bg-danger text-white">
-                    <strong><i class="fa fa-database"></i> All User Profiles</strong>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th style="width: 20%;">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            show();
-                            if ($result->num_rows > 0) :
-                                foreach ($result as $user) :
-                                    ?>
-                                    <tr>
-                                        <td><?= $user['User_id'] ?></td>
-                                        <td><?= $user['User_fname'] ?> <?= $user['User_lname'] ?></td>
-                                        <td><?= $user['User_email'] ?></td>
-                                        <td><?= $user['Role_name'] ?></td>
-                                        <td>
-                                            <form action="" method="POST">
-                                                <input type="hidden" name="id" value="<?= $user['User_id'] ?>"> 
-                                                <button class="btn btn-primary" type="submit" name="edit">Update Role to Admin</button>
-                                                <button class="btn btn-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <td><?php $error_msg ?></td>
+            <!-- Bootstrap row -->
+            <div class="row" id="body-row">
+                <!-- Sidebar -->
+                <!-- Main -->
+                <main class="col p-4 d-block" style="overflow: auto;">
+                    <!-- Admin -->
+                    <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
+                        <h3>User Profiles</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                            endforeach;
-                        endif;
-                        ?>
-                        </tbody>
-                    </table>
-                </div>
+                                show();
+                                if ($result->num_rows > 0) :
+                                    foreach ($result as $user) :
+                                        ?>
+                                        <tr>
+                                            <th scope="row"><?= $user['User_id'] ?></th>
+                                            <td><?= $user['User_fname'] ?> <?= $user['User_lname'] ?></td>
+                                            <td><?= $user['User_email'] ?></td>
+                                            <td><?= $user['Role_name'] ?></td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $user['User_id'] ?>"> 
+                                                    <button class="btn btn-sm btn-outline-primary mb-2" type="submit" name="edit">Update Role to Admin</button>
+                                                    <button class="btn btn-sm btn-outline-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    endforeach;
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
             </div>
-            <br>
         </main>
         <?php
         include "footer.inc.php";
@@ -124,7 +122,6 @@ if (isset($_POST['delete'])) {
 </html>
 
 <?php
-
 function show() {
     global $errorMsg, $success, $result;
 // Create database connection.

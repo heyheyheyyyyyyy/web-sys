@@ -5,60 +5,52 @@ if (!isset($_SESSION['User_id'])) {
     header("location: index.php");
 }
 ?>
-<html>
-    <?php
-    include "head.inc.php";
-    ?>
-    <body>
+<html lang="en">
+    <head>
         <?php
+        include "head.inc.php";
         include "nav.inc.php";
         ?>
+    </head>
+    <body id="purchase-history">
         <main class="container">
-            <br><!-- comment -->
-            <div class="card border-danger">
-                <div class="card-header bg-danger text-white">
-                    <strong><i class="fa fa-database"></i>Purchase History</strong>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Total Price</th>
-                                <th>Date Of Purchase</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            show();
-                            if ($result->num_rows > 0) :
-                                foreach ($result as $purchase) :
-                                    ?>
-                                    <tr>
-                                        <td><?= $purchase['Purchase_product'] ?></td>
-                                        <td><?= $purchase['Purchase_qty'] ?></td>
-                                        <td>$ <?= $purchase['Purchase_price'] ?></td>
-                                        <td><?= date($purchase['Purchase_date']) ?></td>
-                                        </form>
-                                    </tr>
-    <?php endforeach; ?>
+            <!-- Bootstrap row -->
+            <div class="row" id="body-row">
+                <!-- Sidebar -->
+                <!-- Main -->
+                <main class="col p-4 d-block" style="overflow: auto;">
+                    <!-- Admin -->
+                    <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
+                        <h3>Purchase History</h3>
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <form action ='index.php' method='POST'>
-                                            <button class="btn btn-success" type="submit">Back Home</button>
-                                        </form>
-                                    </td>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total Price</th>
+                                    <th scope="col">Date Of Purchase</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                            endif;
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                                show();
+                                if ($result->num_rows > 0) :
+                                    foreach ($result as $purchase) :
+                                        ?>
+                                        <tr>
+                                            <td><?= $purchase['Purchase_product'] ?></td>
+                                            <td><?= $purchase['Purchase_qty'] ?></td>
+                                            <td>$ <?= $purchase['Purchase_price'] ?></td>
+                                            <td><?= date($purchase['Purchase_date']) ?></td>
+                                        </tr>
+                                        <?php
+                                    endforeach;
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
             </div>
         </main>
         <?php
@@ -91,3 +83,4 @@ function show() {
     }
     $conn->close();
 }
+?>
