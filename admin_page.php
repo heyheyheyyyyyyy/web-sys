@@ -97,7 +97,7 @@ if ($conn->connect_error) {
                                             <!-- <a href="update.php?id=<?php echo $row["Product_id"] ?>" class="btn btn-sm btn-outline-primary mb-2">Update</a> -->
                                             <form method="post" action="" style= "display: inline-block">
                                                 <input  type="hidden" name="productid" value="<?php echo $row["Product_id"] ?>"/>
-                                                <button type="submit" name='delete' class="btn btn-sm btn-outline-danger">Delete</button>
+                                                <button type="submit" name='delete' onclick='return checkdelete()' class="btn btn-sm btn-outline-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
