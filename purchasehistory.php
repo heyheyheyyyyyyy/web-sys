@@ -56,11 +56,7 @@ if (!isset($_SESSION['User_id'])) {
     </body>
 </html>
 
-
-
-
 <?php
-
 function show() {
     global $errorMsg, $success, $result;
     $user_id = $_SESSION['User_id'];
@@ -82,4 +78,4 @@ function show() {
         $stmt->close();
     }
     $conn->close();
-}
+}?>
