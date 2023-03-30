@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 if (isset($_POST['addCart'])) {
@@ -62,85 +63,11 @@ if (isset($_POST['addCart'])) {
 }
 ?>
 <html lang="en">
-    <head>
+    
         <?php
         include "head.inc.php";
         ?>
-        <link rel="stylesheet" href="css/main.css">
-        <style>
-            .product-grid {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center; /* Add this rule */
-                max-width: 1200px;
-                margin: 0 auto; /* Add this rule */
-            }
-
-            .product-card {
-                width: calc((100% - 30px) / 3);
-                height:  650px;
-                margin: 10px 5px;
-                background-color: white;
-                border-radius: 20px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-            }
-            .product-card-image img {
-                width: 100%;
-                height: 400px;
-                object-fit: cover;
-                object-position: center;
-            }
-            .product-card-details {
-                padding: 20px;
-            }
-            .product-name {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-            .product-description {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-            .product-price {
-                font-size: 16px;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-            .product-card-buttons {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                border-radius: 5px;
-                font-size: 14px;
-                font-weight: bold;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0 5px; /* Add this rule */
-            }
-            .btn-secondary {
-                background-color: #eee;
-                color: black;
-                border: none;
-            }
-            .btn-info {
-                background-color: #007bff;
-                color: black;
-                border: none;
-            }
-            .btn-info:hover {
-                background-color: #0069d9;
-            }
-        </style>
-    </head>
+    
     <body>
         <?php
         include "nav.inc.php";

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 // Start the session
 include "session.php";

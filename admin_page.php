@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 if ($_SESSION['User_role'] != 2) {
@@ -5,6 +6,7 @@ if ($_SESSION['User_role'] != 2) {
 }
 ?>
 <?php
+
 if (isset($_POST['delete'])) {
 
     global $errorMsg, $success;

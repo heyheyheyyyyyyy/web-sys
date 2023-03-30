@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php include 'session.php'; ?>
 <html lang="en">
     <head>
@@ -72,7 +73,7 @@
                         <h4>Customer Service</h4>
                     </div>
                     <div class="team-member">
-                        <a href="mailto:Pei Sheng@gmail.com">
+                        <a href="mailto:PeiSheng@gmail.com">
                             <p>
                                 <img src="images/pic5.jpg" alt="Pei Sheng" width="225" height="225">
                             <h3>Pei Sheng</h3>
