@@ -1,5 +1,6 @@
 <?php
 include 'session.php';
+// ensure non admin user do not have access
 if ($_SESSION['User_role'] != 2) {
     header("location: index.php");
 }
@@ -65,9 +66,7 @@ if ($conn->connect_error) {
 
             <!-- Bootstrap row -->
             <div class="row" id="body-row">
-                <!-- Sidebar -->
-                <!-- Main -->
-                    <!-- Admin -->
+                <!-- Display table -->
                     <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
                         <h3>Product Overview</h3>
                         <table class="table">
@@ -84,6 +83,7 @@ if ($conn->connect_error) {
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- Read product details and display all details -->
                                 <?php foreach ($rows as $row) { ?>
                                     <tr>
                                         <th scope="row"><?php echo $row["Product_id"] ?></th>
@@ -95,7 +95,7 @@ if ($conn->connect_error) {
                                         <td><?php echo $row["Product_qty"] ?></td>
                                         <td>$<?php echo $row["Product_price"] ?></td>
                                         <td>
-                                            <!-- <a href="update.php?id=<?php echo $row["Product_id"] ?>" class="btn btn-sm btn-outline-primary mb-2">Update</a> -->
+                                            
                                             <form method="post" action="" style= "display: inline-block">
                                                 <input  type="hidden" name="productid" value="<?php echo $row["Product_id"] ?>"/>
                                                 <button type="submit" name='delete' onclick='return checkdelete()' class="btn btn-sm btn-outline-danger">Delete</button>
@@ -107,13 +107,13 @@ if ($conn->connect_error) {
                         </table>
                     </div>
             </div>
-            <!--new product form for admins-->
-            <div class="tab-pane fade show active" id="pills-new" role="tabpanel" aria-labelledby="pills-new-tab">
+            <!-- add product form for admins only-->
+            <div class="tab-pane fade show active" id="add_product" role="tabpanel" aria-labelledby="pills-new-tab">
                 <h1>Add New Products</h1>
                 <form action="process_adding.php" method="post" enctype="multipart/form-data">
                     <div class="row justify-content-around">
                         <div class="col-sm-7">
-                            <!-- Group left  -->
+
                             <div class="form-group">
                                 <label for="create_product" >Product Name</label><br>
                                 <input type="text" class="form-control" id="Product_name" name="Product_name"
@@ -121,40 +121,38 @@ if ($conn->connect_error) {
                                 <br>
                                 <label for="description">Description</label><br>
                                 <textarea style="width:100%;" minlength="1" maxlength="1024" type="text" id="Product_desc" name="Product_desc" placeholder="Description of Product" rows="5" cols="30" required></textarea>
-                                <!-- <input type="text" class="form-control" id="description" placeholder="Description of Product" required> -->
                             </div>
-                            <!-- UPLOAD IMAGE -->
+                            <!-- Upload image -->
                             <div class="custom-file pb-3">
-    <label class="custom-file-label" for="Product_image">Choose an image for your product:</label>
-<input type="file" class="custom-file-input" id="Product_image" name="Product_image" required>
-</div>
+                                <label class="custom-file-label" for="Product_image">Choose an image for your product:</label>
+                            <input type="file" class="custom-file-input" id="Product_image" name="Product_image" required>
+                            </div>
                         </div>
                         <div class="col-sm-5">
-                            <!-- CATEGORY DROPDOWN -->
+                            <!-- Category dropdown -->
                             <div class="form-group">
                                 <div class="dropdown show">
                                     <label for="create_brand">Select Category</label><br>
                                     <select id="Product_category" name="Product_category" class="btn btn-light dropdown-toggle" required aria-label="Product category">
                                     <div role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Select a category">
     
-        <option selected disabled>Select a category</option>
-        <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
-        <option class="dropdown-item whiteText" value="Glass">Glass</option>
-        <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
-        <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
-        <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
-        <option class="dropdown-item whiteText" value="Others">Others</option>
-</div>
+                                    <option selected disabled>Select a category</option>
+                                    <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
+                                    <option class="dropdown-item whiteText" value="Glass">Glass</option>
+                                    <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
+                                    <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
+                                    <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
+                                    <option class="dropdown-item whiteText" value="Others">Others</option>
                                         </select>
                                 </div>
                             </div>
-                            <!-- QUANTITY -->
+                            <!-- Quantity -->
                             <div class="form-group">
                                 <label for="create_quantity">Quantity</label><br>
                                 <input type="number" class="form-control" id="Product_qty"
                                        name="Product_qty" placeholder="Enter Quantity" min="0" step="1" required><br>
                             </div>
-                            <!-- PRICE -->
+                            <!-- Price -->
                             <div class="form-group">
                                 <label for="create_price">Price</label><br>
                                 <input type="number" min="1" step="0.01" class="form-control" id="Product_price"
