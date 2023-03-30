@@ -55,13 +55,13 @@
                 <div class="slide-images">
                     <img src="images/glass2.jpg" alt="Image 2">
                     <img src="images/glass1.jpg" alt="Image 1">
-                    <img src="images/glass2.jpg" alt="Image 2">
-                    <img src="images/glass1.jpg" alt="Image 3">
+                    <img src="images/b1.jpg" alt="Image 2">
+                    <img src="images/c1.jpg" alt="Image 3">
+                    <img src="images/c2.jpg" alt="Image 3">
                     <img src="images/glass2.jpg" alt="Image 3">
                     <img src="images/glass1.jpg" alt="Image 3">
-                    <img src="images/glass2.jpg" alt="Image 3">
-                    <img src="images/glass1.jpg" alt="Image 3">
-                    <img src="images/glass2.jpg" alt="Image 3">
+                    <img src="images/b2.jpg" alt="Image 3">
+                    <img src="images/b3.jpg" alt="Image 3">
                 </div>
             </div>
         </div>
@@ -97,31 +97,24 @@
                 <h1 class="productTitleSmall">new arrivals</h1>
                 <h2 class="productPrice">$49.90</h2>
                 <p class="productDesc">With inspiration drawn from the natural lotus effect, we utilize advanced technology to convert silicon dioxide, one of the earth's most fundamental elements, into a remarkably pristine glass-like interior finish, ensuring the purity of your drinks. Designed in California and produced in Singapore.
-
                 </p>
 
-
-                <div class="colors">
-                    <div class="color"></div>
-                    <div class="color"></div>
-                </div>
-
-                <button class="productButton">BUY NOW!</button>
+<!--                <button class="productButton">BUY NOW!</button>-->
             </div>
         </div>
         <div class="gallery">
             <div class="galleryItem">
-                <h1 class="galleryTitle">Pure refreshment, every sip.</h1>
+                <h2 class="galleryTitle">Pure refreshment, every sip</h2>
                 <img src="https://images.pexels.com/photos/3738065/pexels-photo-3738065.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                      alt="" class="galleryImg">
             </div>
             <div class="galleryItem">
                 <img src="https://images.pexels.com/photos/3738060/pexels-photo-3738060.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                      alt="" class="galleryImg">
-                <h1 class="galleryTitle">Sip smart, hydrate better</h1>
+                <h2 class="galleryTitle">Sip smart, hydrate better</h2>
             </div>
             <div class="galleryItem">
-                <h1 class="galleryTitle">Quench your thirst, elevate your day.</h1>
+                <h2 class="galleryTitle">Quench your thirst, elevate your day</h2>
                 <img src="https://images.pexels.com/photos/6187637/pexels-photo-6187637.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                      alt="" class="galleryImg">
             </div>
@@ -135,8 +128,9 @@
                 <h3 class="nsTitleSm">MARCH NEW ARRIVALS</h3>
                 <h1 class="nsTitle">MORE SLEEK</h1>
                 <h1 class="nsTitle">MORE COLLECTIONS</h1>
-                <a href="#nav">
-                    <button class="nsButton">CHOOSE YOUR STYLE</button>
+                <a href="shoppage.php">
+                    <button class="nsButton">SHOP NOW
+                    </button>
                 </a>
             </div>
             <div class="nsItem">

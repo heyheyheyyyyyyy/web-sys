@@ -63,7 +63,7 @@
                     <ul class='dropdown-menu dropdown-menu'>
                         <li><a class='dropdown-item' href='edit_profile.php'>Edit Profile</a></li>
                         <li><a class='dropdown-item' href = 'purchasehistory.php'>Purchase History</a></li>
-                        <li><a class='dropdown-item' href = '#'>Wishlist</a></li>
+                        <li><a class='dropdown-item' href = 'wishlist.php'>Wishlist</a></li>
                         <li><a class='dropdown-item' href = 'logout.php'>Logout</a></li>
                     </ul>
                 </li>";

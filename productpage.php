@@ -58,6 +58,10 @@ if (isset($_POST['addCart'])) {
     $conn->close();
 }
 ?>
+
+
+
+
 <html>
     <?php
     include "head.inc.php";
@@ -170,8 +174,28 @@ if (isset($_POST['addCart'])) {
             <button class="btn btn-info" type="submit" name="addCart" style="display: inline-block; margin-left: 10px;">Add to Cart</button>
         </form>
 
+
+
         <!-- View Cart button -->
         <a href="cart.php" style="display: inline-block; margin-left: 10px;"><button style="display: inline-block;">View Cart</button></a>
+
+<!--                 Wishlist button 
+        <form action="" method="POST" style="display: inline-block;">
+            <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
+            <button class="btn btn-outline-danger" type="submit" name="Wishlist" style="display: inline-block; margin-left: 10px;">
+                <?php if (in_array($products['Product_id'], $_SESSION['Wishlist'])): ?>
+                    <i class="bi bi-heart-fill"></i>
+                <?php else: ?>
+                    <i class="bi bi-heart"></i>
+                <?php endif; ?>
+            </button>
+        </form>-->
+
+<!--        <form method="post" action="">
+            <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
+            <button type="submit" name="addwishlist">Add to Wishlist</button>
+        </form>-->
+
     </main>
     <?php
     include "footer.inc.php";
