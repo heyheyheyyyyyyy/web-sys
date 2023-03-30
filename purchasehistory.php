@@ -5,10 +5,12 @@ if (!isset($_SESSION['User_id'])) {
 }
 ?>
 <html lang="en">
-    <?php
-    include "head.inc.php";
-    include "nav.inc.php";
-    ?>
+    <head>
+        <?php
+        include "head.inc.php";
+        include "nav.inc.php";
+        ?>
+    </head>
     <body id="purchase-history">
         <main class="container">
             <!-- Bootstrap row -->
@@ -40,7 +42,7 @@ if (!isset($_SESSION['User_id'])) {
                                             <td>$ <?= $purchase['Purchase_price'] ?></td>
                                             <td><?= date($purchase['Purchase_date']) ?></td>
                                         </tr>
-                                    <?php
+                                        <?php
                                     endforeach;
                                 endif;
                                 ?>
@@ -57,6 +59,7 @@ if (!isset($_SESSION['User_id'])) {
 </html>
 
 <?php
+
 function show() {
     global $errorMsg, $success, $result;
     $user_id = $_SESSION['User_id'];
@@ -78,4 +81,5 @@ function show() {
         $stmt->close();
     }
     $conn->close();
-}?>
+}
+?>
