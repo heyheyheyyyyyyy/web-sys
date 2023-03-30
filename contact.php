@@ -7,11 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 <html>
     <?php
     include "head.inc.php";
+    include "nav.inc.php";
     ?>
-    <body>
-        <?php
-        include "nav.inc.php";
-        ?>
+    <body id="contact-page">
         <main class="container">
             <?php
             $visitor_name = "";
@@ -59,13 +57,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
             $email_body .= "</div>";
 
-            echo "<h1>Thank you for contacting us</h1>";
+            echo "<h1 class='contact-header'>Thank you for contacting us</h1>";
             echo $email_body;
             echo "<a href='index.php' class='btn btn-primary'> Return Home</a>";
             ?>
         </main>
-        <?php
-        include "footer.inc.php";
-        ?>
     </body>
+    <br>
+    <br>
+
+    <?php
+    include "footer.inc.php";
+    ?>
 </html>

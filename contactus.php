@@ -3,52 +3,37 @@
     <head>
         <?php
         include "head.inc.php";
-        ?>
-        <link rel="stylesheet" href="css/main.css">
-        <style>
-            .elem-group {
-                margin-bottom: 1rem;
-            }
-          label {
-            display: block;
-            margin-bottom: 0.5rem;
-          }
-          .container img { 
-            display: block; 
-            margin: auto; 
-            max-width: 100%; 
-            height: auto; 
-          }
-
-        </style>
-    </head>
-    <body>
-        <?php
         include "nav.inc.php";
         ?>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body id="contactus">
         <main>
             <div class="container">
                 <h1>Contact Us</h1>
                 <img src="images/customer-service.jpg" alt="" role="presentation">
-                <p>CUSTOMIZED SERVICES
+                <p>CUSTOMIZED SERVICES <br> 
+                <div><h2>
+                        At Quench, <br><br>we take pride in offering an extensive variety of water bottles at competitive prices, without compromising on quality. </h2>
+                </div>
+                <div><h2>
+                        Our team is dedicated to providing specialized and superior service, with quick response times and fast delivery.</h2>
+                </div>
+                <br>
                 <div>
-At Quench, we take pride in offering an extensive variety of water bottles at competitive prices, without compromising on quality. 
+                    If you are interested in any of our products or would like to discuss a custom order, please feel free to contact us.
                 </div>
                 <div>
-Our team is dedicated to providing specialized and superior service, with quick response times and fast delivery.
+                    ​​​​​​​●  We provide all kinds of bottles: Eco-friendly, Glass, Thermal, Steel and more.
                 </div>
                 <div>
-If you are interested in any of our products or would like to discuss a custom order, please feel free to contact us.
+                    ​​​​​​​●  Friendly prices with quick delivery time. Best deal in town.
                 </div>
                 <div>
-​​​​​​​●  We provide all kinds of bottles: Eco-friendly, Glass, Thermal, Steel and more.
+                    ●  All products are cruelty-free.
                 </div>
-                <div>
-​​​​​​​●  Price: Good price,quick delivery time, goods quality ,good service are always our goal.
-</div>
-                <div>
-●  Application: All products are used in shops, restaurant,  school, GYM and shopping mall, etc.
-                </div>
+                </p>
+                <br>
                 <form action="contact.php" method="post">
                     <div class="elem-group">
                         <label for="name">Name:</label> <br>
@@ -70,12 +55,12 @@ If you are interested in any of our products or would like to discuss a custom o
                     <div class="elem-group">
                         <label for="short-problem">Short description on problem:</label>
                         <br>
-                        <input type="text" id="short-problem" name="email_title" required placeholder="Unable to Reset my Password" pattern="[A-Za-z0-9\s]{8,60}"><br>
+                        <input type="text" id="short-problem" name="email_title" required placeholder="Unable to Reset my Password" pattern=".{0,30}"><br>
                     </div>
                     <div class="elem-group">
                         <label for="long_problem">Describe the problem in detail:</label><br>
-                        <br>
-                        <textarea id="long_problem" name="visitor_message" required></textarea><br>
+                        
+                        <textarea id="long_problem" name="visitor_message" required pattern=".{0,100}"></textarea><br>
                     </div>
                     <button class='btn btn-primary' type="submit">Submit Form</button>
                 </form>
