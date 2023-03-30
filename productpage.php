@@ -60,41 +60,85 @@ if (isset($_POST['addCart'])) {
 ?>
 
 
+<?php
+include 'session.php';
+if (isset($_POST['Wishlist'])) {
+    if (!isset($_SESSION['User_id'])) {
+        echo '<script> alert("Please log in before you can add items to wishlist")</script>';
+    }
+
+    $product_id = $_POST['product_id'];
+    $user_id = $_SESSION['User_id'];
+
+// Create database connection.
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
+// Check connection
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+// Prepare the statement:
+        $stmt = $conn->prepare("SELECT * FROM Group2.Wishlist where Group2.Wishlist.User_id = ? and Group2.Wishlist.Product_id = ?");
+        $stmt->bind_param("ii", $user_id, $product_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            echo '<script> alert("This item is already in your wishlist")</script>';
+        } else {
+            $stmt->close();
+            $stmt1 = $conn->prepare("INSERT INTO Group2.Wishlist(Product_id,User_id) VALUES (?,?)");
+            $stmt1->bind_param("ii", $product_id, $user_id);
+            if (!$stmt1->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt1->errno . ") " . $stmt1->error;
+                $success = false;
+            } else {
+                
+            }
+            $stmt1->close();
+        }
+    }
+    $conn->close();
+}
+?>
+
 
 
 <html>
     <?php
     include "head.inc.php";
     ?>
+    <?php include "nav.inc.php"; ?>
     <style>
-        .container {
-            margin: 0 auto;
-            max-width: 960px; /* Optional - set a max-width to prevent the container from getting too wide */
-        }
-        h1 {
+        .main-container h1 {
             font-size: 2.5rem;
             margin-bottom: 30px;
         }
-        img {
+        .main-container img {
             max-width: 100%;
             margin-bottom: 30px;
         }
-        p {
+        .main-container p {
             font-size: 1.2rem;
             line-height: 1.5;
             margin-bottom: 30px;
         }
-        .quantity-input {
+        .main-container .quantity-input {
             margin-bottom: 20px;
         }
-        label {
+        .main-container label {
             font-weight: bold;
             margin-right: 10px;
         }
-        input[type="number"] {
+        .main-container input[type="number"] {
             width: 50px;
         }
-        button {
+        .main-container a {
+            text-decoration: none;
+        }
+        .main-container button {
             width: 150px;
             height: 50px;
             background-color: blue;
@@ -107,28 +151,41 @@ if (isset($_POST['addCart'])) {
             padding: 10px 20px;
             border-radius: 5px;
         }
-        button:hover {
+        .main-container button:hover {
             background-color: #0069d9;
         }
-        a {
+        .main-container a {
             text-decoration: none;
         }
-        .cart-button {
+        .main-container .cart-button {
             background-color: #28a745;
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
             font-size: 1.2rem;
         }
-        .cart-button:hover {
+        .main-container .cart-button:hover {
             background-color: #218838;
         }
+        .cart-button {
+            background-color: #28a745;
+            color: #fff;
+            
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+        .cartbutton1 {
 
-
+  background-color: green;
+  color: #fff;
+  
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
     </style>
 </head>
 <body>
-    <?php include "nav.inc.php"; ?>
+
     <main class="container">
         <?php
 // Get the product ID from the query parameter
@@ -177,24 +234,20 @@ if (isset($_POST['addCart'])) {
 
 
         <!-- View Cart button -->
-        <a href="cart.php" style="display: inline-block; margin-left: 10px;"><button style="display: inline-block;">View Cart</button></a>
+        <a href="cart.php"  style="display: inline-block; margin-left: 10px;"><button class="btn btn-info" style="display: inline-block; margin-left: 10px;">View Cart</button></a>
 
-<!--                 Wishlist button 
+
         <form action="" method="POST" style="display: inline-block;">
             <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
-            <button class="btn btn-outline-danger" type="submit" name="Wishlist" style="display: inline-block; margin-left: 10px;">
-                <?php if (in_array($products['Product_id'], $_SESSION['Wishlist'])): ?>
-                    <i class="bi bi-heart-fill"></i>
-                <?php else: ?>
-                    <i class="bi bi-heart"></i>
-                <?php endif; ?>
-            </button>
-        </form>-->
+            <button class="btn btn-info" type="submit" name="Wishlist" style="display: inline-block; margin-left: 10px;"> Wishlist
 
-<!--        <form method="post" action="">
-            <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
-            <button type="submit" name="addwishlist">Add to Wishlist</button>
-        </form>-->
+            </button>
+        </form>
+
+        <!--        <form method="post" action="">
+                    <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
+                    <button type="submit" name="addwishlist">Add to Wishlist</button>
+                </form>-->
 
     </main>
     <?php
