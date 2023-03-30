@@ -58,10 +58,12 @@ if (isset($_POST['delete'])) {
 }
 ?>
 <html lang="en">
-    <?php
-    include "head.inc.php";
-    include "nav.inc.php";
-    ?>
+    <head>
+        <?php
+        include "head.inc.php";
+        include "nav.inc.php";
+        ?>
+    </head>
     <body id="admin-page">
         <main class="container">
             <!-- Bootstrap row -->
@@ -78,7 +80,7 @@ if (isset($_POST['delete'])) {
                                     <th scope="col">Product</th>
                                     <th scope="col">Individual Price</th>
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Total Price of Selected Product(s)</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -90,23 +92,27 @@ if (isset($_POST['delete'])) {
                                     foreach ($result as $cart) :
                                         ?>
                                         <tr>
-                                            <td><?= $cart['Product_name'] ?></td>
+                                            
+                                            
+                                            <td><img src="<?= $cart['Product_image'] ?>" alt="<?= $cart['Product_name'] ?>" style="width: 100px;"><br><br><?= $cart['Product_name'] ?></td>
                                             <td>$ <?= $cart['Product_price'] ?></td>
                                             <td><?= $cart['Cart_Qty'] ?></td>
                                             <td>$ <?= $cart['Product_price'] * $cart['Cart_Qty'] ?></td>
                                             <td>
                                                 <form action="" method="POST">
-                                                    <div class="input-group">
-                                                        <input type="number" name="cart_qty" class="form-control" placeholder="Change Quantity" aria-label="Change Quantity" min="0" max="10" width="30%">
+                                                    <div class="input-group align-items-center">
+                                                        <input type="number" name="cart_qty" class="form-control form-control-sm" placeholder="Change Quantity" aria-label="Change Quantity" min="0" max="10" style="width: 60px;">
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="submit" name="edit">Edit</button>
+                                                            <button class="btn btn-primary btn-sm" type="submit" name="edit">Edit</button>
                                                         </div>
+                                                        <form action="" method="POST">
+                                                            <input type="hidden" name="cart_id" value="<?= $cart['Cart_id'] ?>">
+                                                            <input type="hidden" name="product_id" value="<?= $cart['Product_id'] ?>">
+                                                            <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to remove this item?')" type="submit" name="delete">Remove</button>
+                                                        </form>
                                                     </div>
-                                                    <form action="" method="POST">
-                                                        <input type="hidden" name="cart_id" value="<?= $cart['Cart_id'] ?>">
-                                                        <input type="hidden" name="product_id" value="<?= $cart['Product_id'] ?>">
-                                                        <button class="btn btn-sm btn-outline-danger mt-2" onclick="return confirm('Are you sure you want to remove this item?')" type="submit" name="delete">Remove</button>
-                                                    </form>
+
+
                                                 </form>
                                             </td>
                                         </tr>
@@ -114,7 +120,7 @@ if (isset($_POST['delete'])) {
                                     <?php endforeach; ?>
                                     <tr>
                                         <td colspan="3"></td>
-                                        <td><p><b>Total Price:</b></p></td>
+                                        <td><p><b>Total Cart Price:</b></p></td>
                                         <td><p><b>Checkout:</b></p></td>
                                     </tr>
                                     <tr>
@@ -156,8 +162,8 @@ function show() {
         $success = false;
     } else {
 // Prepare the statement:
-        $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price FROM Group2.Cart as A "
-                . "inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
+        $stmt = $conn->prepare("SELECT A.Product_id, A.Cart_id, A.Cart_Qty, B.Product_name, B.Product_price, B.Product_image FROM Group2.Cart as A 
+inner join Group2.Product as B ON A.Product_id = B.Product_id AND A.User_id = ?");
         $stmt->bind_param("i", $user_id);
 // Execute the query statement:
         $stmt->execute();
