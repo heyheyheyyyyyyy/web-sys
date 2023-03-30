@@ -60,76 +60,80 @@ if (isset($_POST['delete'])) {
 <html lang="en">
     <?php
     include "head.inc.php";
+    include "nav.inc.php";
     ?>
-    <body>
-        <?php
-        include "nav.inc.php";
-        ?>
+    <body id="admin-page">
         <main class="container">
-            <br><!-- comment -->
-            <div class="card border-danger">
-                <div class="card-header bg-danger text-white">
-                    <strong><i class="fa fa-database"></i> Cart</strong>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Individual Price</th>
-                                <th>Quantity</th>
-                                <th>Total Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            show();
-                            if ($result->num_rows > 0) :
-                                foreach ($result as $cart) :
-                                    ?>
+            <!-- Bootstrap row -->
+            <div class="row" id="body-row">
+                <!-- Sidebar -->
+                <!-- Main -->
+                <main class="col p-4 d-block" style="overflow: auto;">
+                    <!-- Cart -->
+                    <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
+                        <h3>Cart</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Individual Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                show();
+                                $total = 0;
+                                if ($result->num_rows > 0) :
+                                    foreach ($result as $cart) :
+                                        ?>
+                                        <tr>
+                                            <td><?= $cart['Product_name'] ?></td>
+                                            <td>$ <?= $cart['Product_price'] ?></td>
+                                            <td><?= $cart['Cart_Qty'] ?></td>
+                                            <td>$ <?= $cart['Product_price'] * $cart['Cart_Qty'] ?></td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <div class="input-group">
+                                                        <input type="number" name="cart_qty" class="form-control" placeholder="Change Quantity" aria-label="Change Quantity" min="0" max="10" width="30%">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="submit" name="edit">Edit</button>
+                                                        </div>
+                                                    </div>
+                                                    <form action="" method="POST">
+                                                        <input type="hidden" name="cart_id" value="<?= $cart['Cart_id'] ?>">
+                                                        <input type="hidden" name="product_id" value="<?= $cart['Product_id'] ?>">
+                                                        <button class="btn btn-sm btn-outline-danger mt-2" onclick="return confirm('Are you sure you want to remove this item?')" type="submit" name="delete">Remove</button>
+                                                    </form>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
+                                    <?php endforeach; ?>
                                     <tr>
-                                        <td><?= $cart['Product_name'] ?></td>
-                                        <td>$ <?= $cart['Product_price'] ?></td>
-                                        <td><?= $cart['Cart_Qty'] ?></td>
-                                        <td>$ <?= $cart['Product_price'] * $cart['Cart_Qty'] ?></td>
+                                        <td colspan="3"></td>
+                                        <td><p><b>Total Price:</b></p></td>
+                                        <td><p><b>Checkout:</b></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"></td>
+                                        <td>$ <?= $total ?></td>
                                         <td>
-                                            <form action="" method="POST">
-                                                <input type='number' name='cart_qty' size='5' placeholder="Change Quantity" >
-                                                <input type="hidden" name="cart_id" value="<?= $cart['Cart_id'] ?>"> 
-                                                <input type="hidden" name="product_id" value="<?= $cart['Product_id'] ?>"> 
-                                                <button class="btn btn-primary" type="submit" name="edit">Edit</button>
-                                                <button class="btn btn-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
+                                            <form action ='payment.php' method='POST'>
+                                                <button class="btn btn-success" type="submit" name="checkout">Checkout</button>
                                             </form>
                                         </td>
                                     </tr>
-                                    <?php $total = $total + $cart['Product_price'] * $cart['Cart_Qty'] ?>
-                                <?php endforeach; ?>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><p><b>Total Price</b></p></td>
-                                    <td><p><b>Checkout</b></p></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>$ <?= $total ?></td>
-                                    <td>
-                                        <form action ='payment.php' method='POST'>
-                                            <button class="btn btn-success" type="submit" name="checkout">Checkout</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <?php
-                            endif;
-                            ?>
-
-                        </tbody>
-                    </table>
-                </div>
+                                    <?php
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
+
         </main>
         <?php
         include "footer.inc.php";
