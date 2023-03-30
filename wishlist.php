@@ -162,7 +162,7 @@ if ($conn->connect_error) {
     // Display the results:
     while ($row = $result->fetch_assoc()) {
         echo "<div class='wishlist-item'>";
-        echo "<img src='" . $row['Product_image'] . "' alt='Product Image'>";
+        echo "<a href='productpage.php?id=" . $row['Product_id'] . "'><img src='" . $row['Product_image'] . "' alt='Product Image'></a>";
         echo "<div class='wishlist-item-details'>";
         echo "<div class='wishlist-item-name'>" . $row['Product_name'] . "</div>";
         echo "<div class='wishlist-item-price'>$" . $row['Product_price'] . "</div>";
