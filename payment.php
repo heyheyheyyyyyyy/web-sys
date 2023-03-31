@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 if (!isset($_SESSION['User_id'])) {
@@ -42,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             class="special"
                             class="card_all_input"
                             type="text"
+                            minlength="16"
                             maxlength="16"
                             placeholder="1234 1234 1234 1234"
                             inputmode="numeric"
@@ -59,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         <input
                             class="card_all_input"
                             type="text"
+                            minlength="4"
                             maxlength="4"
                             placeholder="MM / YY"
                             inputmode="numeric"
@@ -73,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             class="card_all_input"
                             type="password"
                             placeholder="CVC"
+                            minlength="3"
                             maxlength="3"
                             id="cardnumber"
                             required/>
