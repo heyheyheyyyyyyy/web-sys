@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 if (isset($_SESSION['User_id'])) {
@@ -32,12 +33,12 @@ if (isset($_SESSION['User_id'])) {
             </p>
             <form action="process_login.php" method="post">
                 <div class="form-group">
-                    <label for="email">Email:</label><br>
+                    <label>Email:</label><br>
                     <input class="form-control" type="email" id="User_email"
                            required name="User_email" placeholder="Enter email"><br>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password:</label><br>
+                    <label>Password:</label><br>
                     <input class="form-control" type="password" id="User_password"
                            required name="User_password" 
                            placeholder="Enter password"><br>
