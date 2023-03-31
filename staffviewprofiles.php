@@ -9,7 +9,8 @@ if (isset($_POST['edit'])) {
     global $errorMsg, $success;
 
     $user_id = $_POST['id'];
-    $role_id = 2;
+    $role = $_POST['role'];
+
     //echo "<script>console.log('$user_id');</script>";
     // Create database connection.
     $config = parse_ini_file('../../private/db-config.ini');
@@ -21,15 +22,29 @@ if (isset($_POST['edit'])) {
         $success = false;
     } else {
         // Prepare the statement:
-        $stmt = $conn->prepare("UPDATE Group2.Users SET Role_id = ? WHERE User_id = ?");
-        $stmt->bind_param("ii", $role_id, $user_id);
-        if (!$stmt->execute()) {
-            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            $success = false;
-        }
+        if ($role == 'Customer') {
+            $role_id = 2;
+            $stmt = $conn->prepare("UPDATE Group2.Users SET Role_id = ? WHERE User_id = ?");
+            $stmt->bind_param("ii", $role_id, $user_id);
+            if (!$stmt->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                $success = false;
+            }
 
-        //echo "<script>console.log('$user_id');</script>";
-        $stmt->close();
+            //echo "<script>console.log('$user_id');</script>";
+            $stmt->close();
+        } else {
+            $role_id = 1;
+            $stmt = $conn->prepare("UPDATE Group2.Users SET Role_id = ? WHERE User_id = ?");
+            $stmt->bind_param("ii", $role_id, $user_id);
+            if (!$stmt->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                $success = false;
+            }
+
+            //echo "<script>console.log('$user_id');</script>";
+            $stmt->close();
+        }
     }
     $conn->close();
 }
@@ -99,13 +114,20 @@ if (isset($_POST['delete'])) {
                                             <td><?= $user['Role_name'] ?></td>
                                             <td>
                                                 <form action="" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $user['User_id'] ?>"> 
-                                                    <button class="btn btn-sm btn-outline-primary" type="submit" name="edit">Update Role to Admin</button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
+                                                    <input type="hidden" name="id" value="<?= $user['User_id'] ?>">
+                                                    <input type="hidden" name="role" value="<?= $user['Role_name'] ?>">
+                                                    <?php
+                                                    if ($user['Role_name'] == 'Admin') {
+                                                        echo "<button class = 'btn btn-sm btn-outline-primary' type = 'submit' name = 'edit'>Demote Role back to Customer</button>";
+                                                    } else {
+                                                        echo "<button class = 'btn btn-sm btn-outline-primary' type = 'submit' name = 'edit'>Update Role to Admin</button>";
+                                                    }
+                                                    ?>
+                                                    <button class = "btn btn-sm btn-outline-danger" onclick = 'return checkdelete()' type = "submit" name = "delete">Remove</button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    <?php
+                                        <?php
                                     endforeach;
                                 endif;
                                 ?>
@@ -122,6 +144,7 @@ if (isset($_POST['delete'])) {
 </html>
 
 <?php
+
 function show() {
     global $errorMsg, $success, $result;
 // Create database connection.
