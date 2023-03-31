@@ -4,16 +4,19 @@
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
-        <link rel="stylesheet" href="css/main.css">
-        <style>.team-member {
+        <style>
+            .team-member {
                 display: inline-block;
                 text-align: center;
                 margin: 20px;
-            }</style>
+            }
+        </style>
     </head>
     <body>
+        <?php
+        include "nav.inc.php";
+        ?>
         <main class="container">
             <div class="section">
                 <h1>About Us</h1>
@@ -40,49 +43,36 @@
                 <div>
                     <div class="team-member">
                         <a href="mailto:ChungShing@gmail.com">
-                            <p>
                                 <img src="images/Cs.jpeg" alt="Chung Shing"> 
-
                             <h3>Chung Shing</h3>
-
-                            </p>
                         </a>
                         <h4>Sales Executive</h4>
                     </div>
                     <div class="team-member">
                         <a href="mailto:XinEr@gmail.com">
-                            <p>
                                 <img src="images/staffxiner.jpg" alt="Xin Er" width="225" height="225">
                             <h3>Xin Er</h3>
-
-                            </p>
                         </a>
                         <h4>Operations Manager</h4>
                     </div>
                     <div class="team-member">
                         <a href="mailto:Julene@gmail.com">
-                            <p>
                                 <img src="images/ju.jpg" alt="Julene">
                             <h3>Julene</h3>
-                            </p>  
                         </a>
                         <h4>Marketing Coordinator</h4>
                     </div>
                     <div class="team-member">
                         <a href="mailto:Linus@gmail.com">
-                            <p>
                                 <img src="images/LinusPhoto.jpg" alt="Linus" width="225" height="225">
                             <h3>Linus</h3>
-                            </p>
                         </a>
                         <h4>Customer Service</h4>
                     </div>
                     <div class="team-member">
                         <a href="mailto:PeiSheng@gmail.com">
-                            <p>
                                 <img src="images/pic5.jpg" alt="Pei Sheng" width="225" height="225">
                             <h3>Pei Sheng</h3>
-                            </p>
                         </a>
                         <h4>Product Designer</h4>
                     </div>
