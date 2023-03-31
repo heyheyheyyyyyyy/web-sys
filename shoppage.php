@@ -195,7 +195,7 @@ if (isset($_POST['addCart'])) {
                     <form action = "productpage.php?id=' . $product_id . '" method = "POST">
                     <button class = "btn btn-secondary" type = "submit">View Product</button>
                     </form>
-                    <form action = "" method = "POST">
+                    <form method = "POST">
                     <input type = "hidden" name = "product_id" value = "' . $product_id . '">
                     <button class = "btn btn-info" type = "submit" name = "addCart">Add to Cart</button>
                     </form>
