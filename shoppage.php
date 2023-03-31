@@ -142,6 +142,12 @@ if (isset($_POST['addCart'])) {
         .product-card-buttons > .btn-info:hover {
             background-color: #0069d9;
         }
+
+        @media only screen and (max-width: 765px){
+            .product-card {
+                width: 500px;
+            }
+        }
     </style>
     <body>
         <?php
