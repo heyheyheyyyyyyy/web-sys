@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php include 'session.php'; ?>
 <?php
 if (isset($_POST['edit'])) {
@@ -61,16 +62,18 @@ if (isset($_POST['delete'])) {
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
     </head>
     <body id="admin-page">
+        <?php
+        include "nav.inc.php";
+        ?>
         <main class="container">
             <!-- Bootstrap row -->
             <div class="row" id="body-row">
                 <!-- Sidebar -->
                 <!-- Main -->
-                <main class="col p-4 d-block" style="overflow: auto;">
+                <div class="col p-4 d-block" style="overflow: auto;">
                     <!-- Cart -->
                     <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
                         <h3>Cart</h3>
@@ -92,8 +95,8 @@ if (isset($_POST['delete'])) {
                                     foreach ($result as $cart) :
                                         ?>
                                         <tr>
-                                            
-                                            
+
+
                                             <td><img src="<?= $cart['Product_image'] ?>" alt="<?= $cart['Product_name'] ?>" style="width: 100px;"><br><br><?= $cart['Product_name'] ?></td>
                                             <td>$ <?= $cart['Product_price'] ?></td>
                                             <td><?= $cart['Cart_Qty'] ?></td>
@@ -138,8 +141,8 @@ if (isset($_POST['delete'])) {
                             </tbody>
                         </table>
                     </div>
+                </div>
             </div>
-
         </main>
         <?php
         include "footer.inc.php";
