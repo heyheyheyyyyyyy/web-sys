@@ -7,7 +7,6 @@ if ($_SESSION['User_role'] != 2) {
 }
 ?>
 <?php
-
 if (isset($_POST['delete'])) {
 
     global $errorMsg, $success;
@@ -54,60 +53,59 @@ if ($conn->connect_error) {
 }
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
-    <?php
-    include "head.inc.php";
-    include "nav.inc.php";
-    ?>
     <head>
+        <?php
+        include "head.inc.php";
+        ?>
     </head>
     <body id="admin-page">
+        <?php
+        include "nav.inc.php";
+        ?>
         <main class="container">
-                            <class="col p-4 d-block" style="overflow: auto;">
-
             <!-- Bootstrap row -->
             <div class="row" id="body-row">
                 <!-- Display table -->
-                    <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
-                        <h3>Product Overview</h3>
-                        <table class="table">
-                            <thead>
+                <div class="tab-pane fade show active" id="show-home" role="tabpanel" aria-label="pills-home-tab">
+                    <h3>Product Overview</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product id</th>
+                                <th scope="col">Product name</th>
+                                <th scope="col">Product image</th>
+                                <th scope="col">Product Description</th>
+                                <th scope="col">Product Category</th>
+                                <th scope="col">Product Quantity</th>
+                                <th scope="col">Product Price</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Read product details and display all details -->
+                            <?php foreach ($rows as $row) { ?>
                                 <tr>
-                                    <th scope="col">Product id</th>
-                                    <th scope="col">Product name</th>
-                                    <th scope="col">Product image</th>
-                                    <th scope="col">Product Description</th>
-                                    <th scope="col">Product Category</th>
-                                    <th scope="col">Product Quantity</th>
-                                    <th scope="col">Product Price</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Read product details and display all details -->
-                                <?php foreach ($rows as $row) { ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $row["Product_id"] ?></th>
+                                    <th scope="row"><?php echo $row["Product_id"] ?></th>
 
-                                        <td><?php echo $row["Product_name"] ?></td>
-                                        <td><img src="<?php echo $row['Product_image'] ?>" alt="<?php echo $row["Product_name"] ?>" class="product-img-view" style="max-width: 12em;max-height: 50%;"></td>
-                                        <td><?php echo $row["Product_desc"] ?></td>
-                                        <td><?php echo $row["Product_category"] ?></td>
-                                        <td><?php echo $row["Product_qty"] ?></td>
-                                        <td>$<?php echo $row["Product_price"] ?></td>
-                                        <td>
-                                            
-                                            <form method="post" action="" style= "display: inline-block">
-                                                <input  type="hidden" name="productid" value="<?php echo $row["Product_id"] ?>"/>
-                                                <button type="submit" name='delete' onclick='return checkdelete()' class="btn btn-sm btn-outline-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                    <td><?php echo $row["Product_name"] ?></td>
+                                    <td><img src="<?php echo $row['Product_image'] ?>" alt="<?php echo $row["Product_name"] ?>" class="product-img-view" style="max-width: 12em;max-height: 50%;"></td>
+                                    <td><?php echo $row["Product_desc"] ?></td>
+                                    <td><?php echo $row["Product_category"] ?></td>
+                                    <td><?php echo $row["Product_qty"] ?></td>
+                                    <td>$<?php echo $row["Product_price"] ?></td>
+                                    <td>
+
+                                        <form method="post" action="" style= "display: inline-block">
+                                            <input  type="hidden" name="productid" value="<?php echo $row["Product_id"] ?>"/>
+                                            <button type="submit" name='delete' onclick='return checkdelete()' class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- add product form for admins only-->
             <div class="tab-pane fade show active" id="add_product" role="tabpanel" aria-labelledby="pills-new-tab">
@@ -127,7 +125,7 @@ if ($conn->connect_error) {
                             <!-- Upload image -->
                             <div class="custom-file pb-3">
                                 <label class="custom-file-label" for="Product_image">Choose an image for your product:</label>
-                            <input type="file" class="custom-file-input" id="Product_image" name="Product_image" required>
+                                <input type="file" class="custom-file-input" id="Product_image" name="Product_image" required>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -136,16 +134,15 @@ if ($conn->connect_error) {
                                 <div class="dropdown show">
                                     <label for="create_brand">Select Category</label><br>
                                     <select id="Product_category" name="Product_category" class="btn btn-light dropdown-toggle" required aria-label="Product category">
-                                    <div role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Select a category">
-    
-                                    <option selected disabled>Select a category</option>
-                                    <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
-                                    <option class="dropdown-item whiteText" value="Glass">Glass</option>
-                                    <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
-                                    <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
-                                    <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
-                                    <option class="dropdown-item whiteText" value="Others">Others</option>
-                                        </select>
+                                        <div role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Select a category">
+                                            <option selected disabled>Select a category</option>
+                                            <option class="dropdown-item whiteText" value="Stainless_Steel">Stainless_Steel</option>
+                                            <option class="dropdown-item whiteText" value="Glass">Glass</option>
+                                            <option class="dropdown-item whiteText" value="Insulated">Insulated</option>
+                                            <option class="dropdown-item whiteText" value="BPA-free">BPA-free</option>
+                                            <option class="dropdown-item whiteText" value="EcoBottle">Eco Bottle</option>
+                                            <option class="dropdown-item whiteText" value="Others">Others</option>
+                                    </select>
                                 </div>
                             </div>
                             <!-- Quantity -->

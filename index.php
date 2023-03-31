@@ -1,151 +1,10 @@
 <?php include 'session.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-    include "head.inc.php";
-    include "nav.inc.php";
-    ?>
-    <style>
-        .slider-container {
-            width: 100%;
-            height: 500px; /* set the height to match the height of the images */
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        .slider-frame {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-
-        .slide-images {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%; /* set the width to be wider than the widest image */
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            left: 100%;
-
-            transform: translateX(-50%);
-        }
-
-        .slide-images img {
-            max-width: 100%;
-            height: 100%;
-            object-fit: contain;
-            margin: 0;
-            padding: 0;
-        }
-
-    </style>
-    <link rel="stylesheet" href="css/main.css">
-    <body>
-        <main>
-        <div class="slider-container">
-            <div class ="slider-frame">
-                <div class="slide-images">
-                    <img src="images/glass2.jpg" alt="Image 2">
-                    <img src="images/glass1.jpg" alt="Image 1">
-                    <img src="images/b1.jpg" alt="Image 2">
-                    <img src="images/c1.jpg" alt="Image 3">
-                    <img src="images/c2.jpg" alt="Image 3">
-                    <img src="images/glass2.jpg" alt="Image 3">
-                    <img src="images/glass1.jpg" alt="Image 3">
-                    <img src="images/b2.jpg" alt="Image 3">
-                    <img src="images/b3.jpg" alt="Image 3">
-                </div>
-            </div>
-        </div>
-
-        <div class="features">
-            <div class="feature">
-                <img src="images/snowflake.png" alt="" class="featureIcon">
-                <span class="featureTitle">QuenchChill</span>
-                <span class="featureDesc">Our bottle has a built-in cooling system, keeping your water refreshingly cold even in the hottest weather.</span>
-            </div>
-            <div class="feature">
-                <img class="featureIcon" src="images/puzzle.png" alt="">
-                <span class="featureTitle">QuenchFit</span>
-                <span class="featureDesc">Our bottle is designed to fit comfortably in your hand, with a sleek and ergonomic shape that feels great to hold.</span>
-            </div>
-            <div class="feature">
-                <img class="featureIcon" src="images/money.png" alt="">
-                <span class="featureTitle">QuenchSaver</span>
-                <span class="featureDesc">Our eco-friendly bottle design helps you save money and reduce waste by avoiding single-use plastic bottles.</span>
-            </div>
-            <div class="feature">
-                <img class="featureIcon" src="images/bpa.png" alt="">
-                <span class="featureTitle">QuenchGuard</span>
-                <span class="featureDesc">Bpa and toxin free</span>
-            </div>
-
-        </div>
-
-        <div class="product" id="product">
-            <img src="https://images.pexels.com/photos/3737802/pexels-photo-3737802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="productImg">
-            <div class="productDetails">
-                <h1 class="productTitle">HydrO2</h1>
-                <h1 class="productTitleSmall">new arrivals</h1>
-                <h2 class="productPrice">$49.90</h2>
-                <p class="productDesc">With inspiration drawn from the natural lotus effect, we utilize advanced technology to convert silicon dioxide, one of the earth's most fundamental elements, into a remarkably pristine glass-like interior finish, ensuring the purity of your drinks. Designed in California and produced in Singapore.
-                </p>
-
-<!--                <button class="productButton">BUY NOW!</button>-->
-            </div>
-        </div>
-        <div class="gallery">
-            <div class="galleryItem">
-                <h2 class="galleryTitle">Pure refreshment, every sip</h2>
-                <img src="https://images.pexels.com/photos/3738065/pexels-photo-3738065.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                     alt="" class="galleryImg">
-            </div>
-            <div class="galleryItem">
-                <img src="https://images.pexels.com/photos/3738060/pexels-photo-3738060.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                     alt="" class="galleryImg">
-                <h2 class="galleryTitle">Sip smart, hydrate better</h2>
-            </div>
-            <div class="galleryItem">
-                <h2 class="galleryTitle">Quench your thirst, elevate your day</h2>
-                <img src="https://images.pexels.com/photos/6187637/pexels-photo-6187637.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                     alt="" class="galleryImg">
-            </div>
-        </div>
-        <div class="newSeason">
-            <div class="nsItem">
-                <img src="https://images.pexels.com/photos/10475606/pexels-photo-10475606.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                     alt="" class="nsImg">
-            </div>
-            <div class="nsItem">
-                <h3 class="nsTitleSm">MARCH NEW ARRIVALS</h3>
-                <h1 class="nsTitle">MORE SLEEK</h1>
-                <h1 class="nsTitle">MORE COLLECTIONS</h1>
-                <a href="shoppage.php">
-                    <button class="nsButton">SHOP NOW
-                    </button>
-                </a>
-            </div>
-            <div class="nsItem">
-                <img src="https://images.pexels.com/photos/10475607/pexels-photo-10475607.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                     alt="" class="nsImg">
-            </div>
-        </div>
-        </main>
+    <head>
         <?php
-        include "footer.inc.php";
+        include "head.inc.php";
         ?>
-
-        <!--can push into css file later or sth-->
         <style>
             .floating-button {
                 position: fixed;
@@ -171,7 +30,145 @@
             .msg-item-whatsapp svg:hover {
                 color: green; /* set hover fill to green */
             }
+            .slider-container {
+                width: 100%;
+                height: 500px; /* set the height to match the height of the images */
+                position: relative;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+
+            .slider-frame {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                position: relative;
+            }
+
+            .slide-images {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100%; /* set the width to be wider than the widest image */
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                left: 100%;
+
+                transform: translateX(-50%);
+            }
+
+            .slide-images img {
+                max-width: 100%;
+                height: 100%;
+                object-fit: contain;
+                margin: 0;
+                padding: 0;
+            }
+
         </style>
+
+    </head>
+    <body>
+        <?php
+        include "nav.inc.php";
+        ?>
+        <main>
+            <div class="slider-container">
+                <div class ="slider-frame">
+                    <div class="slide-images">
+                        <img src="images/glass2.jpg" alt="Image 2">
+                        <img src="images/glass1.jpg" alt="Image 1">
+                        <img src="images/b1.jpg" alt="Image 2">
+                        <img src="images/c1.jpg" alt="Image 3">
+                        <img src="images/c2.jpg" alt="Image 3">
+                        <img src="images/glass2.jpg" alt="Image 3">
+                        <img src="images/glass1.jpg" alt="Image 3">
+                        <img src="images/b2.jpg" alt="Image 3">
+                        <img src="images/b3.jpg" alt="Image 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <img src="images/snowflake.png" alt="" class="featureIcon">
+                    <span class="featureTitle">QuenchChill</span>
+                    <span class="featureDesc">Our bottle has a built-in cooling system, keeping your water refreshingly cold even in the hottest weather.</span>
+                </div>
+                <div class="feature">
+                    <img class="featureIcon" src="images/puzzle.png" alt="">
+                    <span class="featureTitle">QuenchFit</span>
+                    <span class="featureDesc">Our bottle is designed to fit comfortably in your hand, with a sleek and ergonomic shape that feels great to hold.</span>
+                </div>
+                <div class="feature">
+                    <img class="featureIcon" src="images/money.png" alt="">
+                    <span class="featureTitle">QuenchSaver</span>
+                    <span class="featureDesc">Our eco-friendly bottle design helps you save money and reduce waste by avoiding single-use plastic bottles.</span>
+                </div>
+                <div class="feature">
+                    <img class="featureIcon" src="images/bpa.png" alt="">
+                    <span class="featureTitle">QuenchGuard</span>
+                    <span class="featureDesc">Bpa and toxin free</span>
+                </div>
+
+            </div>
+
+            <div class="product" id="product">
+                <img src="https://images.pexels.com/photos/3737802/pexels-photo-3737802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="productImg">
+                <div class="productDetails">
+                    <h1 class="productTitle">HydrO2</h1>
+                    <h1 class="productTitleSmall">new arrivals</h1>
+                    <h2 class="productPrice">$49.90</h2>
+                    <p class="productDesc">With inspiration drawn from the natural lotus effect, we utilize advanced technology to convert silicon dioxide, one of the earth's most fundamental elements, into a remarkably pristine glass-like interior finish, ensuring the purity of your drinks. Designed in California and produced in Singapore.
+                    </p>
+
+                    <!--                <button class="productButton">BUY NOW!</button>-->
+                </div>
+            </div>
+            <div class="gallery">
+                <div class="galleryItem">
+                    <h2 class="galleryTitle">Pure refreshment, every sip</h2>
+                    <img src="https://images.pexels.com/photos/3738065/pexels-photo-3738065.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                         alt="" class="galleryImg">
+                </div>
+                <div class="galleryItem">
+                    <img src="https://images.pexels.com/photos/3738060/pexels-photo-3738060.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                         alt="" class="galleryImg">
+                    <h2 class="galleryTitle">Sip smart, hydrate better</h2>
+                </div>
+                <div class="galleryItem">
+                    <h2 class="galleryTitle">Quench your thirst, elevate your day</h2>
+                    <img src="https://images.pexels.com/photos/6187637/pexels-photo-6187637.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                         alt="" class="galleryImg">
+                </div>
+            </div>
+            <div class="newSeason">
+                <div class="nsItem">
+                    <img src="https://images.pexels.com/photos/10475606/pexels-photo-10475606.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                         alt="" class="nsImg">
+                </div>
+                <div class="nsItem">
+                    <h3 class="nsTitleSm">MARCH NEW ARRIVALS</h3>
+                    <h1 class="nsTitle">MORE SLEEK</h1>
+                    <h1 class="nsTitle">MORE COLLECTIONS</h1>
+                    <form action='shoppage.php'>
+                        <button type='submit' class="nsButton">SHOP NOW</button>
+                    </form>                                       
+                </div>
+                <div class="nsItem">
+                    <img src="https://images.pexels.com/photos/10475607/pexels-photo-10475607.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                         alt="" class="nsImg">
+                </div>
+            </div>
+        </main>
+               
         <div class="floating-button">
             <a class="messanger msg-item-whatsapp" id="msg-item-2" href="https://wa.me/6583308530" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -179,5 +176,8 @@
                 </svg>
             </a>
         </div>
+        <?php
+        include "footer.inc.php";
+        ?> 
     </body>
 </html>
