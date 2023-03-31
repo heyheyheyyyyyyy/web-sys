@@ -1,34 +1,32 @@
+<!DOCTYPE html>
+<?php include 'session.php'; ?>
 
 <?php
-include 'session.php';?>
+// Create database connection.
+$config = parse_ini_file('../../private/db-config.ini');
+$conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
-<?php
-    
-    // Create database connection.
-    $config = parse_ini_file('../../private/db-config.ini');
-    $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+// Check connection
+if ($conn->connect_error) {
+    $errorMsg = "Connection failed: " . $conn->connect_error;
+    $success = false;
+} else {
+    if (isset($_POST['deletewishlist'])) {
+        $user_id = $_SESSION['User_id'];
+        $product_id = $_POST['product_id'];
 
-    // Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-    } else {
-        if (isset($_POST['deletewishlist'])) {
-            $user_id = $_SESSION['User_id'];
-            $product_id = $_POST['product_id'];
+        // Prepare the statement:
+        $stmt = $conn->prepare("DELETE FROM Group2.Wishlist WHERE User_id = ? AND Product_id = ?");
+        $stmt->bind_param("ii", $user_id, $product_id);
 
-            // Prepare the statement:
-            $stmt = $conn->prepare("DELETE FROM Group2.Wishlist WHERE User_id = ? AND Product_id = ?");
-            $stmt->bind_param("ii", $user_id, $product_id);
+        // Execute the query statement:
+        $stmt->execute();
 
-            // Execute the query statement:
-            $stmt->execute();
-
-            $stmt->close();
-        }
+        $stmt->close();
     }
+}
 
-    $conn->close();
+$conn->close();
 ?>
 
 <?php
@@ -91,11 +89,11 @@ if (isset($_POST['addCart'])) {
 }
 ?>
 
-<html>
-    <head><?php
-        include "head.inc.php";
-        include "nav.inc.php";
-        ?>
+<html lang="en">
+    <head>
+<?php
+include "head.inc.php";
+?>
         <style>
             .wishlist-item {
                 display: flex;
@@ -133,34 +131,34 @@ if (isset($_POST['addCart'])) {
                 color: #f00;
                 cursor: pointer;
             }
-            
+
             .empty-wishlist {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            font-size: 24px;
-            color: #999;
-        }
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                font-size: 24px;
+                color: #999;
+            }
 
-        .empty-wishlist p {
-            margin-bottom: 16px;
-        }
+            .empty-wishlist p {
+                margin-bottom: 16px;
+            }
 
-        .empty-wishlist a {
-            color: #007bff;
-            text-decoration: none;
-        }
+            .empty-wishlist a {
+                color: #007bff;
+                text-decoration: none;
+            }
 
-        .empty-wishlist a:hover {
-            text-decoration: underline;
-        }
+            .empty-wishlist a:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
-    <?php
-
+<?php
+include "nav.inc.php";
 
 // Create database connection.
 $config = parse_ini_file('../../private/db-config.ini');
@@ -177,43 +175,43 @@ if ($conn->connect_error) {
     $stmt = $conn->prepare("SELECT * FROM Group2.Wishlist INNER JOIN Group2.Product ON Group2.Wishlist.Product_id = Group2.Product.Product_id WHERE Group2.Wishlist.User_id = ?");
     $stmt->bind_param("i", $user_id);
 
-        // Execute the query statement:
+    // Execute the query statement:
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-    // Display the results:
-    while ($row = $result->fetch_assoc()) {
-        echo "<div class='wishlist-item'>";
-        echo "<a href='productpage.php?id=" . $row['Product_id'] . "'><img src='" . $row['Product_image'] . "' alt='Product Image'></a>";
-        echo "<div class='wishlist-item-details'>";
-        echo "<div class='wishlist-item-name'>" . $row['Product_name'] . "</div>";
-        echo "<div class='wishlist-item-price'>$" . $row['Product_price'] . "</div>";
-        echo "<form method='post' action=''>";
-        echo "<input type='hidden' name='product_id' value='" . $row['Product_id'] . "'>";
-        echo "<button type='submit'class='btn btn-sm btn-outline-danger' onclick='return checkdelete()' name='deletewishlist'>Remove</button>";
-        echo "</form>";
-        echo "<form method='post' action=''>";
-        echo "<input type='hidden' name='product_id' value='" . $row['Product_id'] . "'>";
-        echo "<button type='submit' class='btn btn-primary' name='addCart'>Add to Cart</button>";
-        echo "</form>";
-        echo "</div>";
+        // Display the results:
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='wishlist-item'>";
+            echo "<a href='productpage.php?id=" . $row['Product_id'] . "'><img src='" . $row['Product_image'] . "' alt='Product Image'></a>";
+            echo "<div class='wishlist-item-details'>";
+            echo "<div class='wishlist-item-name'>" . $row['Product_name'] . "</div>";
+            echo "<div class='wishlist-item-price'>$" . $row['Product_price'] . "</div>";
+            echo "<form method='post' action=''>";
+            echo "<input type='hidden' name='product_id' value='" . $row['Product_id'] . "'>";
+            echo "<button type='submit'class='btn btn-sm btn-outline-danger' onclick='return checkdelete()' name='deletewishlist'>Remove</button>";
+            echo "</form>";
+            echo "<form method='post' action=''>";
+            echo "<input type='hidden' name='product_id' value='" . $row['Product_id'] . "'>";
+            echo "<button type='submit' class='btn btn-primary' name='addCart'>Add to Cart</button>";
+            echo "</form>";
+            echo "</div>";
+            echo "</div>";
+        }
+    } else {
+        echo "<div class='empty-wishlist'>";
+        echo "<p>Your wishlist is currently empty.</p>";
         echo "</div>";
     }
-} else {
-    echo "<div class='empty-wishlist'>";
-    echo "<p>Your wishlist is currently empty.</p>";
-    echo "</div>";
-}
 
 
     $stmt->close();
 }
 $conn->close();
 
-    include "footer.inc.php";
-    ?>
-</body>
+include "footer.inc.php";
+?>
+    </body>
 </html>
 
 
