@@ -1,21 +1,24 @@
+<!DOCTYPE html>
 <?php
 // Start the session
 include "session.php";
-if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    echo "<h2> This page is not meant to be run directly.</h2>";
-    echo "<p> You can register at the link below: </p>";
-    echo "<a href = 'register.php'> Go to Sign Up page...</a>";
-    exit();
-}
 ?>
 
-<html>
-    <?php
-    include "head.inc.php";
-    ?>
+<html lang="en">
+    <head>
+        <?php
+        include "head.inc.php";
+        ?>
+    </head>
     <body>
         <?php
         include "nav.inc.php";
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            echo "<h2> This page is not meant to be run directly.</h2>";
+            echo "<p> You can register at the link below: </p>";
+            echo "<a href = 'register.php'> Go to Sign Up page...</a>";
+            exit();
+        }
 
         $email = $pwd_hashed = $errorMsg = "";
         $success = true;
@@ -39,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION['User_id'] = $id;
             $_SESSION['User_role'] = $role;
             $_SESSION['lname'] = $lname;
-            
+
             echo "<script>console.log('$lname')</script>";
             // success page
             echo "<main class='container'><div class='formsclass'>";
