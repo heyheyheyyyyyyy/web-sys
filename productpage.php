@@ -142,153 +142,109 @@ if (isset($_POST['Wishlist'])) {
 
 
 <html>
-    <?php
-    include "head.inc.php";
-    ?>
-    <?php include "nav.inc.php"; ?>
-    <style>
-        .main-container h1 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-        .main-container img {
-            max-width: 100%;
-            margin-bottom: 30px;
-        }
-        .main-container p {
-            font-size: 1.2rem;
-            line-height: 1.5;
-            margin-bottom: 30px;
-        }
-        .main-container .quantity-input {
-            margin-bottom: 20px;
-        }
-        .main-container label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .main-container input[type="number"] {
-            width: 50px;
-        }
-        .main-container a {
-            text-decoration: none;
-        }
-        .main-container button {
-            width: 150px;
-            height: 50px;
-            background-color: blue;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        .main-container button:hover {
-            background-color: #0069d9;
-        }
-        .main-container a {
-            text-decoration: none;
-        }
-        .main-container .cart-button {
-            background-color: #28a745;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1.2rem;
-        }
-        .main-container .cart-button:hover {
-            background-color: #218838;
-        }
-        .cart-button {
-            background-color: #28a745;
-            color: #fff;
-
-            border-radius: 5px;
-            font-size: 1.2rem;
-        }
-        .cartbutton1 {
-
-            background-color: green;
-            color: #fff;
-
-            border-radius: 5px;
-            font-size: 1.2rem;
-        }
-    </style>
-</head>
-<body>
-
-    <main class="container">
+    <head>
         <?php
-// Get the product ID from the query parameter
-        $product_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+        include "head.inc.php";
+        include "nav.inc.php";
+        ?>
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+            .btn {
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 5px; /* Add this rule */
+            }
+            .btn-secondary {
+                background-color: #ccc;
+                color: black;
+                border: none;
+            }
 
-        if ($product_id <= 0) {
-            // Invalid product ID
-            die("Invalid product ID");
-        }
+            .btn-info {
+                background-color: #007bff;
+                color: black;
+                border: none;
+            }
+
+            .btn-info:hover {
+                background-color: #bbb;
+            }
+            .btn-primary {
+                background-color: #007bff;
+                color: white;
+                border: none;
+            }
+
+            .btn-primary:hover {
+                background-color: #0069d9;
+            }
+        </style>
+    </head>
+    <body id="productpage">
+        <div style="display: table; width: 100%; height: 100%;">
+            <div style="display: table-cell; vertical-align: middle; text-align: center;">
+                <main class="productpage-container">
+                    <?php
+// Get the product ID from the query parameter
+                    $product_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+                    if ($product_id <= 0) {
+                        // Invalid product ID
+                        die("Invalid product ID");
+                    }
 
 // Fetch the product from the database
-        $config = parse_ini_file('../../private/db-config.ini');
-        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        $stmt = $conn->prepare("SELECT * FROM Group2.Product WHERE Product_id = ?");
-        $stmt->bind_param("i", $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows == 0) {
-            // Product not found
-            die("Product not found");
-        }
-        $products = $result->fetch_assoc();
-        $stmt->close();
-        $conn->close();
-        ?>
+                    $config = parse_ini_file('../../private/db-config.ini');
+                    $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $stmt = $conn->prepare("SELECT * FROM Group2.Product WHERE Product_id = ?");
+                    $stmt->bind_param("i", $product_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result->num_rows == 0) {
+                        // Product not found
+                        die("Product not found");
+                    }
+                    $products = $result->fetch_assoc();
+                    $stmt->close();
+                    $conn->close();
+                    ?>
 
-        <h1><?= $products['Product_name'] ?></h1>
-        <img height='500' width='400'src="<?= $products['Product_image'] ?>">
-        <p><?= $products['Product_desc'] ?></p>
-        <p>Price: $<?= $products['Product_price'] ?></p>
+                    <h1><?= $products['Product_name'] ?></h1>
+                    <img class="product-img" src="<?= $products['Product_image'] ?>">
+                    <p><?= $products['Product_desc'] ?></p>
+                    <p>Price: $<?= $products['Product_price'] ?></p>
+                    <!-- Add to cart form -->
+                    <form class="add-to-cart-form" action="" method="POST" style="display: inline-block;">
+                        <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>"> 
+                        <div style="text-align: center;">
+                            <div class="quantity-input productpage" style="display: flex !important; justify-content: center !important; align-items: center !important;">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                            </div><br>
 
-        <!-- Add to cart form -->
-        <form action="" method="POST" style="display: inline-block;">
-            <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>"> 
-            <div class="quantity-input">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                        </div>
+                        <button  class="btn btn-secondary" type="submit" name="addCart">Add to Cart</button>
+                    </form>
+
+                    <!-- View Cart button -->
+                    <a  href="cart.php" style="display: inline-block;"><button  class="btn btn-primary">View Cart</button></a>
+
+                    <form class="add-to-wishlist-form" action="" method="POST" style="display: inline-block;">
+                        <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
+                        <button id="add-to-wishlist-btn" class="btn btn-secondary" type="submit" name="Wishlist"> Wishlist </button>
+                    </form>
+                </main>
             </div>
-            <br> <!-- add a line break to separate the form elements -->
-<button class="btn btn-info" type="submit" name="addCart" style="display: inline-block; margin-left: 10px; background-color: black; color: white;">Add to Cart</button>        </form>
-
-
-
-        <!-- View Cart button -->
-        <a href="cart.php"  style="display: inline-block; margin-left: 10px;"><button class="btn btn-info" style="display: inline-block; margin-left: 10px;">View Cart</button></a>
-
-
-        <form action="" method="POST" style="display: inline-block;">
-            <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
-            <button class="btn btn-info" type="submit" name="Wishlist" style="display: inline-block; margin-left: 10px;"> Wishlist
-
-            </button>
-        </form>
-
-        <!--        <form method="post" action="">
-                    <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
-                    <button type="submit" name="addwishlist">Add to Wishlist</button>
-                </form>-->
-
-    </main>
-    <?php
-    include "footer.inc.php";
-    ?>
-</body>
+        </div>
+    </body>
+    <?php include "footer.inc.php"; ?>
 </html>
-
-
-<

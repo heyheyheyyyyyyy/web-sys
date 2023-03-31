@@ -63,49 +63,124 @@ if (isset($_POST['addCart'])) {
 }
 ?>
 <html lang="en">
-    
-        <?php
-        include "head.inc.php";
-        ?>
-    
+
+    <?php
+    include "head.inc.php";
+    ?>
+    <style>
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center; /* Add this rule */
+            max-width: 1200px;
+            margin: 0 auto; /* Add this rule */
+        }
+
+        .product-card {
+            width: calc((100% - 30px) / 3);
+            height:  600px;
+            margin: 10px 5px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .product-card-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .product-card-details {
+            padding: 20px;
+        }
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-card-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-card-buttons > button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+
+        .product-card-buttons > .btn-secondary {
+            background-color: #eee;
+            color: black;
+            border: none;
+        }
+
+        .product-card-buttons > .btn-info {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .product-card-buttons > .btn-info:hover {
+            background-color: #0069d9;
+        }
+    </style>
     <body>
         <?php
         include "nav.inc.php";
         ?>
         <main>
-        <div class="container">
-            <h2>Our Products!</h2>
-            <br>
-            <div class="product-grid"> 
-                <?php
-                $config = parse_ini_file('../../private/db-config.ini');
-                $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+            <div class="container">
+                <h2>Our Products!</h2>
+                <br>
+                <div class="product-grid"> 
+                    <?php
+                    $config = parse_ini_file('../../private/db-config.ini');
+                    $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
-                if ($_GET['search'] != null) {
-                    $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_name LIKE CONCAT('%',?,'%')");
-                    $sql->bind_param('s', sanitize_input($_GET['search']));
-                    $sql->execute();
-                    $result = $sql->get_result();
-                } else if ($_GET['category'] != null) {
-                    $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_category = ?");
-                    $sql->bind_param('s', sanitize_input($_GET['category']));
-                    $sql->execute();
-                    $result = $sql->get_result();
-                } else {
-                    $sql = "SELECT * FROM Group2.Product";
-                    $result = $conn->query($sql);
-                }
+                    if ($_GET['search'] != null) {
+                        $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_name LIKE CONCAT('%',?,'%')");
+                        $sql->bind_param('s', sanitize_input($_GET['search']));
+                        $sql->execute();
+                        $result = $sql->get_result();
+                    } else if ($_GET['category'] != null) {
+                        $sql = $conn->prepare("SELECT * FROM Group2.Product where Product_category = ?");
+                        $sql->bind_param('s', sanitize_input($_GET['category']));
+                        $sql->execute();
+                        $result = $sql->get_result();
+                    } else {
+                        $sql = "SELECT * FROM Group2.Product";
+                        $result = $conn->query($sql);
+                    }
 
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $product_name = $row["Product_name"];
-                        $product_image = $row["Product_image"];
-                        $product_price = $row["Product_price"];
-                        $product_desc = $row["Product_desc"];
-                        $product_id = $row["Product_id"];
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $product_name = $row["Product_name"];
+                            $product_image = $row["Product_image"];
+                            $product_price = $row["Product_price"];
+                            $product_desc = $row["Product_desc"];
+                            $product_id = $row["Product_id"];
 
-                        echo'
+                            echo'
                     <div class = "product-card">
                     <div class = "product-card-image">
                     <a href = "productpage.php?id=' . $product_id . '">
@@ -127,13 +202,13 @@ if (isset($_POST['addCart'])) {
                     </div>
                     </div>
                     </div>';
+                        }
+                    } else {
+                        echo "<p>No products found</p>";
                     }
-                } else {
-                    echo "<p>No products found</p>";
-                }
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
         </main>
         <?php
         include "footer.inc.php";

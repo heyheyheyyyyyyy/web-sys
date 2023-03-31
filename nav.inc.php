@@ -51,7 +51,7 @@
                 <li class="nav-item">
                     <form class="d-flex" action="shoppage.php" method="GET">
                         <input class="form-control me-2" type="search" placeholder="Search for product" aria-label="Search" name="search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success search-btn" type="submit">Search</button>
                     </form>
                 </li>
                 <?php

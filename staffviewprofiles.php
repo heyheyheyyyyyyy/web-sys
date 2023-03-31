@@ -100,7 +100,7 @@ if (isset($_POST['delete'])) {
                                             <td>
                                                 <form action="" method="POST">
                                                     <input type="hidden" name="id" value="<?= $user['User_id'] ?>"> 
-                                                    <button class="btn btn-sm btn-outline-primary mb-2" type="submit" name="edit">Update Role to Admin</button>
+                                                    <button class="btn btn-sm btn-outline-primary" type="submit" name="edit">Update Role to Admin</button>
                                                     <button class="btn btn-sm btn-outline-danger" onclick='return checkdelete()' type="submit" name="delete">Remove</button>
                                                 </form>
                                             </td>
