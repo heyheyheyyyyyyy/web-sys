@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             minlength="16"
                             maxlength="16"
                             placeholder="1234 1234 1234 1234"
-                            inputmode="numeric"
+                            pattern='[0-9]+'
                             id="cardnumber"
                             required
                             /><br />
@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             maxlength="4"
                             placeholder="MM / YY"
                             inputmode="numeric"
+                            pattern='[0-9]+'
                             required
                             id="cardnumber"
                             /><br />
@@ -78,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                             placeholder="CVC"
                             minlength="3"
                             maxlength="3"
+                            pattern='[0-9]+'
                             id="cardnumber"
                             required/>
                     </div>
