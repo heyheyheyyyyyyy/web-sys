@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 // Start the session
 include "session.php";
@@ -7,25 +8,29 @@ if (isset($_SESSION['User_id'])) {
 ?>
 
 <html lang="en">
-    <?php
-    include "head.inc.php";
-    ?>
+    <head>
+        <?php
+        include "head.inc.php";
+        ?>
+        <style>
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+
+        </style>
+    </head>
+
     <body>
         <?php
         include "nav.inc.php";
         ?>
-        <style>
-        .form-group {
-          margin-bottom: 1rem;
-        }
 
-        label {
-          display: block;
-          margin-bottom: 0.5rem;
-        }
-
-
-    </style>
         <main class="container">
             <h1>Member Registration</h1>
             <p>
