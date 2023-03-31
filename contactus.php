@@ -1,19 +1,22 @@
-
+<!DOCTYPE html>
 <?php include 'session.php'; ?>
 <html lang="en">
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
-        <link rel="stylesheet" href="css/main.css">
     </head>
     <body id="contactus">
+        <?php
+        include "nav.inc.php";
+        ?>
         <main>
             <div class="container">
                 <h1>Contact Us</h1>
-                <img src="images/customer-service.jpg" alt="" role="presentation">
-                <p>CUSTOMIZED SERVICES <br> 
+                <img src="images/customer-service.jpg" alt="customer-service">
+                <p>
+                    CUSTOMIZED SERVICES 
+                </p><br> 
                 <div><h2>
                         At Quench, <br><br>we take pride in offering an extensive variety of water bottles at competitive prices, without compromising on quality. </h2>
                 </div>
@@ -33,7 +36,6 @@
                 <div>
                     ●  All products are cruelty-free.
                 </div>
-                </p>
                 <br>
                 <form action="contact.php" method="post">
                     <div class="elem-group">
@@ -60,8 +62,8 @@
                     </div>
                     <div class="elem-group">
                         <label for="long_problem">Describe the problem in detail:</label><br>
-                        
-                        <textarea id="long_problem" name="visitor_message" required pattern=".{0,100}"></textarea><br>
+
+                        <textarea id="long_problem" name="visitor_message" required></textarea><br>
                     </div>
                     <button class='btn btn-primary' type="submit">Submit Form</button>
                 </form>
