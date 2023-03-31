@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include 'session.php';
 if (isset($_POST['addCart'])) {
@@ -141,13 +142,11 @@ if (isset($_POST['Wishlist'])) {
 
 
 
-<html>
+<html lang="en">
     <head>
         <?php
         include "head.inc.php";
-        include "nav.inc.php";
         ?>
-        <link rel="stylesheet" href="css/main.css">
         <style>
             .btn {
                 padding: 10px 20px;
@@ -187,16 +186,19 @@ if (isset($_POST['Wishlist'])) {
         </style>
     </head>
     <body id="productpage">
-        <div style="display: table; width: 100%; height: 100%;">
+        <?php
+        include "nav.inc.php";
+        ?>
+        <main style="display: table; width: 100%; height: 100%;">
             <div style="display: table-cell; vertical-align: middle; text-align: center;">
-                <main class="productpage-container">
+                <div class="productpage-container">
                     <?php
 // Get the product ID from the query parameter
                     $product_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
                     if ($product_id <= 0) {
                         // Invalid product ID
-                        die("Invalid product ID");
+                        header("location: index.php");
                     }
 
 // Fetch the product from the database
@@ -219,11 +221,11 @@ if (isset($_POST['Wishlist'])) {
                     ?>
 
                     <h1><?= $products['Product_name'] ?></h1>
-                    <img class="product-img" src="<?= $products['Product_image'] ?>">
+                    <img class="product-img" alt="productimage" src="<?= $products['Product_image'] ?>">
                     <p><?= $products['Product_desc'] ?></p>
                     <p>Price: $<?= $products['Product_price'] ?></p>
                     <!-- Add to cart form -->
-                    <form class="add-to-cart-form" action="" method="POST" style="display: inline-block;">
+                    <form class="add-to-cart-form" method="POST" style="display: inline-block;">
                         <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>"> 
                         <div style="text-align: center;">
                             <div class="quantity-input productpage" style="display: flex !important; justify-content: center !important; align-items: center !important;">
@@ -236,15 +238,18 @@ if (isset($_POST['Wishlist'])) {
                     </form>
 
                     <!-- View Cart button -->
-                    <a  href="cart.php" style="display: inline-block;"><button  class="btn btn-primary">View Cart</button></a>
+                    <form action="cart.php" style="display: inline-block;">
+                        <button  class="btn btn-primary">View Cart</button>
+                    </form>
 
-                    <form class="add-to-wishlist-form" action="" method="POST" style="display: inline-block;">
+                    <form class="add-to-wishlist-form" method="POST" style="display: inline-block;">
                         <input type="hidden" name="product_id" value="<?= $products['Product_id'] ?>">
                         <button id="add-to-wishlist-btn" class="btn btn-secondary" type="submit" name="Wishlist"> Wishlist </button>
                     </form>
-                </main>
+                </div>
             </div>
-        </div>
+        </main>
+
+        <?php include "footer.inc.php"; ?>
     </body>
-    <?php include "footer.inc.php"; ?>
 </html>
