@@ -1,5 +1,6 @@
+<!DOCTYPE html>
 <?php include 'session.php'; ?>
-<html>
+<html lang="en">
     <?php
     include "head.inc.php";
     ?>
