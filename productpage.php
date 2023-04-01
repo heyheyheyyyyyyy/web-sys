@@ -221,7 +221,7 @@ if (isset($_POST['Wishlist'])) {
                     ?>
 
                     <h1><?= $products['Product_name'] ?></h1>
-                    <img class="product-img" alt="productimage" width="500px" height='400px' src="<?= $products['Product_image'] ?>">
+                    <img class="product-img" alt="productimage" width="355px" height='380px' src="<?= $products['Product_image'] ?>">
                     <p><?= $products['Product_desc'] ?></p>
                     <p>Price: $<?= $products['Product_price'] ?></p>
                     <!-- Add to cart form -->
